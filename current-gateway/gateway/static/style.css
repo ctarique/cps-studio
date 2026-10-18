@@ -1,0 +1,2301 @@
+:root{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Arial,sans-serif;
+  color:#1d1d1f;
+  background:#f5f5f7;
+  color-scheme:light;
+  --ink:#1d1d1f;
+  --muted:#6e6e73;
+  --muted-2:#86868b;
+  --blue:#0071e3;
+  --blue-hover:#0077ed;
+  --blue-soft:#e9f3ff;
+  --line:rgba(0,0,0,.09);
+  --line-strong:rgba(0,0,0,.15);
+  --paper:rgba(255,255,255,.82);
+  --paper-solid:#fff;
+  --surface:#f5f5f7;
+  --surface-2:#fbfbfd;
+  --amber:#a75d00;
+  --amber-soft:#fff5e5;
+  --danger:#c81e1e;
+  --danger-hover:#a91313;
+  --danger-soft:#fff0f0;
+  --shadow:0 18px 50px rgba(0,0,0,.065);
+  --shadow-hover:0 24px 64px rgba(0,0,0,.10);
+  --radius:28px;
+  --radius-sm:18px;
+}
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100%;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% -4%,rgba(0,113,227,.10),transparent 30rem),
+    radial-gradient(circle at 92% 4%,rgba(125,82,255,.08),transparent 30rem),
+    linear-gradient(180deg,#fbfbfd 0,#f5f5f7 34%,#f5f5f7 100%);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+main{max-width:1180px;margin:0 auto;padding:16px 24px 88px}
+a{color:var(--blue)}
+
+/* Glass navigation */
+.topbar{
+  position:sticky;
+  top:12px;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  min-height:56px;
+  padding:10px 12px 10px 18px;
+  margin:0 -4px;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:18px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:saturate(180%) blur(22px);
+  -webkit-backdrop-filter:saturate(180%) blur(22px);
+  box-shadow:0 8px 30px rgba(0,0,0,.055);
+}
+.brand{
+  color:var(--ink);
+  font-size:1.02rem;
+  font-weight:700;
+  letter-spacing:-.025em;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:wrap}
+.nav-links a{
+  color:#424245;
+  border-radius:999px;
+  padding:9px 12px;
+  font-size:.88rem;
+  font-weight:550;
+  text-decoration:none;
+  transition:background .18s ease,color .18s ease;
+}
+.nav-links a:hover{color:var(--ink);background:rgba(0,0,0,.045)}
+
+/* Product-style hero */
+.hero{text-align:center;padding:82px 18px 42px}
+.hero-home{padding-top:104px;padding-bottom:52px}
+.compact-hero{padding-top:76px}
+h1{
+  max-width:980px;
+  margin:14px auto 22px;
+  color:var(--ink);
+  font-size:clamp(3.25rem,7vw,6.7rem);
+  line-height:.96;
+  letter-spacing:-.062em;
+  font-weight:750;
+}
+.compact-hero h1{font-size:clamp(3rem,6vw,5.4rem)}
+h2{
+  margin:3px 0 12px;
+  color:var(--ink);
+  font-size:clamp(1.5rem,2.8vw,2rem);
+  line-height:1.15;
+  letter-spacing:-.035em;
+  font-weight:700;
+}
+h3{margin:12px 0 8px;font-size:1.38rem;letter-spacing:-.025em;line-height:1.2}
+p{line-height:1.55}
+.lead{
+  max-width:790px;
+  margin:0 auto 28px;
+  color:var(--muted);
+  font-size:clamp(1.12rem,2.15vw,1.38rem);
+  line-height:1.55;
+  letter-spacing:-.012em;
+}
+.eyebrow,.card-kicker{
+  margin:0;
+  color:var(--muted-2);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.health-strip{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:38px;
+  padding:8px 14px;
+  border:1px solid rgba(0,0,0,.075);
+  border-radius:999px;
+  color:#4c4c50;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 8px 24px rgba(0,0,0,.045);
+  font-size:.86rem;
+  font-weight:600;
+}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#30a46c;box-shadow:0 0 0 4px rgba(48,164,108,.12)}
+body[data-gateway-available="false"] .status-dot{background:var(--danger);box-shadow:0 0 0 4px rgba(200,30,30,.10)}
+
+/* Surfaces and cards */
+section{
+  margin:20px 0;
+  padding:32px;
+  border:1px solid rgba(255,255,255,.82);
+  border-radius:var(--radius);
+  background:var(--paper);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:var(--shadow);
+}
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.portal-grid{
+  margin:4px 0 28px;
+  padding:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  backdrop-filter:none;
+}
+.portal-card,.experiment-card,.mini-card{
+  position:relative;
+  overflow:hidden;
+  min-height:250px;
+  padding:30px;
+  border:1px solid rgba(0,0,0,.055);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.90);
+  box-shadow:var(--shadow);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.portal-card::after,.experiment-card::after{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:190px;
+  right:-85px;
+  top:-95px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,113,227,.13),rgba(0,113,227,0) 68%);
+  pointer-events:none;
+}
+.portal-card:nth-child(2)::after{background:radial-gradient(circle,rgba(125,82,255,.12),rgba(125,82,255,0) 68%)}
+.portal-card:nth-child(3)::after{background:radial-gradient(circle,rgba(48,164,108,.13),rgba(48,164,108,0) 68%)}
+.portal-card:nth-child(4)::after{background:radial-gradient(circle,rgba(255,159,10,.13),rgba(255,159,10,0) 68%)}
+.portal-card:hover,.experiment-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:rgba(0,0,0,.08)}
+.portal-card h2,.experiment-card h3{margin-top:10px}
+.portal-card p,.experiment-card p,.mini-card p{color:var(--muted)}
+.portal-card .button-link{margin-top:8px}
+
+/* Controls */
+.button-link,button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:10px 18px;
+  margin:10px 8px 0 0;
+  border:0;
+  border-radius:999px;
+  color:#fff;
+  background:var(--blue);
+  font:inherit;
+  font-size:.93rem;
+  font-weight:650;
+  letter-spacing:-.01em;
+  text-decoration:none;
+  cursor:pointer;
+  box-shadow:0 5px 16px rgba(0,113,227,.18);
+  transition:background .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.button-link:hover,button:hover{background:var(--blue-hover);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,113,227,.22)}
+.button-link.secondary,.secondary-button{
+  color:var(--ink);
+  background:rgba(0,0,0,.055);
+  box-shadow:none;
+}
+.button-link.secondary:hover,.secondary-button:hover{background:rgba(0,0,0,.085)}
+.danger{background:var(--danger);box-shadow:0 5px 16px rgba(200,30,30,.16)}
+.danger:hover{background:var(--danger-hover);box-shadow:0 8px 20px rgba(200,30,30,.18)}
+button:disabled{opacity:.48;cursor:wait;transform:none;box-shadow:none}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:4px solid rgba(0,113,227,.24);
+  outline-offset:2px;
+}
+.text-link{font-weight:650;text-decoration:none}
+.text-link:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Boundaries / status */
+.boundary-callout{
+  display:grid;
+  grid-template-columns:minmax(250px,.92fr) minmax(300px,1.08fr);
+  gap:42px;
+  align-items:center;
+  padding:38px;
+  background:linear-gradient(135deg,rgba(255,255,255,.93),rgba(242,247,255,.86));
+}
+.boundary-callout p:last-child{margin:0;color:var(--muted);font-size:1.02rem}
+.warning-callout{background:linear-gradient(135deg,#fffdf8,var(--amber-soft))}
+.status{background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(239,247,255,.88))}
+.recovery-panel{background:linear-gradient(135deg,rgba(255,255,255,.94),var(--danger-soft))}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.badge-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:27px;
+  padding:5px 9px;
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:999px;
+  color:#5b5b60;
+  background:rgba(0,0,0,.04);
+  font-size:.69rem;
+  font-weight:700;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+}
+.badge.ready{color:#17643b;background:#ecf8f1;border-color:#d5efdf}
+.badge.planned-badge{color:#7b4a00;background:var(--amber-soft);border-color:#f0dfbd}
+.experiment-card.available{background:linear-gradient(145deg,#fff 58%,#eef7ff)}
+.experiment-card.planned{background:linear-gradient(145deg,#fff 58%,#fff7ea)}
+
+/* Specs and workflow */
+.spec-list{display:grid;gap:0;margin:20px 0}
+.spec-list div{display:grid;grid-template-columns:82px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.spec-list dt{color:var(--muted-2);font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.spec-list dd{margin:0;color:#3a3a3c}
+.workflow-steps{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+  margin:24px 0 0;
+  padding:0;
+  list-style:none;
+  counter-reset:steps;
+}
+.workflow-steps li{
+  counter-increment:steps;
+  min-height:152px;
+  padding:18px;
+  border:1px solid rgba(0,0,0,.055);
+  border-radius:20px;
+  background:#fafafa;
+}
+.workflow-steps li::before{
+  content:counter(steps);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;
+  height:30px;
+  margin-bottom:14px;
+  border-radius:50%;
+  color:#fff;
+  background:var(--blue);
+  font-size:.84rem;
+  font-weight:700;
+}
+.workflow-steps strong,.workflow-steps span{display:block}
+.workflow-steps strong{letter-spacing:-.015em}
+.workflow-steps span{margin-top:7px;color:var(--muted);font-size:.88rem;line-height:1.48}
+.experiment-list{display:grid;gap:18px;padding:0;border:0;background:transparent;box-shadow:none;backdrop-filter:none}
+.experiment-feature{
+  display:grid;
+  grid-template-columns:106px 1fr;
+  gap:28px;
+  padding:38px;
+  border:1px solid rgba(0,0,0,.055);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.9);
+  box-shadow:var(--shadow);
+}
+.experiment-feature.available{background:linear-gradient(135deg,#fff 62%,#edf7ff)}
+.experiment-feature.planned{background:linear-gradient(135deg,#fff 62%,#fff7e9)}
+.experiment-number{color:#d2d2d7;font-size:3.8rem;font-weight:750;letter-spacing:-.065em;line-height:1}
+.experiment-copy p{max-width:800px;color:var(--muted)}
+.plain-list{padding-left:20px;color:#515154;line-height:1.75}
+
+/* Forms */
+label{display:block;margin:16px 0 8px;color:#333336;font-weight:650}
+input,textarea{
+  display:block;
+  width:100%;
+  padding:13px 15px;
+  border:1px solid var(--line-strong);
+  border-radius:14px;
+  color:var(--ink);
+  background:rgba(255,255,255,.92);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.025);
+  font:inherit;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+input:focus,textarea:focus{border-color:rgba(0,113,227,.55);box-shadow:0 0 0 4px rgba(0,113,227,.09);outline:none}
+textarea,pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+textarea{line-height:1.55;resize:vertical}
+code{padding:.12rem .35rem;border-radius:6px;color:#38383a;background:#ececf0;font-size:.9em}
+.hint{color:var(--muted);font-size:.9rem;line-height:1.52}
+pre{
+  max-height:560px;
+  margin-bottom:0;
+  padding:18px;
+  overflow:auto;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  border:1px solid #22242a;
+  border-radius:16px;
+  color:#e6e6e9;
+  background:#15161a;
+  font-size:.86rem;
+  line-height:1.55;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+.buttons{display:flex;gap:0;flex-wrap:wrap}
+.run-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:13px 0;border-top:1px solid var(--line);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.84rem;overflow-wrap:anywhere}
+.run-row:first-child{border-top:0}
+.compact-button{min-height:34px;padding:7px 11px;margin:0;font-family:inherit;font-size:.8rem}
+.two-up{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* TV / HDMI presentation */
+.display-body{
+  background:
+    radial-gradient(circle at 50% 0,rgba(0,113,227,.11),transparent 32rem),
+    #f5f5f7;
+}
+.display{max-width:1400px;text-align:center;padding-top:13vh}
+.display h1{max-width:none;margin-left:auto;margin-right:auto;font-size:clamp(4rem,8vw,8rem)}
+.display #health{max-width:1100px;margin:22px auto;color:#424245;font-size:clamp(1.5rem,3vw,2.8rem);font-weight:650;letter-spacing:-.025em;overflow-wrap:anywhere}
+.display-mark{width:84px;height:8px;margin:46px auto;border-radius:999px;background:linear-gradient(90deg,#0071e3,#7d52ff)}
+.display-note{color:var(--muted);font-size:1.12rem}
+.display-clock{margin-top:30px;color:var(--muted-2);font-size:.92rem}
+
+@media (max-width:860px){
+  main{padding:12px 16px 62px}
+  .topbar{top:8px;align-items:flex-start;flex-direction:column;gap:6px;padding:12px 14px}
+  .nav-links{justify-content:flex-start;width:100%}
+  .nav-links a{padding:8px 9px}
+  .hero,.compact-hero{padding-top:62px}
+  .hero-home{padding-top:72px}
+  .card-grid,.two-up{grid-template-columns:1fr}
+  .portal-card,.experiment-card,.mini-card{min-height:auto}
+  .boundary-callout{grid-template-columns:1fr;gap:10px}
+  .workflow-steps{grid-template-columns:1fr 1fr}
+  .experiment-feature{grid-template-columns:1fr;gap:12px}
+  .experiment-number{font-size:2.8rem}
+}
+@media (max-width:560px){
+  main{padding-left:12px;padding-right:12px}
+  .topbar{border-radius:16px}
+  .nav-links{gap:2px}
+  .nav-links a{font-size:.82rem}
+  h1{font-size:3.15rem}
+  .compact-hero h1{font-size:2.9rem}
+  section,.portal-card,.experiment-card,.mini-card,.experiment-feature{padding:22px;border-radius:22px}
+  .workflow-steps{grid-template-columns:1fr}
+  .button-link,button{width:100%;margin-right:0}
+  .section-heading{align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important}
+}
+
+/* R04 home: story and laboratory gallery */
+.story-section,.lab-section{padding:40px}
+.story-content{min-height:112px}
+.lab-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}
+.lab-photo-placeholder{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;border:1px dashed var(--line-strong);border-radius:var(--radius-sm);background:linear-gradient(145deg,#f7f8fb,#edf0f5);color:var(--muted);font-size:.9rem}
+.lab-gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm)}
+.contact-content{min-height:200px}
+@media(max-width:860px){.lab-gallery{grid-template-columns:1fr}}
+@media(max-width:560px){.story-section,.lab-section{padding:22px}}
+
+/* R06 homepage and future work */
+.home-tagline{max-width:860px;margin:0 auto 20px;font-size:clamp(1.4rem,3vw,2rem);line-height:1.25;letter-spacing:-.03em;color:var(--ink)}
+.hero-home h1{overflow-wrap:break-word}
+.explore-section{padding:0;border:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.explore-section>h2{margin:0 0 24px;text-align:center}
+.explore-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.explore-grid .portal-card{display:flex;flex-direction:column}
+.explore-grid .portal-card h3{margin-top:0}
+.explore-grid .portal-card .button-link{align-self:flex-start;margin-top:auto;margin-right:0}
+.home-experiments{padding-left:20px;margin:0 0 24px;line-height:1.6}
+.home-experiments li+li{margin-top:10px}
+.home-experiments .badge{display:table;margin-top:6px}
+.home-experiments a{text-decoration:none}
+.home-experiments a:hover{text-decoration:underline}
+.story-section,.about-gateway{padding:40px}
+.story-section>h2,.about-gateway>h2{max-width:860px;margin-left:auto;margin-right:auto}
+.prose{max-width:860px;margin:0 auto;color:#515154}
+.prose p{font-size:1.04rem;line-height:1.7;margin:20px 0}
+.prose p:last-child{margin-bottom:0}
+.future-work>p{color:var(--muted)}
+.future-work-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:26px 0}
+.future-work-list>div{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface-2)}
+.future-work-list dt{font-weight:700;letter-spacing:-.015em}
+.future-work-list dd{margin:10px 0 0;color:var(--muted);line-height:1.55}
+.future-notice{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--blue-soft)}
+.future-notice h3{margin-top:0}
+.future-notice p{margin-bottom:0;color:#424245}
+.experiment-facts{max-width:790px;margin:20px auto 0;padding-left:24px;text-align:left;line-height:1.65;color:#515154}
+@media(max-width:960px){.explore-grid{grid-template-columns:1fr}.explore-grid .portal-card .button-link{margin-top:14px}}
+@media(max-width:560px){.story-section,.about-gateway{padding:22px}.future-work-list{grid-template-columns:1fr}.future-notice{padding:20px}.hero-home h1{font-size:clamp(2.5rem,12vw,3.15rem)}}
+
+/* R07 access and submission details */
+.login-panel{max-width:620px;margin:20px auto}
+.admin-session-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.admin-session-bar p{margin:0;color:var(--muted)}
+.admin-session-bar button{margin:0}
+
+
+
+[hidden]{display:none!important}
+.portal-footer{margin:36px 0 0;padding:12px 4px;color:var(--muted);font-size:.9rem;text-align:center}
+.portal-footer a{text-decoration:none}
+.pending-badge{text-decoration:none;color:var(--blue);background:var(--blue-soft);text-transform:none;letter-spacing:0;font-size:.86rem}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+.scope-options{margin:18px 0 0;padding:18px;border:1px solid var(--line);border-radius:18px}
+.scope-options legend{padding:0 6px;color:#333336;font-weight:650}
+.scope-options label{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:8px 0;line-height:1.5;font-weight:500}
+.scope-options input{display:inline-block;width:18px;height:18px;padding:0;margin:0;accent-color:var(--blue)}
+
+
+.request-row{padding:20px 0;border-top:1px solid var(--line)}
+.request-row:first-child{border-top:0}
+.request-row h3{margin-top:0;font-size:1.1rem}
+.request-row p{margin:8px 0;color:var(--muted);overflow-wrap:anywhere}
+
+
+
+#devices .mini-card{min-height:auto;box-shadow:none}
+#devices .mini-card h3{margin-top:0}
+button:disabled{cursor:not-allowed}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}.scope-options{padding:14px}}
+
+/* R10 Lab Display. Kiosk restrictions are scoped to /display only. */
+html.lab-display-root,html.lab-display-root body{margin:0;width:100%;height:100%;overflow:hidden;cursor:none;user-select:none;-webkit-user-select:none}
+.lab-display-body{background:radial-gradient(circle at 50% 0,rgba(0,113,227,.10),transparent 38rem),#f5f5f7}
+.lab-display{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;max-width:1600px;padding:5vh 6vw;text-align:center}
+.lab-display h1{max-width:1400px;margin:20px auto;font-size:clamp(3.4rem,7.2vw,8rem);line-height:1.02}
+.lab-display .eyebrow{font-size:clamp(.9rem,1.5vw,1.5rem)}
+.lab-display-state{max-width:1300px;margin:8px auto;color:#424245;font-size:clamp(1.6rem,2.7vw,3rem);line-height:1.3;font-weight:650;letter-spacing:-.025em}
+.lab-display .display-note{max-width:1150px;margin:8px auto;font-size:clamp(1.15rem,1.7vw,1.9rem);white-space:pre-line}
+.lab-display .display-mark{margin:26px auto}
+.lab-display-availability{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:24px;color:var(--muted)}
+.lab-display-availability .badge{margin-left:8px;vertical-align:middle}
+html.lab-display-root body.track-mode{height:100vh;overflow:hidden;background:#fff}
+.track-surface{position:fixed;inset:0;width:100vw;height:100vh;margin:0;padding:0;border:0;background:#fff}
+.display-track,.display-track .approved-track{display:block;width:100%;height:100%;margin:0;padding:0}
+.track-surface,.track-surface *{animation:none!important;transition:none!important}
+.approved-track .track-line{stroke-width:var(--track-line-width,48)}
+
+/* TV-as-a-Track physical vehicle starting zone */
+.track-start-bracket{
+  fill:none;
+  stroke:#8e8e93;
+  stroke-width:5;
+  stroke-linecap:round;
+  stroke-dasharray:16 12;
+}
+
+.track-start-label{
+  fill:#6e6e73;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:25px;
+  font-weight:650;
+  letter-spacing:.08em;
+}
+
+.track-start-name{
+  fill:#1d1d1f;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:38px;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+
+.track-start-direction{
+  fill:#6e6e73;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:.05em;
+}
+.track-catalog{grid-template-columns:repeat(3,minmax(0,1fr));margin:22px 0}
+.track-catalog .mini-card{min-height:auto;box-shadow:none;padding:22px}
+.track-catalog .approved-track{display:block;width:100%;aspect-ratio:16/9;background:#fff;border:1px solid var(--line);border-radius:12px}
+.track-catalog h3{font-size:1.1rem;line-height:1.3}
+.track-catalog button{margin-bottom:0}
+.admin-display-summary div{grid-template-columns:112px 1fr}
+@media(max-width:860px){.track-catalog{grid-template-columns:1fr}.lab-display-availability{gap:6px}.lab-display h1{font-size:clamp(2.8rem,7vw,5rem)}}
+
+
+/* ==========================================================
+   CPS Studio Central Lab Display v2
+   Read-only laboratory situational presentation
+   ========================================================== */
+
+.lab-display-body{
+  transition:background .45s ease;
+}
+
+.display-shell{
+  width:min(1500px,92vw);
+  margin:auto;
+}
+
+.display-topline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+  width:100%;
+  margin-bottom:5vh;
+  color:#6e6e73;
+  font-size:clamp(.85rem,1.15vw,1.25rem);
+  font-weight:650;
+  letter-spacing:.04em;
+}
+
+.display-brand{
+  color:#1d1d1f;
+  font-weight:800;
+  letter-spacing:.11em;
+}
+
+.display-location{
+  text-align:right;
+}
+
+.display-primary{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.display-kicker{
+  margin:0 0 12px;
+  color:#6e6e73;
+  font-size:clamp(.82rem,1.05vw,1.1rem);
+  font-weight:750;
+  letter-spacing:.15em;
+}
+
+.display-dashboard{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  width:100%;
+  margin-top:5vh;
+}
+
+.display-status-card{
+  min-height:140px;
+  padding:26px 28px;
+  border:1px solid rgba(0,0,0,.09);
+  border-radius:22px;
+  background:rgba(255,255,255,.74);
+  box-shadow:
+    0 14px 38px rgba(0,0,0,.055);
+  text-align:left;
+}
+
+.display-status-card strong{
+  display:block;
+  margin:8px 0 7px;
+  color:#1d1d1f;
+  font-size:clamp(1.15rem,1.55vw,1.7rem);
+  line-height:1.18;
+}
+
+.display-status-card span{
+  color:#6e6e73;
+  font-size:clamp(.92rem,1.05vw,1.08rem);
+  line-height:1.4;
+}
+
+.display-card-label{
+  margin:0;
+  color:#6e6e73;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.13em;
+}
+
+.display-footer{
+  margin-top:4vh;
+  color:#86868b;
+  font-size:clamp(.8rem,.9vw,.95rem);
+  letter-spacing:.02em;
+}
+
+.display-progress{
+  width:min(780px,70vw);
+  height:8px;
+  margin:26px auto 18px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(0,0,0,.08);
+}
+
+.display-progress-fill{
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:currentColor;
+  transition:width .75s linear;
+}
+
+.display-state-enter{
+  animation:sentinel-display-enter .42s ease both;
+}
+
+@keyframes sentinel-display-enter{
+  from{
+    opacity:.28;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* Experiment modes remain restrained but visually distinct. */
+
+body[data-display-mode="idle"]{
+  background:
+    radial-gradient(
+      circle at 50% 0,
+      rgba(0,113,227,.10),
+      transparent 38rem
+    ),
+    #f5f5f7;
+}
+
+body[data-display-mode^="led-"]{
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      rgba(0,113,227,.13),
+      transparent 42rem
+    ),
+    #f5f5f7;
+}
+
+body[data-display-mode="led-running"] .lab-display-state{
+  color:#1d1d1f;
+  font-size:clamp(5rem,13vw,13rem);
+  line-height:.9;
+}
+
+body[data-display-mode="led-running"] .display-note{
+  margin-top:20px;
+}
+
+body[data-display-mode="led-complete"]{
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(40,145,80,.10),
+      transparent 42rem
+    ),
+    #f5f5f7;
+}
+
+body[data-display-mode="autonomous-car-setup"]{
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(90,75,190,.10),
+      transparent 42rem
+    ),
+    #f5f5f7;
+}
+
+body[data-display-mode="recovery"],
+body[data-display-mode="gateway-unavailable"]{
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(190,45,45,.09),
+      transparent 40rem
+    ),
+    #f5f5f7;
+}
+
+
+/* TV-as-a-Track transition */
+
+body[data-display-mode="track-preparing"] .display-primary{
+  animation:sentinel-track-prepare .5s ease both;
+}
+
+@keyframes sentinel-track-prepare{
+  from{
+    opacity:.35;
+    transform:scale(.985);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+body.track-reveal .track-surface{
+  animation:sentinel-track-reveal .5s ease both;
+}
+
+@keyframes sentinel-track-reveal{
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+}
+
+
+@media(max-width:900px){
+  .display-dashboard{
+    grid-template-columns:1fr;
+  }
+
+  .display-status-card{
+    min-height:auto;
+  }
+
+  .display-topline{
+    margin-bottom:3vh;
+  }
+}
+
+/* Simplified CPS Experiments catalog. */
+
+.experiment-summary-line {
+  margin: 22px 0;
+  color: var(--muted);
+  font-size: .92rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.experiment-list .experiment-feature {
+  grid-template-columns: 1fr;
+}
+
+.experiment-list .experiment-copy {
+  max-width: 900px;
+}
+
+/* CPS Experiments — hardware image layout */
+
+.experiments-hero {
+  padding-bottom: 32px;
+}
+
+.experiment-list .experiment-with-image {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  align-items: center;
+  gap: 44px;
+}
+
+.experiment-with-image .experiment-copy {
+  max-width: 720px;
+}
+
+.experiment-hardware-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 300px;
+  padding: 24px;
+
+  border: 1px solid var(--line);
+  border-radius: 22px;
+
+  background: #fff;
+}
+
+.experiment-hardware-image img {
+  display: block;
+
+  width: 100%;
+  max-width: 330px;
+  max-height: 310px;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 860px) {
+
+  .experiment-list .experiment-with-image {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .experiment-hardware-image {
+    order: -1;
+    min-height: 240px;
+  }
+
+  .experiment-hardware-image img {
+    max-width: 300px;
+    max-height: 280px;
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .experiment-hardware-image {
+    min-height: 200px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .experiment-hardware-image img {
+    max-width: 260px;
+    max-height: 240px;
+  }
+
+}
+
+/* Experiment 1 — simplified activity interface */
+
+.experiment-activity-hero {
+  padding-bottom: 38px;
+}
+
+.experiment-activity-hero .experiment-summary-line {
+  margin: 18px auto 22px;
+  text-align: center;
+}
+
+.experiment-status-panel {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.experiment-activity-section {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.supported-operations,
+.program-limits {
+  margin: 26px 0;
+}
+
+.supported-operations h3,
+.program-limits h3 {
+  margin-bottom: 14px;
+}
+
+.operation-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.operation-list > div {
+  display: grid;
+  grid-template-columns: minmax(150px, 190px) 1fr;
+  align-items: baseline;
+  gap: 20px;
+
+  padding: 12px 15px;
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  background: var(--surface-2);
+}
+
+.operation-list dt {
+  font-weight: 650;
+}
+
+.operation-list dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.experiment-result {
+  margin-top: 18px;
+}
+
+.custom-program-actions {
+  margin-top: 18px;
+}
+
+.experiment-how {
+  max-width: none;
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+
+  .operation-list > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+}
+
+/* Experiment 1 Gateway Terminal */
+
+.gateway-terminal {
+  margin-top: 28px;
+  overflow: hidden;
+
+  border: 1px solid #2b2b2f;
+  border-radius: 16px;
+
+  background: #111113;
+}
+
+.gateway-terminal-heading {
+  padding: 11px 16px;
+
+  border-bottom: 1px solid #2b2b2f;
+
+  color: #d8d8dc;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.gateway-terminal-status {
+  margin: 0;
+  padding: 15px 16px 0;
+
+  color: #a9a9b0;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  font-size: .82rem;
+}
+
+.gateway-terminal pre {
+  margin: 0;
+  padding: 12px 16px 18px;
+
+  border: 0;
+  background: transparent;
+
+  color: #f1f1f3;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+}
+
+/* Experiment 1 hero badges centered beneath description. */
+
+.experiment-activity-hero .badge-row {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+/* Hide empty Guided Control status/result placeholders.
+   They become visible automatically when JavaScript writes content. */
+
+#device-status:empty,
+#result:empty {
+  display: none;
+}
+
+
+/* Introductory bounded-execution explanation. */
+
+.bounded-program-intro {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bounded-program-intro h2 {
+  margin-bottom: 12px;
+}
+
+/* Do not show empty Guided Control status/output areas. */
+#device-status:empty,
+#result:empty {
+  display: none;
+}
+
+/* Experiment 2 — standardized activity presentation */
+
+.experiment-activity-hero .badge-row {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.car-overview {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.car-overview h2 {
+  margin-bottom: 12px;
+}
+
+/* Experiment 2 internal display/track status.
+   Retained for JavaScript state handling, hidden from student UI. */
+#car-display-status,
+#car-selected {
+  display: none !important;
+}
+
+/* Experiment 2 — keep overview aligned with workflow sections */
+.car-overview {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* Administration — Gateway operational state */
+
+.gateway-status-locked {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.gateway-status-unlocked {
+  color: #18864b;
+  font-weight: 700;
+}
+
+/* Lock is intentionally destructive/safety-oriented. */
+#gateway-lock {
+  background: #b42318;
+  border-color: #b42318;
+  color: #fff;
+}
+
+#gateway-lock:hover:not(:disabled) {
+  background: #912018;
+  border-color: #912018;
+}
+
+/* Unlock uses the portal's normal primary-button appearance. */
+#gateway-unlock {
+  font-weight: 600;
+}
+
+/* Administration — system and device health */
+
+.gateway-health-summary {
+  margin-top: 18px;
+}
+
+.gateway-device-health {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(127, 127, 127, 0.22);
+}
+
+.gateway-device-health h3 {
+  margin-bottom: 14px;
+}
+
+.system-health-online {
+  color: #18864b;
+  font-weight: 700;
+}
+
+.system-health-unavailable {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.system-health-unknown {
+  color: #6b7280;
+  font-weight: 700;
+}
+
+.system-health-development {
+  color: #64748b;
+  font-weight: 700;
+}
+
+/* Administration — Lab Display controls inside SYSTEM */
+
+.system-presentation-control {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(127, 127, 127, 0.22);
+}
+
+.system-presentation-control > .card-kicker {
+  margin-top: 0;
+}
+
+.system-presentation-control > h2 {
+  margin-bottom: 18px;
+}
+
+/* Administration — embedded Lab Display status preview */
+
+.admin-display-preview {
+  width: 100%;
+  margin-top: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(127, 127, 127, 0.24);
+  border-radius: 14px;
+  background: #000;
+  aspect-ratio: 16 / 9;
+}
+
+.admin-display-preview iframe {
+  display: block;
+
+  /*
+   * Render the Lab Display at a larger virtual viewport,
+   * then scale it down into the Administration preview.
+   * This makes the preview behave like a miniature TV
+   * instead of a small responsive browser window.
+   */
+  width: 160%;
+  height: 160%;
+  max-width: none;
+
+  border: 0;
+
+  transform: scale(.625);
+  transform-origin: top left;
+
+  /* Preview only — Administration does not interact through the display. */
+  pointer-events: none;
+}
+
+/* Administration — standardized SYSTEM typography */
+
+.status .system-subheading {
+  margin: 0 0 18px;
+  font-family: inherit;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+
+.status .gateway-device-health,
+.status .system-presentation-control {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(127, 127, 127, 0.22);
+}
+
+/* Consistent labels and values throughout SYSTEM */
+
+.status .spec-list dt {
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.status .spec-list dd {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Contact page */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.contact-card {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.contact-profile {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.contact-photo {
+  width: 150px;
+  height: 150px;
+  flex: 0 0 150px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+}
+
+.contact-photo-researcher {
+  object-position: center 36%;
+}
+
+.contact-profile h2 {
+  margin: 0 0 8px;
+}
+
+.contact-role {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.contact-project-role {
+  margin: 5px 0 0;
+  color: var(--muted);
+}
+
+.contact-details {
+  margin: 0 0 26px;
+}
+
+.contact-details > div {
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+}
+
+.contact-details > div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-details dt {
+  margin-bottom: 5px;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.contact-details dd {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.contact-details a {
+  color: inherit;
+}
+
+@media (max-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-card {
+    padding: 22px;
+  }
+
+  .contact-profile {
+    align-items: flex-start;
+  }
+
+  .contact-photo {
+    width: 105px;
+    height: 105px;
+    flex-basis: 105px;
+    border-radius: 18px;
+  }
+}
+
+/* Contact cards without profile photos */
+
+.contact-profile-no-photo {
+  min-height: 150px;
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .contact-profile-no-photo {
+    min-height: auto;
+  }
+}
+
+/* Primary navigation — Home + Lab Display on the left */
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-left-link {
+  padding: 9px 11px;
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .18s ease, color .18s ease;
+}
+
+.nav-left-link:hover {
+  color: var(--ink);
+  background: rgba(0,0,0,.045);
+}
+
+@media (max-width: 860px) {
+  .nav-left {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   Administration status colors
+   ========================================================= */
+
+.admin-status-online,
+.admin-status-unlocked,
+.admin-status-disconnected {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 650;
+}
+
+
+.admin-status-online::before,
+.admin-status-unlocked::before,
+.admin-status-disconnected::before {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  content: "";
+}
+
+
+/* Gateway service */
+.admin-status-online {
+  color: #248a3d;
+}
+
+.admin-status-online::before {
+  background: #34c759;
+}
+
+
+/* Experiment access */
+.admin-status-unlocked {
+  color: #0071e3;
+}
+
+.admin-status-unlocked::before {
+  background: #007aff;
+}
+
+
+/* CPS device communication */
+.admin-status-disconnected {
+  color: #c8102e;
+}
+
+.admin-status-disconnected::before {
+  background: #c8102e;
+}
+
+
+
+/* =========================================================
+   Administration · Lab Display controls
+   CPS Studio Red presentation treatment
+   ========================================================= */
+
+.system-presentation-control button {
+  min-height: 44px;
+
+  padding:
+    10px
+    16px;
+
+  border:
+    1px solid rgba(200,16,46,.30);
+
+  border-radius: 12px;
+
+  background:
+    rgba(200,16,46,.045);
+
+  color:
+    #c8102e;
+
+  font-weight: 650;
+
+  box-shadow:
+    none;
+
+  transition:
+    background-color .18s ease,
+    border-color .18s ease,
+    color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease;
+}
+
+
+.system-presentation-control button:hover:not(:disabled) {
+  border-color:
+    #c8102e;
+
+  background:
+    #c8102e;
+
+  color:
+    #ffffff;
+
+  box-shadow:
+    0 8px 22px
+    rgba(200,16,46,.16);
+}
+
+
+.system-presentation-control button:focus-visible {
+  outline:
+    3px solid
+    rgba(200,16,46,.18);
+
+  outline-offset: 3px;
+}
+
+
+.system-presentation-control button:active:not(:disabled) {
+  background:
+    #a70d27;
+
+  border-color:
+    #a70d27;
+
+  color:
+    #ffffff;
+
+  transform:
+    scale(.98);
+}
+
+
+.system-presentation-control button:disabled {
+  border-color:
+    rgba(29,29,31,.10);
+
+  background:
+    #f5f5f7;
+
+  color:
+    #aeaeb2;
+
+  box-shadow:
+    none;
+}
+
+
+
+/* =========================================================
+   Administration · Lab Display controls
+   Black / White / CPS Studio Red
+   ========================================================= */
+
+.system-presentation-control button {
+  min-height: 44px;
+
+  padding:
+    11px
+    17px;
+
+  border:
+    1px solid #1d1d1f;
+
+  border-radius:
+    12px;
+
+  background:
+    #1d1d1f;
+
+  color:
+    #ffffff;
+
+  font-weight:
+    650;
+
+  box-shadow:
+    inset 0 3px 0 #c8102e,
+    0 5px 14px rgba(0,0,0,.08);
+
+  transition:
+    background-color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease;
+}
+
+
+.system-presentation-control button:hover:not(:disabled) {
+  background:
+    #000000;
+
+  border-color:
+    #c8102e;
+
+  color:
+    #ffffff;
+
+  box-shadow:
+    inset 0 3px 0 #f7244d,
+    0 8px 20px rgba(0,0,0,.14);
+}
+
+
+.system-presentation-control button:focus-visible {
+  outline:
+    3px solid rgba(200,16,46,.22);
+
+  outline-offset:
+    3px;
+}
+
+
+.system-presentation-control button:active:not(:disabled) {
+  background:
+    #c8102e;
+
+  border-color:
+    #c8102e;
+
+  color:
+    #ffffff;
+
+  box-shadow:
+    inset 0 3px 0 #f7244d;
+
+  transform:
+    scale(.98);
+}
+
+
+.system-presentation-control button:disabled {
+  background:
+    #e8e8ed;
+
+  border-color:
+    #e8e8ed;
+
+  color:
+    #9a9aa0;
+
+  box-shadow:
+    inset 0 3px 0 rgba(200,16,46,.20);
+}
+
+
+
+/* =========================================================
+   Institutional identity · top navigation
+   ========================================================= */
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.nav-institutional {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-right: 8px;
+}
+
+
+.nav-project-logo {
+  display: block;
+
+  width: auto;
+  height: 38px;
+
+  object-fit: contain;
+}
+
+
+.nav-cs-logo {
+  display: block;
+
+  width: 44px;
+  height: 44px;
+
+  object-fit: cover;
+
+  border-radius: 9px;
+}
+
+
+.nav-brand-divider {
+  width: 1px;
+  height: 30px;
+
+  margin: 0 2px;
+
+  background:
+    rgba(29,29,31,.12);
+}
+
+
+/* Keep the institutional marks visually secondary
+   to the portal navigation. */
+.nav-institutional img {
+  flex: 0 0 auto;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
+/* Slight compression for narrower displays. */
+@media (max-width: 1050px) {
+
+  .nav-project-logo {
+    height: 32px;
+  }
+
+  .nav-cs-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-institutional {
+    gap: 7px;
+    margin-right: 3px;
+  }
+
+}
+
+
+/* Existing mobile navigation becomes a stacked layout.
+   Keep the identity cluster together. */
+@media (max-width: 860px) {
+
+  .nav-left {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .nav-institutional {
+    flex: 0 0 100%;
+    margin: 0 0 6px;
+  }
+
+  .nav-project-logo {
+    height: 34px;
+  }
+
+  .nav-cs-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+}
+
+
+
+/* =========================================================
+   Administration · Lab Display controls
+   Light institutional style
+   ========================================================= */
+
+.system-presentation-control button {
+  min-height: 44px;
+
+  padding: 11px 18px;
+
+  border: 1px solid #d2d2d7 !important;
+  border-left: 4px solid #c8102e !important;
+
+  border-radius: 14px;
+
+  background: #f5f5f7 !important;
+
+  color: #1d1d1f !important;
+
+  font-weight: 650;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 3px 8px rgba(0, 0, 0, 0.035) !important;
+
+  transition:
+    background-color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease;
+}
+
+
+.system-presentation-control button:hover:not(:disabled) {
+  background: #ffffff !important;
+
+  border-color: #c7c7cc !important;
+  border-left-color: #c8102e !important;
+
+  color: #1d1d1f !important;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 6px 14px rgba(0, 0, 0, 0.06) !important;
+}
+
+
+.system-presentation-control button:focus-visible {
+  outline: 3px solid rgba(200, 16, 46, 0.18);
+  outline-offset: 3px;
+}
+
+
+.system-presentation-control button:active:not(:disabled) {
+  background: #ececef !important;
+
+  border-left-color: #c8102e !important;
+
+  color: #1d1d1f !important;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04) !important;
+
+  transform: scale(.985);
+}
+
+
+.system-presentation-control button:disabled {
+  background: #f5f5f7 !important;
+
+  border-color: #e1e1e5 !important;
+  border-left-color: rgba(200, 16, 46, 0.35) !important;
+
+  color: #9a9aa0 !important;
+
+  box-shadow: none !important;
+}
+
+
+
+/* =========================================================
+   Administration · Device label alignment
+   ========================================================= */
+
+.admin-device-label > span {
+  display: block;
+}
+
+.admin-device-label .admin-device-model {
+  padding-left: 32px;
+}
+
+
+
+/* =========================================================
+   Administration · Exact device model alignment
+   CAM / WROVER align directly beneath ESP32-
+   ========================================================= */
+
+.admin-device-label {
+  display: grid !important;
+
+  grid-template-columns: max-content max-content;
+  grid-template-rows: auto auto;
+
+  column-gap: 0;
+
+  width: max-content;
+}
+
+
+.admin-device-label .admin-device-number {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+
+.admin-device-label .admin-device-platform {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+
+.admin-device-label .admin-device-model {
+  grid-column: 2;
+  grid-row: 2;
+
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+
+/* Administration — ESP32-CAM connection indicator */
+#gateway-service::before,
+#health::before,
+#esp32-cam-health::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0.55em;
+  border-radius: 50%;
+  background: #6b7280;
+  box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.12);
+  vertical-align: 0.08em;
+}
+
+/* Administration — explicit ESP32-CAM indicator colors */
+#esp32-cam-health.system-health-online::before {
+  background: #18864b;
+  box-shadow: 0 0 0 4px rgba(24, 134, 75, 0.12);
+}
+
+#esp32-cam-health.system-health-unavailable::before {
+  background: #b42318;
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.12);
+}
+
+#esp32-cam-health.system-health-unknown::before {
+  background: #6b7280;
+  box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.12);
+}
+
+
+/* Administration — shared Gateway status indicator colors */
+#gateway-service.system-health-online::before,
+#health.gateway-status-unlocked::before {
+  background: #18864b;
+  box-shadow: 0 0 0 4px rgba(24, 134, 75, 0.12);
+}
+
+#gateway-service.system-health-unavailable::before,
+#health.gateway-status-locked::before {
+  background: #b42318;
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.12);
+}
+
+#gateway-service.system-health-unknown::before {
+  background: #6b7280;
+  box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.12);
+}
+
+
+/* Experiment 1 — Custom Program templates */
+.custom-template-picker {
+  margin: 28px 0 20px;
+}
+
+.custom-template-picker > label {
+  display: block;
+  margin-bottom: 9px;
+  font-weight: 650;
+}
+
+.custom-template-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.custom-template-controls select {
+  min-width: 240px;
+  min-height: 44px;
+  padding: 9px 38px 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: inherit;
+  font: inherit;
+}
+
+.custom-template-controls button {
+  min-height: 44px;
+}
+
+.custom-template-picker .hint {
+  margin-top: 9px;
+}
+
+@media (max-width: 560px) {
+  .custom-template-controls {
+    align-items: stretch;
+  }
+
+  .custom-template-controls select,
+  .custom-template-controls button {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   Experiment 2 · CAR live controls
+   ========================================================= */
+
+.car-live-panel {
+  margin:
+    22px 0 18px;
+
+  padding:
+    16px;
+
+  border:
+    1px solid rgba(29,29,31,.09);
+
+  border-radius:
+    18px;
+
+  background:
+    rgba(248,248,249,.92);
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,.035);
+}
+
+
+.car-live-heading {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    16px;
+
+  margin-bottom:
+    13px;
+}
+
+
+.car-live-heading strong {
+  font-size:
+    .78rem;
+
+  letter-spacing:
+    .07em;
+}
+
+
+.car-auth-state {
+  color:
+    rgba(29,29,31,.58);
+
+  font-size:
+    .78rem;
+
+  font-weight:
+    650;
+}
+
+
+.car-live-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:
+    10px;
+}
+
+
+.car-live-item {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  min-height:
+    44px;
+
+  padding:
+    9px 11px;
+
+  border:
+    1px solid rgba(29,29,31,.085);
+
+  border-radius:
+    11px;
+
+  background:
+    #ffffff;
+}
+
+
+.car-live-item > span {
+  color:
+    rgba(29,29,31,.62);
+
+  font-size:
+    .76rem;
+
+  font-weight:
+    760;
+
+  letter-spacing:
+    .025em;
+}
+
+
+.car-live-item strong {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    5px;
+
+  color:
+    #1d1d1f;
+
+  font-size:
+    .78rem;
+
+  font-weight:
+    650;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+
+.car-live-item small {
+  color:
+    rgba(29,29,31,.50);
+
+  font-size:
+    .67rem;
+
+  font-weight:
+    650;
+}
+
+
+.car-live-led {
+  display:
+    inline-block;
+
+  width:
+    11px;
+
+  height:
+    11px;
+
+  border-radius:
+    50%;
+
+  background:
+    #c8102e;
+
+  box-shadow:
+    0 0 0 3px rgba(200,16,46,.08),
+    0 0 6px rgba(200,16,46,.25);
+
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease;
+}
+
+
+.car-live-led.is-active {
+  background:
+    #30a46c;
+
+  box-shadow:
+    0 0 0 3px rgba(48,164,108,.09),
+    0 0 7px rgba(48,164,108,.30);
+}
+
+
+.car-control-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:
+    10px;
+
+  margin:
+    16px 0 10px;
+}
+
+
+.car-capture-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:
+    12px;
+
+  margin-top:
+    18px;
+}
+
+
+.car-capture-card {
+  overflow:
+    hidden;
+
+  border:
+    1px solid rgba(29,29,31,.10);
+
+  border-radius:
+    14px;
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 5px 16px rgba(0,0,0,.045);
+}
+
+
+.car-capture-card img {
+  display:
+    block;
+
+  width:
+    100%;
+
+  aspect-ratio:
+    4 / 3;
+
+  object-fit:
+    cover;
+
+  background:
+    #16191c;
+}
+
+
+.car-capture-meta {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    3px;
+
+  padding:
+    9px 10px 10px;
+}
+
+
+.car-capture-meta strong {
+  font-size:
+    .76rem;
+}
+
+
+.car-capture-meta span {
+  color:
+    rgba(29,29,31,.54);
+
+  font-family:
+    ui-monospace,
+    "SFMono-Regular",
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  font-size:
+    .64rem;
+}
+
+
+@media (max-width: 760px) {
+
+  .car-live-grid,
+  .car-control-grid,
+  .car-capture-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+
+/* CPS Studio: experimental wide-vehicle tracks */
+.approved-track[data-track="wide-straight"] .track-line,
+.approved-track[data-track="wide-circle"] .track-line,
+.approved-track[data-track="elliptical"] .track-line {
+  stroke-width: 100px;
+}
+
+
+/* CPS Studio twelve-track catalog: wide variants of Curve, Challenge and Infinity. */
+.approved-track[data-track="wide-curve"] .track-line,
+.approved-track[data-track="wide-challenge"] .track-line,
+.approved-track[data-track="wide-infinity"] .track-line {
+  stroke-width: 100px;
+}

@@ -1,0 +1,6 @@
+{
+  "mode": "simulator",
+  "config_label": "LAB-CONFIG-001",
+  "max_runs": 500,
+  "max_events": 20000
+}

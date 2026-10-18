@@ -1,0 +1,10 @@
+/* Production compatibility: retain the approved presentation and real sign-in. */
+body.scps-doc-ui .login-panel { padding: clamp(20px, 4vw, 32px); }
+#admin-login { display: grid; gap: 14px; }
+#admin-login label, #admin-login input, #admin-login p { margin: 0; }
+#admin-login button { justify-self: start; }
+#login-result { min-height: 1.4em; }
+
+/* Approved decorative hero art may overhang the full-bleed viewport.
+ * Clip only horizontal overflow; preserve image geometry and vertical flow. */
+body.home-page.scps-doc-ui > main { overflow-x: clip; }

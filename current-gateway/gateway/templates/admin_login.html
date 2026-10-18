@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CPS Studio · Admin Sign In</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/admin_login.js"></script>
+  <link rel="stylesheet"
+        href="/static/scps_docstyle.css?v=portal-scps-1">
+  <link rel="stylesheet" href="/static/portal_production.css?v=1.0.9-RC">
+</head>
+<body class="scps-doc-ui">
+<main>
+  {% include '_nav.html' %}
+  <header class="hero compact-hero">
+    <h1>Admin</h1>
+    <p class="lead">Enter your instructor credential to access Admin.</p>
+  </header>
+  <section class="login-panel">
+    <form id="admin-login">
+      <label for="admin-credential">Instructor Credential</label>
+      <input id="admin-credential" type="password" autocomplete="off" spellcheck="false" required pattern="[0-9a-f]{64}" minlength="64" maxlength="64">
+      <button id="sign-in" type="submit">Sign in</button>
+      <p id="login-result" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+</body>
+</html>

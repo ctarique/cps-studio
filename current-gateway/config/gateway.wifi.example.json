@@ -1,0 +1,12 @@
+{
+  "mode": "wifi",
+  "device_host": "REPLACE_WITH_PRIVATE_ESP32_IPV4",
+  "device_port": 80,
+  "car_device_host": "REPLACE_WITH_PRIVATE_CAR_IPV4",
+  "car_device_port": 80,
+  "wifi_interface": "wlan0",
+  "config_label": "LAB-CONFIG-002",
+  "max_runs": 500,
+  "max_events": 20000,
+  "timeout": 2
+}

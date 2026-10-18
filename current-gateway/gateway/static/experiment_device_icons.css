@@ -1,0 +1,119 @@
+/*
+ * CPS Studio CPS App identity artwork
+ *
+ * The artwork itself is exported directly from the Digital Twin.
+ * These rules control Portal-page placement only.
+ */
+
+.experiment-device-hero {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    clamp(145px, 17vw, 220px);
+
+  gap:
+    clamp(26px, 5vw, 70px);
+
+  align-items: center;
+}
+
+
+.experiment-device-hero-copy {
+  min-width: 0;
+}
+
+
+.experiment-device-hero-art {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+
+  /*
+   * Identity artwork only.
+   * It does not represent live device state.
+   */
+  pointer-events: none;
+  user-select: none;
+}
+
+
+.experiment-device-hero-art img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* LED artwork is naturally slightly wider. */
+
+.experiment-device-hero-art-led img {
+  max-width: 175px;
+  max-height: 220px;
+}
+
+
+/* Vehicle artwork is taller in its Digital Twin viewBox. */
+
+.experiment-device-hero-art-car img {
+  max-width: 185px;
+  max-height: 245px;
+}
+
+
+/*
+ * Keep the Portal treatment restrained.
+ * The SVG retains its own Digital Twin shadows/material styling.
+ */
+
+.experiment-device-hero-art img {
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1);
+}
+
+
+.experiment-device-hero:hover
+.experiment-device-hero-art img {
+  transform: translateY(-3px);
+}
+
+
+@media (max-width: 720px) {
+
+  .experiment-device-hero {
+    grid-template-columns: 1fr;
+  }
+
+
+  .experiment-device-hero-art {
+    justify-content: flex-start;
+
+    margin-top: 10px;
+  }
+
+
+  .experiment-device-hero-art-led img {
+    width: 125px;
+  }
+
+
+  .experiment-device-hero-art-car img {
+    width: 135px;
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .experiment-device-hero-art img {
+    transition: none !important;
+  }
+
+}

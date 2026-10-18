@@ -1,0 +1,1939 @@
+/*
+ * CPS Studio homepage presentation
+ */
+
+
+/* Slightly tighten space below main homepage tagline. */
+
+.hero-home {
+  padding-bottom: 34px;
+}
+
+
+/* ---------------------------------------------------------
+   Laboratory gallery heading
+   --------------------------------------------------------- */
+
+.home-gallery-section {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+
+.home-gallery-section > h2 {
+  margin: 0 auto 22px;
+
+  text-align: center;
+
+  font-size:
+    clamp(1.8rem, 3vw, 2.45rem);
+
+  line-height: 1.2;
+}
+
+
+.lab-location {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  font-size: .68em;
+
+  font-weight: 500;
+
+  letter-spacing: -.015em;
+
+  color: var(--muted);
+
+  white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   Full-width three-photo gallery
+   --------------------------------------------------------- */
+
+.home-gallery {
+  position: relative;
+
+  width: calc(100vw - 32px);
+  max-width: none;
+
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+  padding: 12px;
+
+  overflow: hidden;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 28px;
+
+  background: #0d0d0f;
+
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, .10);
+}
+
+
+.home-photo-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+
+.home-photo {
+  min-width: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  aspect-ratio: 1 / 1;
+
+  border-radius: 18px;
+
+  background: #171719;
+}
+
+
+.home-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  opacity: 1;
+
+  transition:
+    opacity .25s ease;
+}
+
+
+.home-gallery.is-changing
+.home-photo img {
+  opacity: .12;
+}
+
+
+/* ---------------------------------------------------------
+   Gallery navigation
+   --------------------------------------------------------- */
+
+.gallery-control {
+  position: absolute;
+
+  top: 50%;
+  z-index: 4;
+
+  width: 48px;
+  height: 48px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  transform:
+    translateY(-50%);
+
+  background:
+    rgba(255, 255, 255, .90);
+
+  color: #111;
+
+  font-size: 2rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 18px
+    rgba(0, 0, 0, .22);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+}
+
+
+.gallery-control:hover {
+  background: #fff;
+}
+
+
+.gallery-previous {
+  left: 26px;
+}
+
+
+.gallery-next {
+  right: 26px;
+}
+
+
+/* ---------------------------------------------------------
+   Homepage content
+   --------------------------------------------------------- */
+
+.home-content-section {
+  padding: 40px;
+}
+
+
+.home-content-section > h2 {
+  max-width: 860px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.home-question {
+  padding: 22px 24px;
+
+  border-left:
+    4px solid var(--blue);
+
+  border-radius:
+    0 16px 16px 0;
+
+  background:
+    var(--blue-soft);
+
+  color:
+    var(--ink);
+}
+
+
+/* ---------------------------------------------------------
+   Tablet
+   --------------------------------------------------------- */
+
+@media (max-width: 860px) {
+
+  .home-gallery {
+    width:
+      calc(100vw - 24px);
+
+    padding: 10px;
+
+    border-radius: 22px;
+  }
+
+
+  /*
+   * Keep the three-photo group together.
+   * The photographs simply become narrower.
+   */
+
+  .home-photo-grid {
+    gap: 8px;
+  }
+
+
+  .home-photo {
+    border-radius: 14px;
+  }
+
+
+  .gallery-previous {
+    left: 18px;
+  }
+
+
+  .gallery-next {
+    right: 18px;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Phone
+   --------------------------------------------------------- */
+
+@media (max-width: 560px) {
+
+  .hero-home {
+    padding-bottom: 26px;
+  }
+
+
+  .home-gallery-section > h2 {
+    margin-bottom: 16px;
+  }
+
+
+  .lab-location {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: .58em;
+  }
+
+
+  .home-gallery {
+    width:
+      calc(100vw - 16px);
+
+    padding: 6px;
+
+    border-radius: 16px;
+  }
+
+
+  .home-photo-grid {
+    gap: 5px;
+  }
+
+
+  .home-photo {
+    border-radius: 10px;
+  }
+
+
+  .gallery-control {
+    width: 40px;
+    height: 40px;
+
+    font-size: 1.7rem;
+  }
+
+
+  .gallery-previous {
+    left: 12px;
+  }
+
+
+  .gallery-next {
+    right: 12px;
+  }
+
+
+  .home-content-section {
+    padding: 22px;
+  }
+
+
+  .home-question {
+    padding: 18px;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Accessibility
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .home-photo img {
+    transition: none;
+  }
+
+}
+
+/* Lab identity heading uses a contrasting technical typeface. */
+
+.home-gallery-section > h2 {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+
+  font-weight: 500;
+  letter-spacing: -.025em;
+}
+
+.lab-location {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+/* Slightly smaller lab/location heading. */
+.home-gallery-section > h2 {
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+}
+
+.home-gallery-section > h2 {
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+}
+
+/* Tighten space between navigation and homepage title. */
+.hero-home {
+  padding-top: 72px;
+}
+
+/* Homepage academic attribution footer. */
+
+.home-footer {
+  margin-top: 46px;
+  padding: 28px 12px 8px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.home-footer p {
+  margin: 0;
+}
+
+.home-footer-primary {
+  color: var(--ink);
+  font-size: .98rem;
+  font-weight: 650;
+  letter-spacing: -.01em;
+}
+
+.home-footer-secondary {
+  margin-top: 7px !important;
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 550;
+}
+
+.home-footer-institution {
+  margin-top: 6px !important;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 560px) {
+  .home-footer {
+    margin-top: 34px;
+    padding-top: 24px;
+  }
+
+  .home-footer-institution span {
+    display: none;
+  }
+
+  .home-footer-institution {
+    max-width: 330px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+.home-footer-project {
+  margin-top: 4px !important;
+  color: var(--ink);
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+/* Home page spacing refinement */
+.hero-home {
+  padding-bottom: 10px;
+}
+
+#lab-gallery-heading {
+  margin-top: 24px;
+}
+
+/* Laboratory gallery heading refinement */
+#lab-gallery-heading {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", monospace;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+/* Home footer refinement */
+.home-footer-primary {
+  font-weight: 400;
+}
+
+/* CPS Studio laboratory heading */
+#lab-gallery-heading {
+  font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+
+  color: #C8102E;
+  background: linear-gradient(
+    90deg,
+    #C8102E 0%,
+    #F7244D 48%,
+    #BA875A 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#lab-gallery-heading .lab-location {
+  color: inherit;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Make CPS Studio gradient span the text itself */
+#lab-gallery-heading {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: linear-gradient(
+    90deg,
+    #C8102E 0%,
+    #F7244D 50%,
+    #BA875A 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+#lab-gallery-heading .lab-location {
+  color: inherit;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Stronger CPS Studio palette gradient */
+#lab-gallery-heading {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+  font-weight: 700;
+
+  background: linear-gradient(
+    90deg,
+    #C8102E 0%,
+    #C8102E 15%,
+    #F7244D 35%,
+    #BA875A 65%,
+    #956A44 100%
+  );
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+#lab-gallery-heading .lab-location {
+  color: inherit;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Lab heading capitalization */
+#lab-gallery-heading {
+  text-transform: uppercase;
+}
+
+/* Lab heading typography */
+#lab-gallery-heading {
+  font-family: inherit;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+/* Modern Home slideshow */
+
+.home-gallery {
+  position: relative;
+  padding: 12px;
+  overflow: hidden;
+
+  border: 1px solid rgba(33, 33, 33, 0.10);
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.96),
+      rgba(248,248,248,0.92)
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.09),
+    0 3px 10px rgba(0,0,0,0.04);
+}
+
+.home-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.home-photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+
+  aspect-ratio: 4 / 3;
+
+  border-radius: 19px;
+  background: #212121;
+}
+
+.home-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+.home-photo:hover img {
+  transform: scale(1.025);
+}
+
+
+/* Floating slideshow controls */
+
+.gallery-control {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  padding: 0;
+  margin: 0;
+
+  transform: translateY(-50%);
+
+  border: 1px solid rgba(255,255,255,0.32);
+  border-radius: 50%;
+
+  background: rgba(33,33,33,0.70);
+  color: #fff;
+
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.gallery-previous {
+  left: 24px;
+}
+
+.gallery-next {
+  right: 24px;
+}
+
+.gallery-control:hover {
+  background: rgba(33,33,33,0.88);
+
+  transform:
+    translateY(-50%)
+    scale(1.07);
+
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+}
+
+
+/* Small-screen gallery */
+
+@media (max-width: 700px) {
+
+  .home-gallery {
+    padding: 9px;
+    border-radius: 22px;
+  }
+
+  .home-photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-photo {
+    border-radius: 15px;
+  }
+
+  .home-photo:nth-child(n+2) {
+    display: none;
+  }
+
+  .gallery-control {
+    width: 42px;
+    height: 42px;
+  }
+
+  .gallery-previous {
+    left: 18px;
+  }
+
+  .gallery-next {
+    right: 18px;
+  }
+}
+
+
+/* Apple-like seamless laboratory gallery */
+
+.home-gallery {
+  position: relative;
+  overflow: hidden;
+
+  padding: 0;
+  border: 0;
+  border-radius: 26px;
+
+  background: #000;
+
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.04),
+    0 12px 40px rgba(0,0,0,.08);
+}
+
+.home-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.home-photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+
+  aspect-ratio: 4 / 3;
+
+  border-radius: 0;
+  background: #000;
+}
+
+/* Outer corners belong to the gallery as a whole */
+.home-photo:first-child {
+  border-radius: 26px 0 0 26px;
+}
+
+.home-photo:last-child {
+  border-radius: 0 26px 26px 0;
+}
+
+/* Extremely subtle separation between photographs */
+.home-photo + .home-photo {
+  border-left: 1px solid rgba(255,255,255,.16);
+}
+
+.home-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: scale(1.001);
+
+  transition:
+    transform .7s cubic-bezier(.22,1,.36,1),
+    filter .7s cubic-bezier(.22,1,.36,1);
+}
+
+.home-gallery:hover .home-photo img {
+  transform: scale(1.008);
+}
+
+
+/* Minimal floating controls */
+
+.gallery-control {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+  margin: 0;
+
+  transform: translateY(-50%);
+
+  border: 1px solid rgba(255,255,255,.20);
+  border-radius: 999px;
+
+  background: rgba(20,20,20,.38);
+  color: rgba(255,255,255,.96);
+
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+
+  box-shadow: none;
+
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+
+  opacity: .70;
+
+  transition:
+    opacity .22s ease,
+    background .22s ease,
+    transform .22s ease;
+}
+
+.gallery-previous {
+  left: 16px;
+}
+
+.gallery-next {
+  right: 16px;
+}
+
+.gallery-control:hover {
+  opacity: 1;
+  background: rgba(20,20,20,.58);
+
+  transform:
+    translateY(-50%)
+    scale(1.04);
+}
+
+
+/* Cleaner small-screen treatment */
+
+@media (max-width: 700px) {
+
+  .home-gallery {
+    border-radius: 22px;
+  }
+
+  .home-photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-photo {
+    display: none;
+    border: 0;
+    border-radius: 22px;
+  }
+
+  .home-photo:first-child {
+    display: block;
+    border-radius: 22px;
+  }
+
+  .gallery-previous {
+    left: 12px;
+  }
+
+  .gallery-next {
+    right: 12px;
+  }
+}
+
+/* Full-width seamless laboratory gallery */
+.home-gallery {
+  position: relative;
+
+  width: 100vw;
+  max-width: none;
+
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  background: #000;
+}
+
+.home-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+
+  width: 100%;
+}
+
+.home-photo,
+.home-photo:first-child,
+.home-photo:last-child {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border: 0;
+  border-radius: 0;
+}
+
+.home-photo + .home-photo {
+  border-left: 1px solid rgba(255,255,255,.12);
+}
+
+.home-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 0;
+}
+
+
+/* Floating controls remain inside the screen edges */
+.gallery-previous {
+  left: 24px;
+}
+
+.gallery-next {
+  right: 24px;
+}
+
+
+/* Keep the three-photo composition intact */
+@media (max-width: 700px) {
+
+  .home-gallery {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .home-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-photo,
+  .home-photo:first-child,
+  .home-photo:last-child {
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+  }
+
+  .gallery-previous {
+    left: 12px;
+  }
+
+  .gallery-next {
+    right: 12px;
+  }
+}
+
+
+/* Full-bleed gallery — centered correctly */
+.home-gallery {
+  position: relative;
+  left: 50%;
+
+  width: 100vw;
+  max-width: none;
+
+  margin: 0;
+  padding: 0;
+
+  transform: translateX(-50%);
+
+  overflow: hidden;
+
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  background: #000;
+  box-sizing: border-box;
+}
+
+
+/* Three equal photographs across the viewport */
+.home-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  width: 100%;
+  max-width: none;
+
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Prevent any photo from forcing the grid wider */
+.home-photo,
+.home-photo:first-child,
+.home-photo:last-child {
+  display: block;
+
+  min-width: 0;
+  width: 100%;
+
+  margin: 0;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border: 0;
+  border-radius: 0;
+}
+
+
+/* Very subtle separation between photos */
+.home-photo + .home-photo {
+  border-left: 1px solid rgba(255,255,255,.12);
+}
+
+
+.home-photo img {
+  display: block;
+
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 0;
+}
+
+
+/* Controls stay inside the visible screen */
+.gallery-previous {
+  left: 24px;
+}
+
+.gallery-next {
+  right: 24px;
+}
+
+
+@media (max-width: 700px) {
+
+  .home-gallery {
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+  }
+
+  .home-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-photo,
+  .home-photo:first-child,
+  .home-photo:last-child {
+    display: block;
+    min-width: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+}
+
+
+/* Smooth automatic gallery crossfade */
+
+.gallery-control {
+  display: none !important;
+}
+
+.home-photo {
+  position: relative;
+}
+
+.gallery-image-layer {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transition:
+    opacity 1.2s cubic-bezier(.22, 1, .36, 1);
+
+  will-change: opacity;
+
+  transform: none !important;
+}
+
+.gallery-image-layer.is-visible {
+  opacity: 1;
+}
+
+
+/* Avoid a dark flash while the page initializes */
+.home-gallery,
+.home-photo {
+  background: #f5f5f7;
+}
+
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-image-layer {
+    transition-duration: .15s;
+  }
+}
+
+
+/* Final smooth autoplay gallery behavior */
+
+.gallery-control {
+  display: none !important;
+}
+
+.home-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-image-layer {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transition:
+    opacity 900ms cubic-bezier(.4, 0, .2, 1);
+
+  will-change: opacity;
+}
+
+.gallery-image-layer.is-visible {
+  opacity: 1;
+}
+
+
+/* Keep the existing photo visible underneath during transitions */
+.home-photo {
+  background: #f5f5f7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gallery-image-layer {
+    transition-duration: 150ms;
+  }
+
+}
+
+/* =========================================================
+   Continuous panoramic laboratory gallery
+   ========================================================= */
+
+.gallery-control {
+  display: none !important;
+}
+
+
+/*
+ * The outer gallery remains full-bleed.
+ */
+.home-gallery {
+  overflow: hidden;
+
+  background: #f5f5f7;
+
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+/*
+ * Horizontal scrolling surface.
+ */
+.home-photo-grid {
+  display: flex !important;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  gap: 0;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-x: contain;
+
+  scroll-behavior: auto;
+
+  cursor: grab;
+
+  user-select: none;
+}
+
+.home-photo-grid::-webkit-scrollbar {
+  display: none;
+}
+
+
+/*
+ * Each repeated copy of the 15-image strip.
+ */
+.panorama-set {
+  display: flex;
+
+  flex: 0 0 auto;
+
+  gap: 6px;
+
+  padding-right: 6px;
+}
+
+
+/*
+ * Old layout showed three photos across:
+ * ~33.3vw each.
+ *
+ * 41.67vw makes each photograph approximately
+ * 25% wider than that.
+ */
+.panorama-photo {
+  position: relative;
+
+  flex:
+    0 0
+    clamp(
+      360px,
+      41.667vw,
+      720px
+    );
+
+  margin: 0;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  background: #e8e8ed;
+
+  border: 0;
+  border-radius: 0;
+}
+
+
+.panorama-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+
+  transform: translateZ(0);
+}
+
+
+/*
+ * Mouse drag feedback.
+ */
+.home-photo-grid.is-dragging {
+  cursor: grabbing;
+}
+
+
+/*
+ * Touch devices get a slightly larger single image
+ * while retaining horizontal swipe behavior.
+ */
+@media (max-width: 700px) {
+
+  .panorama-photo {
+    flex-basis: 82vw;
+  }
+
+}
+
+
+/*
+ * Automatic movement stops visually for users who
+ * prefer reduced motion. Manual scrolling still works.
+ */
+@media (prefers-reduced-motion: reduce) {
+
+  .home-photo-grid {
+    scroll-behavior: auto;
+  }
+
+}
+
+
+/* =========================================================
+   Final bounded panoramic carousel
+   ========================================================= */
+
+.gallery-control {
+  display: none !important;
+}
+
+.home-photo-grid {
+  display: flex !important;
+
+  width: 100%;
+  max-width: none;
+
+  gap: 6px;
+
+  margin: 0;
+  padding: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-x: contain;
+
+  scroll-behavior: auto;
+
+  cursor: grab;
+  user-select: none;
+}
+
+.home-photo-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.panorama-photo {
+  position: relative;
+
+  flex:
+    0 0
+    clamp(
+      360px,
+      41.667vw,
+      720px
+    );
+
+  min-width: 0;
+
+  margin: 0;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  background: #e8e8ed;
+
+  border: 0;
+  border-radius: 0;
+}
+
+.panorama-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.home-photo-grid.is-dragging {
+  cursor: grabbing;
+}
+
+@media (max-width: 700px) {
+  .panorama-photo {
+    flex-basis: 82vw;
+  }
+}
+
+
+
+/* =========================================================
+   CPS Studio Home — final academic presentation polish
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Standardized typography
+   --------------------------------------------------------- */
+
+body.home-page {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "SF Pro Display",
+    "Helvetica Neue",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  color: #1d1d1f;
+
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+body.home-page h1,
+body.home-page h2,
+body.home-page h3,
+body.home-page p,
+body.home-page strong,
+body.home-page a {
+  font-family: inherit;
+}
+
+
+/* ---------------------------------------------------------
+   Editorial content rhythm
+   --------------------------------------------------------- */
+
+body.home-page .home-content-section {
+  box-sizing: border-box;
+
+  width: min(1120px, calc(100% - 48px));
+
+  margin:
+    clamp(34px, 5vw, 70px)
+    auto
+    0;
+
+  padding:
+    clamp(46px, 6vw, 78px)
+    clamp(28px, 5vw, 72px);
+
+  border-top: 1px solid rgba(29,29,31,.10);
+
+  background: transparent;
+}
+
+
+body.home-page .home-content-section > h2 {
+  max-width: 860px;
+
+  margin:
+    0
+    auto
+    clamp(24px, 3vw, 36px);
+
+  color: #1d1d1f;
+
+  font-size:
+    clamp(2rem, 4vw, 3.25rem);
+
+  font-weight: 700;
+
+  line-height: 1.06;
+
+  letter-spacing: -.045em;
+}
+
+
+body.home-page .home-content-section .prose {
+  max-width: 860px;
+
+  margin: 0 auto;
+
+  color: #424245;
+}
+
+
+body.home-page .home-content-section .prose p {
+  margin:
+    0
+    0
+    clamp(20px, 2.4vw, 28px);
+
+  font-size:
+    clamp(1.03rem, 1.25vw, 1.12rem);
+
+  font-weight: 400;
+
+  line-height: 1.72;
+
+  letter-spacing: -.012em;
+}
+
+
+body.home-page .home-content-section .prose p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ---------------------------------------------------------
+   Core research question
+   --------------------------------------------------------- */
+
+body.home-page .home-question {
+  position: relative;
+
+  margin-top:
+    clamp(28px, 4vw, 42px) !important;
+
+  padding:
+    clamp(26px, 3.5vw, 38px)
+    clamp(28px, 4vw, 46px);
+
+  border:
+    1px solid rgba(29,29,31,.08);
+
+  border-left:
+    4px solid #c8102e;
+
+  border-radius: 18px;
+
+  background: #f5f5f7;
+
+  color: #1d1d1f !important;
+
+  box-shadow:
+    0 10px 32px rgba(0,0,0,.035);
+}
+
+
+body.home-page .home-question strong {
+  font-size:
+    clamp(1.12rem, 1.55vw, 1.35rem);
+
+  font-weight: 650;
+
+  line-height: 1.55;
+
+  letter-spacing: -.018em;
+}
+
+
+/* ---------------------------------------------------------
+   How it works
+   --------------------------------------------------------- */
+
+body.home-page #how-heading::after {
+  display: block;
+
+  width: 44px;
+  height: 3px;
+
+  margin-top: 18px;
+
+  border-radius: 999px;
+
+  background: #c8102e;
+
+  content: "";
+}
+
+
+/* ---------------------------------------------------------
+   Future Releases
+   Slightly differentiated final editorial section
+   --------------------------------------------------------- */
+
+body.home-page
+.home-content-section[aria-labelledby="future-heading"] {
+
+  border: 1px solid rgba(29,29,31,.08);
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fafafa,
+      #f5f5f7
+    );
+
+  box-shadow:
+    0 16px 46px rgba(0,0,0,.035);
+}
+
+
+body.home-page #future-heading {
+  color: #1d1d1f;
+}
+
+
+body.home-page #future-heading::after {
+  display: block;
+
+  width: 44px;
+  height: 3px;
+
+  margin-top: 18px;
+
+  border-radius: 999px;
+
+  background: #c8102e;
+
+  content: "";
+}
+
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+
+body.home-page .home-footer {
+  width: min(1120px, calc(100% - 48px));
+
+  margin:
+    clamp(64px, 8vw, 110px)
+    auto
+    0;
+
+  padding:
+    clamp(32px, 4vw, 48px)
+    0
+    clamp(40px, 5vw, 64px);
+
+  border-top:
+    1px solid rgba(29,29,31,.12);
+
+  text-align: left;
+}
+
+
+body.home-page .home-footer p {
+  margin: 0;
+}
+
+
+body.home-page .home-footer-primary {
+  color: #1d1d1f;
+
+  font-size:
+    clamp(1rem, 1.25vw, 1.12rem);
+
+  font-weight: 650;
+
+  letter-spacing: -.015em;
+}
+
+
+body.home-page .home-footer-secondary {
+  margin-top: 7px !important;
+
+  color: #6e6e73;
+
+  font-size: .92rem;
+}
+
+
+body.home-page .home-footer-institution {
+  margin-top: 18px !important;
+
+  color: #86868b;
+
+  font-size:
+    clamp(.82rem, 1vw, .94rem);
+
+  font-weight: 450;
+
+  line-height: 1.6;
+}
+
+
+body.home-page .home-footer-institution span {
+  margin: 0 7px;
+
+  color: #c8102e;
+}
+
+
+/* ---------------------------------------------------------
+   Mobile refinement
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  body.home-page .home-content-section {
+    width: calc(100% - 24px);
+
+    padding:
+      38px
+      22px;
+  }
+
+
+  body.home-page .home-footer {
+    width: calc(100% - 32px);
+  }
+
+
+  body.home-page .home-footer-institution span {
+    display: none;
+  }
+
+
+  body.home-page .home-footer-institution {
+    max-width: 520px;
+  }
+
+}
+
+
+/* =========================================================
+   Home · Laboratory heading gradient scope fix
+   ========================================================= */
+
+/* Reset any older gradient/text-fill styling on the full heading. */
+#lab-gallery-heading {
+  background: none !important;
+
+  color: #1d1d1f !important;
+
+  -webkit-text-fill-color: #1d1d1f !important;
+}
+
+
+/* Gradient applies ONLY to the laboratory name. */
+#lab-gallery-heading .lab-name {
+  display: inline-block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #c8102e 0%,
+      #f7244d 34%,
+      #ba875a 70%,
+      #956a44 100%
+    ) !important;
+
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+
+/* Location remains solid black. */
+#lab-gallery-heading .lab-location {
+  display: inline-block;
+
+  background: none !important;
+
+  color: #1d1d1f !important;
+  -webkit-text-fill-color: #1d1d1f !important;
+}
+
+
+
+/* =========================================================
+   Home · Lab heading
+   CPS Studio-red dominant gradient
+   ========================================================= */
+
+#lab-gallery-heading .lab-name {
+  background:
+    linear-gradient(
+      90deg,
+      #c8102e 0%,
+      #c8102e 48%,
+      #d7193f 68%,
+      #b97852 86%,
+      #956a44 100%
+    ) !important;
+
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+
+
+/* =========================================================
+   Home · Laboratory heading
+   Solid CPS Studio red
+   ========================================================= */
+
+#lab-gallery-heading .lab-name {
+  background: none !important;
+
+  color: #c8102e !important;
+  -webkit-text-fill-color: #c8102e !important;
+}
+
+
+#lab-gallery-heading .lab-location {
+  background: none !important;
+
+  color: #1d1d1f !important;
+  -webkit-text-fill-color: #1d1d1f !important;
+}
+
+
+
+/* =========================================================
+   Home · Learning Through Real Systems heading
+   ========================================================= */
+
+#learning-heading::after {
+  content: "";
+  display: block;
+
+  width: 44px;
+  height: 3px;
+
+  margin-top: 16px;
+
+  border-radius: 999px;
+
+  background: #c8102e;
+}
+
+
+
+/* =========================================================
+   Home · Additional section heading accents
+   ========================================================= */
+
+#laboratory-heading::after,
+#acknowledgments-heading::after {
+  content: "";
+  display: block;
+
+  width: 44px;
+  height: 3px;
+
+  margin-top: 16px;
+
+  border-radius: 999px;
+
+  background: #c8102e;
+}
+
+
+
+/* =========================================================
+   Home · Narrative section heading accents
+   ========================================================= */
+
+#gateway-heading::after,
+#physical-heading::after,
+#experiments-heading::after,
+#acknowledgments-heading::after {
+  content: "";
+  display: block;
+
+  width: 44px;
+  height: 3px;
+
+  margin-top: 16px;
+
+  border-radius: 999px;
+
+  background: #c8102e;
+}
+
+
+
+/* Home · Preserve proper capitalization for lab heading */
+#lab-gallery-heading {
+  text-transform: none !important;
+}
+
+
+
+/* Home · Final narrative heading accents */
+#boundary-heading::after,
+#physical-heading::after,
+#acknowledgments-heading::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 16px;
+  border-radius: 999px;
+  background: #c8102e;
+}
+

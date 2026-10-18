@@ -1,0 +1,12 @@
+/* Read-only request timing next to the existing RSSI. Track geometry is unchanged. */
+.status-rtt {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: #6e6e73;
+}
+.status-rtt[data-state="FAILED"],
+.status-rtt[data-state="STALE"] { color: #8a4b00; }
+.twin-visual-title-car { flex-wrap: wrap; max-width: calc(100% - 64px); }
+.twin-status-rtt { font-size: clamp(.64rem,.72vw,.76rem); font-weight: 650; letter-spacing: .01em; }
+.admin-overview-rtt { display: block; margin-top: 4px; font-size: .78rem; }

@@ -1,0 +1,2013 @@
+/*
+ * CPS Studio Portal
+ * SCPS Doc-Style UI layer
+ *
+ * Visual adaptation of SCPS Doc-Style v1.0.
+ * Loaded only by ordinary Portal pages.
+ * The Lab Display / Digital Twin remain independent.
+ */
+
+body.scps-doc-ui {
+  --scps-ink: #202124;
+  --scps-charcoal: #343a40;
+  --scps-slate: #66707a;
+  --scps-silver: #d9dee5;
+  --scps-mist: #f1f3f5;
+  --scps-soft: #f7f8f9;
+  --scps-red: #a5243d;
+  --scps-blue: #3d6485;
+  --scps-white: #ffffff;
+
+  background: var(--scps-white);
+  color: var(--scps-ink);
+
+  font-family:
+    Aptos,
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   PAGE FRAME
+   ========================================================= */
+
+body.scps-doc-ui main {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding:
+    22px
+    24px
+    72px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+body.scps-doc-ui .topbar {
+  position: relative;
+  top: auto;
+
+  margin-bottom: 48px;
+  padding:
+    12px
+    0
+    14px;
+
+  background: transparent;
+  border: 0;
+  border-bottom:
+    1px solid var(--scps-silver);
+  border-radius: 0;
+
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.scps-doc-ui .nav-links {
+  gap: 4px;
+}
+
+body.scps-doc-ui .nav-links a {
+  color: var(--scps-slate);
+  border-radius: 3px;
+}
+
+body.scps-doc-ui .nav-links a:hover,
+body.scps-doc-ui .nav-links a[aria-current="page"] {
+  color: var(--scps-ink);
+  background: var(--scps-mist);
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+body.scps-doc-ui h1,
+body.scps-doc-ui h2 {
+  font-family:
+    "Aptos Display",
+    Aptos,
+    Arial,
+    sans-serif;
+}
+
+body.scps-doc-ui h1 {
+  color: var(--scps-ink);
+  font-weight: 600;
+}
+
+body.scps-doc-ui h2 {
+  color: var(--scps-charcoal);
+
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+
+body.scps-doc-ui h3 {
+  color: var(--scps-charcoal);
+  font-weight: 650;
+}
+
+body.scps-doc-ui p {
+  color: var(--scps-ink);
+}
+
+body.scps-doc-ui .lead,
+body.scps-doc-ui .hint,
+body.scps-doc-ui .muted {
+  color: var(--scps-slate);
+}
+
+body.scps-doc-ui a {
+  color: var(--scps-blue);
+}
+
+body.scps-doc-ui a:not(.button-link):not(.nav-link) {
+  text-decoration-color:
+    color-mix(
+      in srgb,
+      var(--scps-blue) 40%,
+      transparent
+    );
+}
+
+
+/* =========================================================
+   HERO SYSTEM
+   ========================================================= */
+
+body.scps-doc-ui .hero,
+body.scps-doc-ui .compact-hero,
+body.scps-doc-ui .hero-home,
+body.scps-doc-ui .experiments-hero {
+  padding:
+    10px
+    0
+    38px;
+
+  text-align: left;
+
+  border-bottom:
+    1px solid var(--scps-silver);
+}
+
+body.scps-doc-ui .hero h1,
+body.scps-doc-ui .compact-hero h1,
+body.scps-doc-ui .hero-home h1,
+body.scps-doc-ui .experiments-hero h1 {
+  max-width: none;
+
+  margin:
+    0
+    0
+    12px;
+
+  font-size:
+    clamp(
+      2.45rem,
+      5vw,
+      3.55rem
+    );
+
+  line-height: 1.03;
+  letter-spacing: -.035em;
+}
+
+body.scps-doc-ui .hero .lead,
+body.scps-doc-ui .compact-hero .lead,
+body.scps-doc-ui .hero-home .lead,
+body.scps-doc-ui .experiments-hero .lead {
+  max-width: 800px;
+
+  margin: 0;
+
+  color: var(--scps-slate);
+
+  text-align: left;
+  font-size: 1.03rem;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+body.scps-doc-ui main > section {
+  max-width: none;
+
+  margin: 0;
+  padding:
+    32px
+    0
+    34px;
+
+  background: transparent;
+
+  border: 0;
+  border-bottom:
+    1px solid var(--scps-silver);
+
+  border-radius: 0;
+  box-shadow: none;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.scps-doc-ui main > section:last-of-type {
+  border-bottom: 0;
+}
+
+body.scps-doc-ui .card-kicker {
+  margin:
+    0
+    0
+    7px;
+
+  color: var(--scps-red);
+
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+body.scps-doc-ui .portal-card,
+body.scps-doc-ui .experiment-card,
+body.scps-doc-ui .mini-card,
+body.scps-doc-ui .experiment-feature,
+body.scps-doc-ui .contact-card,
+body.scps-doc-ui .login-panel {
+  background: var(--scps-white);
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 5px;
+
+  box-shadow: none;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  transform: none;
+}
+
+body.scps-doc-ui .portal-card::after,
+body.scps-doc-ui .experiment-card::after {
+  display: none;
+}
+
+body.scps-doc-ui .portal-card:hover,
+body.scps-doc-ui .experiment-card:hover,
+body.scps-doc-ui .experiment-feature:hover {
+  transform: none;
+
+  border-color: #bfc5cc;
+
+  box-shadow: none;
+}
+
+body.scps-doc-ui .portal-card p,
+body.scps-doc-ui .experiment-card p,
+body.scps-doc-ui .mini-card p,
+body.scps-doc-ui .experiment-copy p,
+body.scps-doc-ui .contact-card p {
+  color: var(--scps-slate);
+}
+
+
+/* =========================================================
+   HOME PAGE
+   ========================================================= */
+
+body.scps-doc-ui.home-page .hero-home {
+  padding-top: 10px;
+}
+
+body.scps-doc-ui.home-page .portal-grid {
+  gap: 14px;
+}
+
+body.scps-doc-ui.home-page .portal-card {
+  padding: 24px;
+}
+
+body.scps-doc-ui.home-page .story-section,
+body.scps-doc-ui.home-page .lab-section {
+  padding:
+    32px
+    0
+    34px;
+}
+
+body.scps-doc-ui .lab-gallery img,
+body.scps-doc-ui .lab-photo-placeholder {
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 3px;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   EXPERIMENT INDEX
+   ========================================================= */
+
+body.scps-doc-ui .experiment-list {
+  gap: 14px;
+}
+
+body.scps-doc-ui .experiment-feature {
+  padding: 24px;
+}
+
+body.scps-doc-ui .experiment-feature.available,
+body.scps-doc-ui .experiment-feature.planned,
+body.scps-doc-ui .experiment-card.available,
+body.scps-doc-ui .experiment-card.planned {
+  background: var(--scps-white);
+}
+
+body.scps-doc-ui .experiment-number {
+  color: var(--scps-silver);
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   BUTTONS / ACTIONS
+   ========================================================= */
+
+body.scps-doc-ui button,
+body.scps-doc-ui .button-link {
+  min-height: 42px;
+
+  padding:
+    9px
+    15px;
+
+  border-radius: 4px;
+
+  box-shadow: none;
+
+  font-family:
+    Aptos,
+    Arial,
+    sans-serif;
+
+  font-weight: 650;
+
+  transform: none;
+}
+
+body.scps-doc-ui button:not(.secondary-button):not(.danger),
+body.scps-doc-ui .button-link:not(.secondary-button) {
+  color: #fff;
+
+  background:
+    var(--scps-red);
+
+  border:
+    1px solid var(--scps-red);
+}
+
+body.scps-doc-ui button.secondary-button,
+body.scps-doc-ui .button-link.secondary-button {
+  color: var(--scps-blue);
+
+  background:
+    var(--scps-white);
+
+  border:
+    1px solid var(--scps-blue);
+}
+
+body.scps-doc-ui button.danger {
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+body.scps-doc-ui button:not(:disabled):hover,
+body.scps-doc-ui .button-link:hover {
+  transform: none;
+  box-shadow: none;
+
+  filter: brightness(.96);
+}
+
+body.scps-doc-ui button:disabled {
+  color: #9aa0a6 !important;
+
+  background:
+    var(--scps-mist) !important;
+
+  border-color:
+    var(--scps-silver) !important;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+body.scps-doc-ui input,
+body.scps-doc-ui textarea,
+body.scps-doc-ui select {
+  color: var(--scps-ink);
+
+  background:
+    var(--scps-white);
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 4px;
+
+  box-shadow: none;
+
+  font-family:
+    Aptos,
+    Arial,
+    sans-serif;
+}
+
+body.scps-doc-ui input:focus,
+body.scps-doc-ui textarea:focus,
+body.scps-doc-ui select:focus {
+  border-color:
+    var(--scps-blue);
+
+  outline:
+    2px solid
+    color-mix(
+      in srgb,
+      var(--scps-blue) 15%,
+      transparent
+    );
+
+  outline-offset: 1px;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   ADMINISTRATION
+   ========================================================= */
+
+body.scps-doc-ui .admin-session-bar {
+  padding:
+    14px
+    0;
+
+  border-top:
+    1px solid var(--scps-silver);
+
+  border-bottom:
+    1px solid var(--scps-silver);
+}
+
+body.scps-doc-ui .admin-session-bar p {
+  color: var(--scps-slate);
+}
+
+body.scps-doc-ui .admin-display-preview {
+  overflow: hidden;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 4px;
+
+  box-shadow: none;
+}
+
+body.scps-doc-ui .admin-display-preview iframe {
+  border-radius: 0;
+}
+
+body.scps-doc-ui .admin-device-label {
+  border-radius: 3px;
+}
+
+body.scps-doc-ui .admin-device-model,
+body.scps-doc-ui .admin-device-platform {
+  color: var(--scps-slate);
+}
+
+
+/* status accents remain semantic but restrained */
+
+body.scps-doc-ui .admin-status-online,
+body.scps-doc-ui .admin-status-unlocked,
+body.scps-doc-ui .admin-status-disconnected {
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+body.scps-doc-ui .contact-grid {
+  gap: 14px;
+}
+
+body.scps-doc-ui .contact-card {
+  padding: 24px;
+}
+
+body.scps-doc-ui .contact-photo {
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 3px;
+
+  box-shadow: none;
+}
+
+body.scps-doc-ui .contact-role,
+body.scps-doc-ui .contact-project-role,
+body.scps-doc-ui .contact-details dt {
+  color: var(--scps-slate);
+}
+
+body.scps-doc-ui .contact-details > div {
+  border-color:
+    var(--scps-silver);
+}
+
+
+/* =========================================================
+   TABLE / DEFINITION-LIST LANGUAGE
+   ========================================================= */
+
+body.scps-doc-ui table {
+  border-collapse: collapse;
+
+  color: var(--scps-ink);
+}
+
+body.scps-doc-ui th {
+  background:
+    var(--scps-mist);
+
+  color:
+    var(--scps-charcoal);
+
+  font-weight: 700;
+}
+
+body.scps-doc-ui th,
+body.scps-doc-ui td {
+  border:
+    1px solid var(--scps-silver);
+}
+
+body.scps-doc-ui .spec-list div {
+  border-color:
+    var(--scps-silver);
+}
+
+body.scps-doc-ui .spec-list dt {
+  color:
+    var(--scps-slate);
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+body.scps-doc-ui .badge {
+  min-height: 0;
+
+  padding:
+    4px
+    7px;
+
+  color:
+    var(--scps-slate);
+
+  background:
+    var(--scps-mist);
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 3px;
+
+  font-size: .67rem;
+  letter-spacing: .07em;
+}
+
+body.scps-doc-ui .badge.planned-badge {
+  color:
+    var(--scps-slate);
+
+  background:
+    var(--scps-mist);
+
+  border-color:
+    var(--scps-silver);
+}
+
+
+/* =========================================================
+   TECHNICAL / MACHINE-READABLE CONTENT
+   ========================================================= */
+
+body.scps-doc-ui pre,
+body.scps-doc-ui code,
+body.scps-doc-ui textarea.code,
+body.scps-doc-ui .experiment-result {
+  font-family:
+    "Aptos Mono",
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+}
+
+body.scps-doc-ui pre,
+body.scps-doc-ui .experiment-result {
+  color:
+    var(--scps-charcoal);
+
+  background:
+    var(--scps-soft);
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 3px;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   CALLOUTS
+   ========================================================= */
+
+body.scps-doc-ui .boundary-callout,
+body.scps-doc-ui .warning-callout,
+body.scps-doc-ui .status,
+body.scps-doc-ui .recovery-panel {
+  background:
+    var(--scps-soft);
+
+  border:
+    0;
+
+  border-left:
+    3px solid var(--scps-red);
+
+  border-radius: 0;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+body.scps-doc-ui .portal-footer {
+  margin-top: 36px;
+
+  padding:
+    16px
+    0
+    0;
+
+  color:
+    var(--scps-slate);
+
+  border-top:
+    1px solid var(--scps-silver);
+
+  text-align: left;
+
+  font-size: .84rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+  body.scps-doc-ui main {
+    padding:
+      16px
+      18px
+      60px;
+  }
+
+  body.scps-doc-ui .topbar {
+    margin-bottom: 34px;
+
+    padding-bottom: 12px;
+  }
+
+  body.scps-doc-ui .hero,
+  body.scps-doc-ui .compact-hero,
+  body.scps-doc-ui .hero-home,
+  body.scps-doc-ui .experiments-hero {
+    padding-top: 4px;
+  }
+
+  body.scps-doc-ui main > section {
+    padding:
+      28px
+      0
+      30px;
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  body.scps-doc-ui main {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  body.scps-doc-ui .topbar {
+    border-radius: 0;
+  }
+
+  body.scps-doc-ui .hero h1,
+  body.scps-doc-ui .compact-hero h1,
+  body.scps-doc-ui .hero-home h1,
+  body.scps-doc-ui .experiments-hero h1 {
+    font-size: 2.55rem;
+  }
+
+  body.scps-doc-ui .portal-card,
+  body.scps-doc-ui .experiment-card,
+  body.scps-doc-ui .mini-card,
+  body.scps-doc-ui .experiment-feature,
+  body.scps-doc-ui .contact-card,
+  body.scps-doc-ui .login-panel {
+    border-radius: 4px;
+  }
+
+}
+
+
+/* =========================================================
+   CPS Studio Admin Console v1
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Administrator session
+   --------------------------------------------------------- */
+
+body.scps-doc-ui .admin-console-session {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  margin: 0 0 34px;
+  padding: 16px 18px;
+
+  border: 1px solid #d9dee5;
+  border-radius: 14px;
+
+  background: #ffffff;
+}
+
+body.scps-doc-ui .admin-session-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+body.scps-doc-ui .admin-session-eyebrow {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+
+  color: #a5243d;
+}
+
+body.scps-doc-ui .admin-console-session p {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+
+  margin: 0;
+
+  color: #66707a;
+}
+
+body.scps-doc-ui .admin-console-session p strong {
+  color: #202124;
+  font-weight: 650;
+}
+
+
+/* ---------------------------------------------------------
+   System overview
+   --------------------------------------------------------- */
+
+body.scps-doc-ui .admin-console-top.status {
+  margin: 0;
+  padding: 0;
+
+  border: 0 !important;
+  border-left: 0 !important;
+
+  background: transparent;
+}
+
+body.scps-doc-ui .admin-console-heading {
+  margin: 0 0 18px;
+}
+
+body.scps-doc-ui .admin-console-heading .card-kicker {
+  margin-bottom: 7px;
+}
+
+body.scps-doc-ui .admin-console-heading h2 {
+  margin: 0;
+
+  font-family: "Aptos Display", "Aptos", sans-serif;
+  font-size: clamp(1.65rem, 2.2vw, 2.05rem);
+  font-weight: 600;
+
+  color: #202124;
+}
+
+body.scps-doc-ui .admin-overview-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-bottom: 24px;
+}
+
+body.scps-doc-ui .admin-overview-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 126px;
+
+  padding: 19px 20px 17px;
+
+  border: 1px solid #d9dee5;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+body.scps-doc-ui .admin-overview-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background: #a5243d;
+}
+
+body.scps-doc-ui .admin-overview-label {
+  margin-bottom: 12px;
+
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+
+  text-transform: uppercase;
+
+  color: #66707a;
+}
+
+body.scps-doc-ui .admin-overview-value {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 650;
+  line-height: 1.15;
+
+  color: #202124;
+}
+
+body.scps-doc-ui .admin-overview-meta {
+  margin-top: auto;
+
+  font-size: .82rem;
+  line-height: 1.25;
+
+  color: #66707a;
+}
+
+
+/* ---------------------------------------------------------
+   Experiment access
+   --------------------------------------------------------- */
+
+body.scps-doc-ui .admin-access-panel {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 22px 32px;
+
+  margin-top: 0;
+  padding: 22px 24px;
+
+  border: 1px solid #d9dee5;
+  border-radius: 14px;
+
+  background: #f1f3f5;
+}
+
+body.scps-doc-ui .admin-access-copy .card-kicker {
+  margin: 0 0 6px;
+}
+
+body.scps-doc-ui .admin-access-copy h2 {
+  margin: 0 0 6px;
+
+  font-family: "Aptos Display", "Aptos", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+
+  color: #202124;
+}
+
+body.scps-doc-ui .admin-access-copy > p:last-child {
+  max-width: 580px;
+
+  margin: 0;
+
+  color: #66707a;
+  line-height: 1.5;
+}
+
+body.scps-doc-ui .admin-access-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+body.scps-doc-ui .admin-access-segmented {
+  display: inline-flex;
+
+  gap: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  border: 1px solid #c6cdd5;
+  border-radius: 10px;
+
+  background: #ffffff;
+}
+
+body.scps-doc-ui .admin-access-segmented button {
+  min-width: 92px;
+
+  margin: 0 !important;
+  padding: 10px 18px;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: #ffffff;
+
+  color: #343a40;
+  font-weight: 650;
+}
+
+body.scps-doc-ui .admin-access-segmented button + button {
+  border-left: 1px solid #c6cdd5 !important;
+}
+
+body.scps-doc-ui .admin-access-segmented button:hover:not(:disabled) {
+  background: #e9ecef;
+}
+
+body.scps-doc-ui .admin-access-segmented button:disabled {
+  opacity: 1;
+
+  background: #343a40;
+
+  color: #ffffff;
+}
+
+body.scps-doc-ui .admin-access-result {
+  grid-column: 1 / -1;
+
+  margin: 0;
+
+  border-color: #d9dee5;
+
+  background: #ffffff;
+}
+
+body.scps-doc-ui .admin-access-result:empty {
+  display: none;
+}
+
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 980px) {
+
+  body.scps-doc-ui .admin-overview-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 680px) {
+
+  body.scps-doc-ui .admin-console-session {
+    align-items: flex-start;
+  }
+
+  body.scps-doc-ui .admin-console-session p {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  body.scps-doc-ui .admin-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.scps-doc-ui .admin-access-panel {
+    grid-template-columns: 1fr;
+  }
+
+  body.scps-doc-ui .admin-access-actions {
+    justify-content: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   CPS Studio Admin live status lights
+   ========================================================= */
+
+body.scps-doc-ui .admin-overview-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+}
+
+
+/* Shared indicator geometry */
+
+body.scps-doc-ui
+  .admin-overview-value.system-health-online::before,
+
+body.scps-doc-ui
+  .admin-overview-value.system-health-unavailable::before,
+
+body.scps-doc-ui
+  .admin-overview-value.system-health-unknown::before,
+
+body.scps-doc-ui
+  #health.gateway-status-unlocked::before,
+
+body.scps-doc-ui
+  #health.gateway-status-locked::before {
+
+  width: 9px;
+  height: 9px;
+
+  flex: 0 0 9px;
+
+  border-radius: 50%;
+
+  content: "";
+}
+
+
+/* Green · healthy / connected / enabled */
+
+body.scps-doc-ui
+  .admin-overview-value.system-health-online::before,
+
+body.scps-doc-ui
+  #health.gateway-status-unlocked::before {
+
+  background: #34c759;
+
+  box-shadow:
+    0 0 0 5px rgba(52,199,89,.09),
+    0 0 18px rgba(52,199,89,.34);
+
+  animation:
+    cps-admin-status-pulse
+    3.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* Red · unavailable / locked */
+
+body.scps-doc-ui
+  .admin-overview-value.system-health-unavailable::before,
+
+body.scps-doc-ui
+  #health.gateway-status-locked::before {
+
+  background: #c8102e;
+
+  box-shadow:
+    0 0 0 5px rgba(200,16,46,.09),
+    0 0 18px rgba(200,16,46,.30);
+
+  animation:
+    cps-admin-status-pulse
+    3.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* Neutral · not yet checked */
+
+body.scps-doc-ui
+  .admin-overview-value.system-health-unknown::before {
+
+  background: #a8afb7;
+
+  box-shadow:
+    0 0 0 5px rgba(168,175,183,.08);
+}
+
+
+@keyframes cps-admin-status-pulse {
+
+  0%,
+  100% {
+    opacity: .72;
+    transform: scale(.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.scps-doc-ui
+    .admin-overview-value::before,
+
+  body.scps-doc-ui
+    #health::before {
+
+    animation: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   CPS Studio Admin RSSI
+   ========================================================= */
+
+body.scps-doc-ui .admin-overview-rssi {
+  display: block;
+
+  margin-top: 7px;
+
+  font-family: "Aptos", sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+
+  color: #66707a;
+}
+
+body.scps-doc-ui .admin-overview-rssi[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================================
+   CPS Studio Admin RSSI
+   ========================================================= */
+
+body.scps-doc-ui .admin-overview-rssi {
+  display: block;
+
+  margin-top: 7px;
+
+  font-family: "Aptos", sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+
+  color: #66707a;
+}
+
+body.scps-doc-ui .admin-overview-rssi[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================================
+   CPS Studio Admin current display state
+   ========================================================= */
+
+body.scps-doc-ui
+  .admin-display-summary
+  #admin-display-mode {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  min-width: 108px;
+  min-height: 42px;
+
+  margin: 0;
+  padding: 9px 16px;
+
+  border:
+    1px solid rgba(200,16,46,.32);
+
+  border-radius: 10px;
+
+  background:
+    rgba(200,16,46,.055);
+
+  color: #c8102e;
+
+  font-size: .95rem;
+  font-weight: 700;
+  line-height: 1;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.42);
+}
+
+
+/* =========================================================
+   CPS Studio CPS Apps artwork
+   ========================================================= */
+
+body.scps-doc-ui .experiment-hardware-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.scps-doc-ui .experiment-hardware-image .cps-app-asset {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 88%;
+  max-height: 310px;
+
+  object-fit: contain;
+
+  border: 0;
+  box-shadow: none;
+}
+
+body.scps-doc-ui
+  .experiment-hardware-image
+  .cps-app-asset-led {
+
+  max-width: 72%;
+  max-height: 285px;
+}
+
+body.scps-doc-ui
+  .experiment-hardware-image
+  .cps-app-asset-car {
+
+  max-width: 92%;
+  max-height: 320px;
+}
+
+
+/* =========================================================
+   CPS Studio LED Flasher live hero status
+   ========================================================= */
+
+body.scps-doc-ui
+  .led-hero-status {
+
+  align-items: center;
+}
+
+
+body.scps-doc-ui
+  .led-live-badge,
+
+body.scps-doc-ui
+  .led-state-badge {
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+
+body.scps-doc-ui
+  .led-live-badge::before {
+
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 7px;
+
+  border-radius: 50%;
+
+  content: "";
+}
+
+
+body.scps-doc-ui
+  .led-live-online {
+
+  color: #17643b;
+  background: #ecf8f1;
+  border-color: #d5efdf;
+}
+
+
+body.scps-doc-ui
+  .led-live-online::before {
+
+  background: #34c759;
+
+  box-shadow:
+    0 0 0 4px rgba(52,199,89,.08),
+    0 0 14px rgba(52,199,89,.30);
+
+  animation:
+    cps-led-live-pulse
+    3.8s
+    ease-in-out
+    infinite;
+}
+
+
+body.scps-doc-ui
+  .led-live-unavailable {
+
+  color: #a5243d;
+  background: rgba(165,36,61,.06);
+  border-color: rgba(165,36,61,.20);
+}
+
+
+body.scps-doc-ui
+  .led-live-unavailable::before {
+
+  background: #c8102e;
+
+  box-shadow:
+    0 0 0 4px rgba(200,16,46,.07),
+    0 0 14px rgba(200,16,46,.26);
+
+  animation:
+    cps-led-live-pulse
+    3.8s
+    ease-in-out
+    infinite;
+}
+
+
+body.scps-doc-ui
+  .led-live-unknown::before {
+
+  background: #a8afb7;
+}
+
+
+body.scps-doc-ui
+  .led-state-on {
+
+  color: #17643b;
+  background: #ecf8f1;
+  border-color: #d5efdf;
+}
+
+
+body.scps-doc-ui
+  .led-state-off {
+
+  color: #4f5963;
+  background: #f1f3f5;
+  border-color: #d9dee5;
+}
+
+
+body.scps-doc-ui
+  .led-state-unknown {
+
+  color: #66707a;
+  background: #f1f3f5;
+  border-color: #d9dee5;
+}
+
+
+@keyframes cps-led-live-pulse {
+
+  0%,
+  100% {
+    opacity: .72;
+    transform: scale(.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.scps-doc-ui
+    .led-live-badge::before {
+
+    animation: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   CPS Studio LED Flasher application refinement
+   ========================================================= */
+
+
+/* Program boundary */
+
+body.scps-doc-ui .led-boundary-callout {
+  max-width: 980px;
+
+  margin:
+    0
+    auto
+    30px;
+
+  padding:
+    18px
+    22px;
+
+  border-left:
+    3px solid var(--scps-red);
+
+  background:
+    var(--scps-mist);
+}
+
+body.scps-doc-ui
+  .led-boundary-callout
+  .card-kicker {
+
+  margin:
+    0
+    0
+    6px;
+}
+
+body.scps-doc-ui
+  .led-boundary-callout
+  > p:last-child {
+
+  margin: 0;
+
+  color:
+    var(--scps-charcoal);
+
+  line-height: 1.55;
+}
+
+
+/* Guided LED console */
+
+body.scps-doc-ui .guided-led-console {
+  margin-top: 22px;
+
+  padding: 22px;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 12px;
+
+  background:
+    #ffffff;
+}
+
+body.scps-doc-ui .guided-led-state-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  padding-bottom: 16px;
+
+  border-bottom:
+    1px solid var(--scps-silver);
+}
+
+body.scps-doc-ui .guided-led-state-label {
+  color:
+    var(--scps-slate);
+
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+body.scps-doc-ui .guided-led-state {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 88px;
+
+  padding:
+    7px
+    11px;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 999px;
+
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+body.scps-doc-ui
+  .guided-led-state.led-state-on {
+
+  color: #17643b;
+
+  background: #ecf8f1;
+  border-color: #d5efdf;
+}
+
+body.scps-doc-ui
+  .guided-led-state.led-state-off {
+
+  color:
+    var(--scps-charcoal);
+
+  background:
+    var(--scps-mist);
+}
+
+body.scps-doc-ui
+  .guided-led-state.led-state-unknown {
+
+  color:
+    var(--scps-slate);
+
+  background:
+    var(--scps-mist);
+}
+
+body.scps-doc-ui .guided-led-actions {
+  margin-top: 12px;
+}
+
+body.scps-doc-ui .guided-led-message {
+  min-height: 1.4em;
+
+  margin:
+    12px
+    0
+    0;
+}
+
+
+/* Supported operations + limits */
+
+body.scps-doc-ui .program-reference-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(260px, .65fr);
+
+  gap: 22px;
+
+  margin:
+    28px
+    0;
+}
+
+body.scps-doc-ui
+  .program-reference-grid
+  .supported-operations,
+
+body.scps-doc-ui
+  .program-reference-grid
+  .program-limits {
+
+  margin: 0;
+
+  padding: 20px;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 12px;
+
+  background:
+    #ffffff;
+}
+
+body.scps-doc-ui
+  .program-reference-grid
+  h3 {
+
+  margin:
+    0
+    0
+    16px;
+}
+
+body.scps-doc-ui
+  .program-reference-grid
+  .operation-list
+  > div {
+
+  grid-template-columns:
+    minmax(125px, 150px)
+    1fr;
+
+  padding:
+    10px
+    12px;
+}
+
+body.scps-doc-ui
+  .program-reference-grid
+  .plain-list {
+
+  margin:
+    0;
+
+  padding-left: 20px;
+
+  line-height: 1.65;
+}
+
+
+/* Template picker */
+
+body.scps-doc-ui .custom-template-picker {
+  margin-top: 30px;
+
+  padding:
+    20px
+    22px;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 12px;
+
+  background:
+    var(--scps-mist);
+}
+
+
+/* Code editor */
+
+body.scps-doc-ui .custom-editor-shell {
+  margin-top: 28px;
+
+  overflow: hidden;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 12px;
+
+  background:
+    #ffffff;
+}
+
+body.scps-doc-ui .custom-editor-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding:
+    11px
+    14px;
+
+  border-bottom:
+    1px solid var(--scps-silver);
+
+  background:
+    var(--scps-mist);
+}
+
+body.scps-doc-ui
+  .custom-editor-heading
+  label {
+
+  margin: 0;
+
+  color:
+    var(--scps-charcoal);
+
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+body.scps-doc-ui .custom-editor-language {
+  color:
+    var(--scps-slate);
+
+  font-family:
+    "Aptos Mono",
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+
+body.scps-doc-ui #custom-source {
+  width: 100%;
+
+  margin: 0;
+
+  padding:
+    18px
+    20px;
+
+  border: 0;
+  border-radius: 0;
+
+  background:
+    #fbfbfc;
+
+  color:
+    var(--scps-ink);
+
+  font-family:
+    "Aptos Mono",
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+
+  font-size: .92rem;
+  line-height: 1.6;
+
+  box-shadow: none;
+
+  resize: vertical;
+}
+
+body.scps-doc-ui
+  #custom-source:focus {
+
+  outline:
+    2px solid rgba(61,100,133,.22);
+
+  outline-offset:
+    -2px;
+}
+
+
+/* Validation Result */
+
+body.scps-doc-ui .validation-result-panel {
+  margin-top: 22px;
+
+  padding:
+    20px
+    22px;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-left:
+    3px solid var(--scps-red);
+
+  border-radius:
+    0
+    10px
+    10px
+    0;
+
+  background:
+    #ffffff;
+}
+
+body.scps-doc-ui
+  .validation-result-panel
+  .card-kicker {
+
+  margin:
+    0
+    0
+    8px;
+}
+
+body.scps-doc-ui .validation-result-status {
+  margin:
+    0
+    0
+    12px;
+
+  color:
+    var(--scps-charcoal);
+
+  font-weight: 650;
+}
+
+body.scps-doc-ui
+  .validation-result-detail {
+
+  margin: 0;
+
+  padding:
+    13px
+    15px;
+
+  background:
+    var(--scps-mist);
+
+  white-space:
+    pre-wrap;
+}
+
+
+/* Responsive */
+
+@media (max-width: 760px) {
+
+  body.scps-doc-ui
+    .program-reference-grid {
+
+    grid-template-columns:
+      1fr;
+  }
+
+  body.scps-doc-ui
+    .guided-led-state-row {
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+}
+
+
+/* CPS Studio Gateway Response empty state */
+body.scps-doc-ui
+  .validation-result-status:empty {
+  display: none;
+}
+
+/* =========================================================
+   LED FLASHER — DEVICE STATUS LIGHT
+   ========================================================= */
+
+body.scps-doc-ui
+.led-hero-status {
+  min-height: 18px;
+  align-items: center;
+}
+
+body.scps-doc-ui
+.led-live-badge {
+  display: inline-flex;
+
+  width: 10px;
+  height: 10px;
+
+  flex: 0 0 10px;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  box-shadow: none;
+}
+
+body.scps-doc-ui
+.led-live-badge::before {
+  width: 10px;
+  height: 10px;
+
+  flex: 0 0 10px;
+
+  border-radius: 50%;
+}
+
+body.scps-doc-ui
+.led-live-online,
+body.scps-doc-ui
+.led-live-unavailable,
+body.scps-doc-ui
+.led-live-unknown {
+  color: transparent;
+  background: transparent;
+  border-color: transparent;
+}
+
+body.scps-doc-ui
+.led-live-online::before {
+  background: #34c759;
+
+  box-shadow:
+    0 0 0 5px rgba(52,199,89,.08),
+    0 0 20px rgba(52,199,89,.36);
+}
+
+body.scps-doc-ui
+.led-live-unavailable::before {
+  background: #c8102e;
+
+  box-shadow:
+    0 0 0 5px rgba(200,16,46,.07),
+    0 0 18px rgba(200,16,46,.28);
+}
+
+body.scps-doc-ui
+.led-live-unknown::before {
+  background: #a8afb7;
+  box-shadow: none;
+}

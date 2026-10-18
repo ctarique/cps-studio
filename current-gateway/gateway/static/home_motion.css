@@ -1,0 +1,356 @@
+/*
+ * CPS Studio Home Motion Layer v2
+ *
+ * Interaction-driven motion with a distinct CPS identity treatment.
+ * No animated section rules.
+ */
+
+
+/* =========================================================
+   HERO ENTRANCE
+   ========================================================= */
+
+/*
+ * These are CSS-native page-load animations so the entrance
+ * remains clearly visible instead of depending on JS timing.
+ */
+
+body.home-page.scps-doc-ui .hero-home h1 {
+  animation:
+    home-hero-title-in
+    .78s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+body.home-page.scps-doc-ui
+.hero-home .home-tagline {
+  animation:
+    home-hero-tagline-in
+    .72s
+    .18s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes home-hero-title-in {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px);
+
+    filter:
+      blur(3px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes home-hero-tagline-in {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(13px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   CPS STUDIO HERO IDENTITY
+   ========================================================= */
+
+/*
+ * Sentinel- remains SCPS Ink.
+ * CPS receives the red / bright-red / warm-amber visual
+ * vocabulary used by the Lab Display.
+ */
+
+body.home-page.scps-doc-ui
+.home-cps-glow {
+  display: inline-block;
+
+  color: transparent;
+
+  background:
+    linear-gradient(
+      100deg,
+      #a5243d 0%,
+      #c8102e 24%,
+      #f7244d 45%,
+      #ba875a 66%,
+      #c8102e 82%,
+      #a5243d 100%
+    );
+
+  background-size:
+    240% 100%;
+
+  background-position:
+    0% 50%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color:
+    transparent;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(200,16,46,.20)
+    )
+    drop-shadow(
+      0 0 12px
+      rgba(247,36,77,.10)
+    );
+
+  animation:
+    home-cps-gradient
+    6.5s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes home-cps-gradient {
+
+  0%,
+  100% {
+    background-position:
+      0% 50%;
+
+    filter:
+      drop-shadow(
+        0 0 4px
+        rgba(200,16,46,.16)
+      )
+      drop-shadow(
+        0 0 10px
+        rgba(247,36,77,.08)
+      );
+  }
+
+  50% {
+    background-position:
+      100% 50%;
+
+    filter:
+      drop-shadow(
+        0 0 7px
+        rgba(247,36,77,.25)
+      )
+      drop-shadow(
+        0 0 16px
+        rgba(186,135,90,.13)
+      );
+  }
+
+}
+
+
+/* =========================================================
+   SCROLL REVEALS
+   ========================================================= */
+
+body.home-page.scps-doc-ui.motion-ready
+.home-gallery-section,
+
+body.home-page.scps-doc-ui.motion-ready
+.home-content-section {
+  opacity: 0;
+
+  transform:
+    translateY(16px);
+}
+
+
+body.home-page.scps-doc-ui
+.home-gallery-section.is-visible,
+
+body.home-page.scps-doc-ui
+.home-content-section.is-visible {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  transition:
+    opacity
+    .58s
+    cubic-bezier(.22,1,.36,1),
+
+    transform
+    .58s
+    cubic-bezier(.22,1,.36,1);
+}
+
+
+/* =========================================================
+   GALLERY INTERACTION
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-gallery {
+  transition:
+    border-color .22s ease;
+}
+
+
+body.home-page.scps-doc-ui
+.home-gallery:hover {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--scps-red) 34%,
+      var(--scps-silver)
+    );
+}
+
+
+body.home-page.scps-doc-ui
+.panorama-photo {
+  overflow: hidden;
+}
+
+
+body.home-page.scps-doc-ui
+.panorama-photo img {
+  transition:
+    transform
+    .55s
+    cubic-bezier(.22,1,.36,1),
+
+    filter
+    .35s
+    ease;
+}
+
+
+body.home-page.scps-doc-ui
+.panorama-photo:hover img {
+  transform:
+    scale(1.018);
+}
+
+
+/* =========================================================
+   INTERACTIVE LINKS
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.button-link {
+  transition:
+    background-color .18s ease,
+    border-color .18s ease,
+    color .18s ease,
+    transform .18s ease;
+}
+
+
+body.home-page.scps-doc-ui
+.button-link:not(:disabled):hover {
+  transform:
+    translateX(3px);
+}
+
+
+body.home-page.scps-doc-ui
+.home-content-section
+a:not(.button-link) {
+  text-decoration-thickness:
+    1px;
+
+  text-underline-offset:
+    3px;
+
+  transition:
+    color .18s ease,
+    text-underline-offset .18s ease;
+}
+
+
+body.home-page.scps-doc-ui
+.home-content-section
+a:not(.button-link):hover {
+  color:
+    var(--scps-red);
+
+  text-underline-offset:
+    5px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.home-page.scps-doc-ui
+  .hero-home h1,
+
+  body.home-page.scps-doc-ui
+  .hero-home .home-tagline,
+
+  body.home-page.scps-doc-ui
+  .home-cps-glow {
+    animation:
+      none !important;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .home-cps-glow {
+    background-position:
+      50% 50%;
+  }
+
+
+  body.home-page.scps-doc-ui.motion-ready
+  .home-gallery-section,
+
+  body.home-page.scps-doc-ui.motion-ready
+  .home-content-section {
+    opacity: 1;
+
+    transform: none;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .panorama-photo img,
+
+  body.home-page.scps-doc-ui
+  .button-link,
+
+  body.home-page.scps-doc-ui
+  .home-content-section a {
+    transition:
+      none !important;
+  }
+
+}

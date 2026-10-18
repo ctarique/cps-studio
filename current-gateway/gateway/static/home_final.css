@@ -1,0 +1,963 @@
+/*
+ * CPS Studio — Final Home Visual Pass
+ * Visual-only refinement layer.
+ *
+ * Loaded after all existing Home styles so the established
+ * functionality and earlier source remain untouched.
+ */
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+body.home-page.scps-doc-ui .topbar {
+  margin-bottom: 24px;
+  padding-top: 10px;
+  padding-bottom: 13px;
+}
+
+body.home-page.scps-doc-ui .nav-cs-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+body.home-page.scps-doc-ui .brand,
+body.home-page.scps-doc-ui .nav-left-link,
+body.home-page.scps-doc-ui .nav-links a {
+  border-radius: 4px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+body.home-page.scps-doc-ui .home-editorial-hero {
+  min-height: 530px;
+
+  padding-top: 34px;
+  padding-bottom: 58px;
+
+  gap: clamp(32px, 5vw, 70px);
+}
+
+body.home-page.scps-doc-ui .home-hero-copy {
+  top: -20px;
+}
+
+body.home-page.scps-doc-ui .home-hero-copy h1 {
+  margin-bottom: 20px;
+
+  font-size:
+    clamp(3.9rem, 6.4vw, 6.1rem);
+
+  line-height: .95;
+  letter-spacing: -.05em;
+}
+
+
+/*
+ * Replace the earlier animated gradient/glow with the
+ * restrained project accent.
+ */
+
+body.home-page.scps-doc-ui .home-cps-glow {
+  color: var(--scps-red);
+
+  background: none;
+
+  -webkit-background-clip: initial;
+  background-clip: initial;
+
+  -webkit-text-fill-color: currentColor;
+
+  filter: none;
+
+  animation: none;
+}
+
+body.home-page.scps-doc-ui .home-lab-identity {
+  gap: 5px;
+
+  margin-bottom: 28px;
+
+  padding:
+    3px
+    0
+    3px
+    14px;
+
+  border-left:
+    2px solid var(--scps-red);
+}
+
+body.home-page.scps-doc-ui .home-lab-identity strong {
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+body.home-page.scps-doc-ui .home-lab-location {
+  font-size: .92rem;
+}
+
+body.home-page.scps-doc-ui
+.home-hero-copy .home-action-row {
+  gap: 12px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+body.home-page.scps-doc-ui .button-link {
+  min-height: 44px;
+
+  padding:
+    10px
+    16px;
+
+  border-radius: 4px;
+
+  font-weight: 650;
+
+  box-shadow: none;
+
+  transition:
+    background-color .16s ease,
+    border-color .16s ease,
+    color .16s ease;
+}
+
+body.home-page.scps-doc-ui
+.button-link:not(.secondary) {
+  color: #fff;
+
+  background: var(--scps-red);
+
+  border:
+    1px solid var(--scps-red);
+}
+
+body.home-page.scps-doc-ui
+.button-link:not(.secondary):hover {
+  background: #8f1f35;
+  border-color: #8f1f35;
+
+  transform: none;
+  filter: none;
+}
+
+body.home-page.scps-doc-ui
+.button-link.secondary {
+  color: var(--scps-blue);
+
+  background: var(--scps-white);
+
+  border:
+    1px solid var(--scps-blue);
+
+  box-shadow: none;
+}
+
+body.home-page.scps-doc-ui
+.button-link.secondary:hover {
+  color: var(--scps-blue);
+
+  background: var(--scps-mist);
+
+  border-color: var(--scps-blue);
+
+  transform: none;
+  filter: none;
+}
+
+
+/* =========================================================
+   SECTION RHYTHM
+   ========================================================= */
+
+body.home-page.scps-doc-ui .home-content-section {
+  padding:
+    72px
+    0;
+}
+
+body.home-page.scps-doc-ui
+.home-content-section > .card-kicker {
+  margin-bottom: 9px;
+}
+
+body.home-page.scps-doc-ui
+.home-content-section > h2 {
+  margin-bottom: 18px;
+
+  font-size:
+    clamp(1.95rem, 2.8vw, 2.85rem);
+
+  letter-spacing: -.03em;
+}
+
+body.home-page.scps-doc-ui .home-section-lead {
+  max-width: 760px;
+
+  font-size: 1.03rem;
+  line-height: 1.68;
+}
+
+
+/* =========================================================
+   GET STARTED
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.editorial-workflow-grid {
+  gap: 16px;
+
+  margin-top: 38px;
+}
+
+body.home-page.scps-doc-ui
+.editorial-workflow-step {
+  min-height: 340px;
+
+  padding:
+    26px
+    25px
+    24px;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 4px;
+
+  background: var(--scps-white);
+}
+
+body.home-page.scps-doc-ui
+.workflow-art {
+  height: 150px;
+
+  margin:
+    10px
+    0
+    18px;
+}
+
+body.home-page.scps-doc-ui
+.workflow-art img {
+  max-height: 142px;
+}
+
+body.home-page.scps-doc-ui
+.editorial-workflow-step h3 {
+  font-size: 1.02rem;
+}
+
+
+/* =========================================================
+   CPS APPS
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-app-editorial {
+  margin-top: 38px;
+}
+
+body.home-page.scps-doc-ui
+.home-app-feature {
+  min-height: 390px;
+
+  padding:
+    44px
+    0;
+
+  gap: clamp(36px, 5vw, 70px);
+}
+
+body.home-page.scps-doc-ui
+.home-app-art {
+  min-height: 285px;
+
+  padding: 26px;
+
+  border:
+    1px solid var(--scps-silver);
+
+  border-radius: 6px;
+
+  background: var(--scps-soft);
+}
+
+body.home-page.scps-doc-ui
+.home-app-copy h3 {
+  margin-bottom: 14px;
+
+  font-size:
+    clamp(1.75rem, 2.6vw, 2.4rem);
+}
+
+body.home-page.scps-doc-ui
+.home-app-copy p {
+  line-height: 1.66;
+}
+
+
+/* =========================================================
+   DISPLAY / GATEWAY / ADMIN
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-display-layout,
+
+body.home-page.scps-doc-ui
+.home-gateway-layout,
+
+body.home-page.scps-doc-ui
+.home-admin-layout {
+  margin-top: 28px;
+}
+
+body.home-page.scps-doc-ui
+.home-display-art {
+  min-height: 315px;
+}
+
+body.home-page.scps-doc-ui
+.gateway-art-composition {
+  min-height: 390px;
+}
+
+body.home-page.scps-doc-ui
+.home-admin-security-key {
+  width: min(100%, 310px);
+}
+
+
+/* =========================================================
+   PHYSICAL COMPUTING
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-hardware-band {
+  padding:
+    70px
+    24px;
+
+  background: var(--scps-soft);
+}
+
+body.home-page.scps-doc-ui
+.home-hardware-art {
+  gap: 18px;
+
+  margin-top: 34px;
+}
+
+
+/* =========================================================
+   REMOVE DECORATIVE ART HOVER JUMPS
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.workflow-art .home-art:hover,
+
+body.home-page.scps-doc-ui
+.home-display-art .home-art:hover,
+
+body.home-page.scps-doc-ui
+.home-hardware-art .home-art:hover,
+
+body.home-page.scps-doc-ui
+.gateway-art-composition .home-art:hover {
+  transform: none;
+}
+
+body.home-page.scps-doc-ui
+.home-app-feature:hover
+.home-app-device-icon,
+
+body.home-page.scps-doc-ui
+.home-app-feature:hover
+.home-app-car-sticker,
+
+body.home-page.scps-doc-ui
+.home-admin-layout:hover
+.home-admin-security-key {
+  transform: none;
+}
+
+
+/*
+ * Preserve the hero composition's intentional rotations
+ * instead of replacing them with the generic hover motion.
+ */
+
+body.home-page.scps-doc-ui
+.hero-art-rover:hover {
+  transform: rotate(-1.5deg);
+}
+
+body.home-page.scps-doc-ui
+.hero-art-gateway:hover {
+  transform: rotate(2deg);
+}
+
+body.home-page.scps-doc-ui
+.hero-art-tv:hover {
+  transform: rotate(1deg);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-footer {
+  margin-top: 0;
+
+  padding:
+    30px
+    0
+    10px;
+
+  text-align: left;
+
+  border-top:
+    1px solid var(--scps-silver);
+}
+
+body.home-page.scps-doc-ui
+.home-footer-primary {
+  color: var(--scps-charcoal);
+
+  font-size: .94rem;
+}
+
+body.home-page.scps-doc-ui
+.home-footer-institution {
+  margin-top: 7px !important;
+
+  max-width: 420px;
+
+  color: var(--scps-slate);
+
+  font-size: .78rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+  body.home-page.scps-doc-ui
+  .home-editorial-hero {
+    padding-top: 18px;
+
+    gap: 4px;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-hero-copy {
+    top: 0;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-app-art {
+    max-width: 620px;
+  }
+
+}
+
+
+@media (max-width: 620px) {
+
+  body.home-page.scps-doc-ui
+  .home-editorial-hero {
+    padding-top: 18px;
+    padding-bottom: 40px;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-hero-copy h1 {
+    font-size:
+      clamp(2.85rem, 13vw, 4.25rem);
+
+    margin-bottom: 17px;
+
+    transform: none;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-content-section {
+    padding:
+      54px
+      0;
+  }
+
+  body.home-page.scps-doc-ui
+  .editorial-workflow-grid {
+    margin-top: 30px;
+  }
+
+  body.home-page.scps-doc-ui
+  .editorial-workflow-step {
+    padding:
+      22px
+      22px
+      21px;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-app-feature {
+    padding:
+      36px
+      0;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-app-art {
+    min-height: 240px;
+
+    padding: 20px;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-hardware-band {
+    padding:
+      56px
+      14px;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-footer {
+    text-align: left;
+  }
+
+}
+
+
+/* =========================================================
+   CPS STUDIO — IMMERSIVE HERO FINAL PASS
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-editorial-hero {
+  position: relative;
+  isolation: isolate;
+
+  grid-template-columns:
+    minmax(0, .80fr)
+    minmax(500px, 1.20fr);
+
+  min-height: 500px;
+
+  gap:
+    clamp(18px, 3vw, 46px);
+
+  padding-top: 38px;
+  padding-bottom: 44px;
+
+  align-items: center;
+}
+
+
+/*
+ * Full-width neutral laboratory canvas.
+ * Keeps the page restrained while giving the hero
+ * a clear visual identity and boundary.
+ */
+
+body.home-page.scps-doc-ui
+.home-editorial-hero::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  width: 100vw;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    var(--scps-soft);
+
+  border-top:
+    1px solid var(--scps-silver);
+
+  border-bottom:
+    1px solid var(--scps-silver);
+}
+
+
+/* Bring the content into the composition */
+
+body.home-page.scps-doc-ui
+.home-hero-copy {
+  top: 0;
+
+  transform:
+    translateY(-8px);
+}
+
+
+/* Give the hardware side more presence */
+
+body.home-page.scps-doc-ui
+.home-hero-art {
+  min-height: 500px;
+
+  transform: none;
+}
+
+
+/* Autonomous rover becomes the visual anchor */
+
+body.home-page.scps-doc-ui
+.hero-art-rover {
+  width: 72%;
+
+  left: -5%;
+  bottom: -2%;
+
+  transform:
+    rotate(-1.5deg);
+}
+
+
+/* Gateway occupies more of the upper-right field */
+
+body.home-page.scps-doc-ui
+.hero-art-gateway {
+  width: 62%;
+
+  right: -4%;
+  top: -4%;
+
+  transform:
+    rotate(2deg);
+}
+
+
+/* TV closes the lower-right composition */
+
+body.home-page.scps-doc-ui
+.hero-art-tv {
+  width: 46%;
+
+  right: -3%;
+  bottom: -1%;
+
+  transform:
+    rotate(1deg);
+}
+
+
+/* Keep hover behavior stable */
+
+body.home-page.scps-doc-ui
+.hero-art-rover:hover {
+  transform:
+    rotate(-1.5deg);
+}
+
+body.home-page.scps-doc-ui
+.hero-art-gateway:hover {
+  transform:
+    rotate(2deg);
+}
+
+body.home-page.scps-doc-ui
+.hero-art-tv:hover {
+  transform:
+    rotate(1deg);
+}
+
+
+/* =========================================================
+   HERO RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+  body.home-page.scps-doc-ui
+  .home-editorial-hero {
+    grid-template-columns: 1fr;
+
+    min-height: 0;
+
+    padding-top: 42px;
+    padding-bottom: 50px;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .home-hero-copy {
+    transform: none;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .home-hero-art {
+    min-height: 440px;
+    max-width: 720px;
+
+    width: 100%;
+
+    margin:
+      10px
+      auto
+      0;
+  }
+
+}
+
+
+@media (max-width: 620px) {
+
+  body.home-page.scps-doc-ui
+  .home-editorial-hero {
+    padding-top: 34px;
+    padding-bottom: 38px;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .home-hero-art {
+    min-height: 320px;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .hero-art-rover {
+    width: 72%;
+
+    left: -3%;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .hero-art-gateway {
+    width: 58%;
+
+    right: -3%;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .hero-art-tv {
+    width: 43%;
+
+    right: -2%;
+  }
+
+}
+
+
+/* =========================================================
+   HERO — CLEAN ART BACKGROUND
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-editorial-hero::before {
+  background: var(--scps-white);
+}
+
+
+/*
+ * Keep the hardware illustrations visually integrated
+ * with the hero surface.
+ */
+
+body.home-page.scps-doc-ui
+.home-hero-art .home-art {
+  mix-blend-mode: multiply;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   HERO — FINAL DEVICE SEPARATION
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.hero-art-tv {
+  width: 41%;
+
+  right: -7%;
+  bottom: 0;
+
+  transform:
+    rotate(1deg);
+}
+
+body.home-page.scps-doc-ui
+.hero-art-tv:hover {
+  transform:
+    rotate(1deg);
+}
+
+
+@media (max-width: 620px) {
+
+  body.home-page.scps-doc-ui
+  .hero-art-tv {
+    width: 40%;
+    right: -5%;
+  }
+
+}
+
+
+/* =========================================================
+   HERO — STRONGER IDENTITY SCALE
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-hero-copy h1 {
+  font-size:
+    clamp(4.8rem, 7.4vw, 7.6rem);
+
+  line-height: .91;
+
+  margin-bottom: 25px;
+}
+
+
+body.home-page.scps-doc-ui
+.home-lab-identity {
+  gap: 7px;
+
+  padding-left: 17px;
+
+  margin-bottom: 34px;
+}
+
+
+body.home-page.scps-doc-ui
+.home-lab-identity strong {
+  font-size: 1.08rem;
+
+  font-weight: 700;
+
+  letter-spacing: .085em;
+}
+
+
+body.home-page.scps-doc-ui
+.home-lab-location {
+  font-size: 1.06rem;
+
+  line-height: 1.25;
+}
+
+
+/* Give the larger identity a little more horizontal room */
+
+body.home-page.scps-doc-ui
+.home-editorial-hero {
+  grid-template-columns:
+    minmax(0, .88fr)
+    minmax(500px, 1.12fr);
+}
+
+
+@media (max-width: 980px) {
+
+  body.home-page.scps-doc-ui
+  .home-editorial-hero {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 620px) {
+
+  body.home-page.scps-doc-ui
+  .home-hero-copy h1 {
+    font-size:
+      clamp(3.6rem, 15vw, 5rem);
+  }
+
+  body.home-page.scps-doc-ui
+  .home-lab-identity strong {
+    font-size: 1rem;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-lab-location {
+    font-size: .98rem;
+  }
+
+}
+
+
+/* =========================================================
+   HERO — RAISE IDENTITY BLOCK
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-editorial-hero {
+  padding-top: 18px;
+}
+
+
+/*
+ * Keep the title / lab identity / actions close to
+ * the navigation rather than vertically centering them
+ * against the hardware composition.
+ */
+
+body.home-page.scps-doc-ui
+.home-hero-copy {
+  align-self: start;
+
+  top: 0;
+
+  padding-top: 10px;
+
+  transform: none;
+}
+
+
+@media (max-width: 980px) {
+
+  body.home-page.scps-doc-ui
+  .home-hero-copy {
+    align-self: start;
+
+    padding-top: 6px;
+
+    transform: none;
+  }
+
+}
+
+
+@media (max-width: 620px) {
+
+  body.home-page.scps-doc-ui
+  .home-editorial-hero {
+    padding-top: 16px;
+  }
+
+  body.home-page.scps-doc-ui
+  .home-hero-copy {
+    padding-top: 0;
+  }
+
+}

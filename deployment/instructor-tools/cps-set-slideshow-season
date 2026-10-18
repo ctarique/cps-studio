@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+"""Instructor utility: sudo cps-set-slideshow-season fall|spring|winter."""
+import os
+import pwd
+import sys
+
+if __name__ == '__main__':
+    if os.geteuid() != 0:
+        raise SystemExit('STOP: run as root using sudo')
+    if len(sys.argv) != 2 or sys.argv[1] not in ('fall', 'spring', 'winter'):
+        raise SystemExit('Usage: sudo cps-set-slideshow-season fall|spring|winter')
+    # Drop root privilege before loading application code or touching season state.
+    user = pwd.getpwnam('sentinel-final')
+    os.setgroups([])
+    os.setgid(user.pw_gid)
+    os.setuid(user.pw_uid)
+    sys.path.insert(0, '/opt/sentinel-cps-final/current')
+    from gateway.cps_slideshow import set_slideshow_season, SlideshowUnavailable
+    try:
+        value = set_slideshow_season(sys.argv[1])
+    except SlideshowUnavailable as error:
+        raise SystemExit('STOP: ' + str(error))
+    print('PASS: Active season ' + value['season'] + '; ' +
+          str(len(value['slides'])) + ' slides; timeline restarted')
+    print('Browsers update automatically on their next slideshow status refresh.')

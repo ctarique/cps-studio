@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+
+  <title>CPS Studio · About</title>
+
+  <link rel="stylesheet" href="/static/style.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/scps_docstyle.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/about.css?v=1.0.9-RC">
+
+</head>
+
+<body class="about-page scps-doc-ui">
+<main>
+
+  {% include '_nav.html' %}
+
+
+
+
+  <header class="hero compact-hero about-hero">
+
+    <h1>About CPS Studio</h1>
+
+    <p class="lead">
+      The story, research motivation, and design idea behind the platform.
+    </p>
+
+  </header>
+
+
+  <section class="about-section"
+           aria-labelledby="why-heading">
+
+    <p class="card-kicker">ORIGIN</p>
+
+    <h2 id="why-heading">
+      Why CPS Studio
+    </h2>
+
+    <div class="about-prose">
+
+      <p>
+        Cyber-physical systems sit at the intersection of computing and the
+        physical world. Software, networks, sensors, and devices work together
+        so a digital action can trigger something physical, or a physical event
+        can report itself back into software.
+      </p>
+
+      <p>
+        Think of the simplest version: a sensor sending readings to a computer.
+        Now scale that up to a robot or an autonomous vehicle reacting to what's
+        around it, and you start to see why these systems matter.
+      </p>
+
+      <p>
+        The project began with a question about hands-on computing education:
+      </p>
+
+      <p class="about-question">
+        <strong>
+          How can students meaningfully interact with real cyber-physical
+          systems without requiring unrestricted access to all of the
+          computers, networks, firmware, and devices that make those systems
+          work?
+        </strong>
+      </p>
+
+      <p>
+        CPS Studio is one attempt at answering that.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="about-section"
+           aria-labelledby="about-gateway-heading">
+
+    <p class="card-kicker">ARCHITECTURE</p>
+
+    <h2 id="about-gateway-heading">The System</h2>
+
+    <div class="about-prose">
+
+      <p>At the center of CPS Studio is a Raspberry Pi Gateway.</p>
+
+      <p>Students access the Gateway Portal through a designated Lab Workstation, where they can choose from CPS Apps such as LED Flasher and Autonomous Car.</p>
+
+      <p>The Gateway communicates with the ESP32-based CPS Devices over a private Wi-Fi network. Each CPS App runs laboratory-controlled firmware.</p>
+
+      <p>The Gateway mediates interactions, and applies the necessary boundaries for access control.</p>
+
+      <p>This allows students to interact with real hardware without needing direct access to the Pi, CPS Device firmware, or underlying infrastructure.</p>
+
+    </div>
+
+  </section>
+
+
+  <section class="about-section"
+           aria-labelledby="physical-heading">
+
+    <p class="card-kicker">PHYSICAL SYSTEMS</p>
+
+    <h2 id="physical-heading">From Software to Physical Behavior</h2>
+
+    <div class="about-prose">
+
+      <p>There&#x27;s something satisfying about writing a few lines of code and watching something happen in the real world. It&#x27;s one of the reasons hands-on experimentation can make learning so much more interesting.</p>
+
+      <p>An action on the Gateway Portal is checked before a supported command reaches a CPS Device. The device also reports information back to the Pi.</p>
+
+      <p>A CPS App could be a short program that uses a few GPIO controls to turn something on and off, or it could be something more complex like a motor responding to a command, or a sensor reporting changes in its surroundings.</p>
+
+      <p>These experiments bring together subjects that are often taught separately: embedded programming, networking, device communication, automation, monitoring, and cybersecurity.</p>
+
+    </div>
+
+  </section>
+
+
+  <section class="about-section"
+           aria-labelledby="future-heading">
+
+    <p class="card-kicker">FUTURE WORK</p>
+
+    <h2 id="future-heading">Looking Ahead</h2>
+
+    <div class="about-prose">
+
+      <p>CPS Studio was designed with room to grow. As new hardware and firmware are introduced, additional CPS Apps can bring more experiments and capabilities to the laboratory.</p>
+
+      <p>There are plenty of possibilities to explore, from simple sensor experiments to more complex robotic systems.</p>
+
+      <p>What won&#x27;t change is the underlying idea: students should have enough access to genuinely learn about cyber-physical systems without needing the keys to everything behind them.</p>
+
+    </div>
+
+  </section>
+
+
+  <section class="about-section" aria-labelledby="research-heading">
+<h2 id="research-heading">Research context</h2><div class="about-prose">
+<p>CPS Studio was developed for graduate research in cyber-physical systems security and hands-on computing education.</p></div></section>
+
+
+  <footer class="portal-footer">
+
+    <p>
+      <strong>CPS Studio</strong>
+    </p>
+
+    <p>
+      Teaching and research source edition
+    </p>
+
+  </footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,212 @@
+{% macro start_zone(x, y_shift=0) -%}
+<g class="track-start-zone" transform="translate(0 {{ y_shift }})">
+
+  <path
+    class="track-start-bracket"
+    d="
+      M {{ x - 150 }} 825
+      L {{ x - 150 }} 1015
+
+      M {{ x - 150 }} 825
+      L {{ x - 105 }} 825
+
+      M {{ x - 150 }} 1015
+      L {{ x - 105 }} 1015
+
+      M {{ x + 150 }} 825
+      L {{ x + 150 }} 1015
+
+      M {{ x + 150 }} 825
+      L {{ x + 105 }} 825
+
+      M {{ x + 150 }} 1015
+      L {{ x + 105 }} 1015
+    "
+  />
+
+  <g transform="translate({{ x + 205 }} 870)">
+    <text
+      class="track-start-label"
+      x="0"
+      y="0">
+      PLACE CAR HERE
+    </text>
+
+    <text
+      class="track-start-name"
+      x="0"
+      y="48">
+      START
+    </text>
+
+    <text
+      class="track-start-direction"
+      x="0"
+      y="92">
+      FRONT ↑
+    </text>
+  </g>
+
+</g>
+{%- endmacro %}
+
+
+{% macro track_svg(track_id) -%}
+<svg
+  class="approved-track"
+  data-track="{{ track_id }}"
+  viewBox="0 0 1920 1080"
+  preserveAspectRatio="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true">
+
+  <rect
+    width="1920"
+    height="1080"
+    fill="white"/>
+
+  {% if track_id == 'straight' %}
+
+    <path
+      class="track-line"
+      d="M 960 1080 L 960 0"
+      fill="none"
+      stroke="black"
+      stroke-width="48"/>
+
+    {{ start_zone(960) }}
+
+  {% elif track_id == 'curve' %}
+
+    <path
+      class="track-line"
+      d="M 480 1080 L 480 630 Q 480 300 810 300 L 1920 300"
+      fill="none"
+      stroke="black"
+      stroke-width="48"/>
+
+    {{ start_zone(480) }}
+
+  {% elif track_id == 'challenge' %}
+
+    <path
+      class="track-line"
+      d="M 260 1080 L 260 340 Q 260 140 480 140 L 1320 140 Q 1640 140 1640 400 Q 1640 650 1280 650 L 820 650 Q 580 650 580 840 Q 580 960 860 960 L 1920 960"
+      fill="none"
+      stroke="black"
+      stroke-width="48"/>
+
+    {{ start_zone(260, -300) }}
+
+  {% elif track_id == 'wide-straight' %}
+
+    <path
+      class="track-line"
+      d="M 960 1080 L 960 0"
+      fill="none"
+      stroke="black"
+      stroke-width="100"/>
+
+    {{ start_zone(960) }}
+
+  {% elif track_id == 'wide-circle' %}
+
+    <!-- Closed circular path, radius 340, centered on the 1920x1080 canvas.
+         Start at the left tangent, facing upward. -->
+    <circle
+      class="track-line"
+      cx="960"
+      cy="540"
+      r="340"
+      fill="none"
+      stroke="black"
+      stroke-width="100"/>
+
+    {{ start_zone(620, -380) }}
+
+  {% elif track_id == 'elliptical' %}
+
+    <!-- Wide closed racetrack: two long straights and two radius-320 ends.
+         Start at the left tangent, facing upward. Presentation only. -->
+    <path
+      class="track-line"
+      d="M 520 220
+         H 1400
+         A 320 320 0 0 1 1400 860
+         H 520
+         A 320 320 0 0 1 520 220
+         Z"
+      fill="none"
+      stroke="black"/>
+
+    {{ start_zone(200, -380) }}
+
+
+  {% elif track_id == 'wide-curve' %}
+
+    <path class="track-line"
+      d="M 480 1080 L 480 630 Q 480 300 810 300 L 1920 300"
+      fill="none" stroke="black" stroke-width="100"/>
+
+    {{ start_zone(480) }}
+
+  {% elif track_id == 'wide-challenge' %}
+
+    <path class="track-line"
+      d="M 260 1080 L 260 340 Q 260 140 480 140 L 1320 140 Q 1640 140 1640 400 Q 1640 650 1280 650 L 820 650 Q 580 650 580 840 Q 580 960 860 960 L 1920 960"
+      fill="none" stroke="black" stroke-width="100"/>
+
+    {{ start_zone(260, -300) }}
+
+  {% elif track_id == 'circle' %}
+
+    <circle class="track-line"
+      cx="960" cy="540" r="340"
+      fill="none" stroke="black" stroke-width="48"/>
+
+    {{ start_zone(620, -380) }}
+
+  {% elif track_id == 'oval' %}
+
+    <!-- Same existing Elliptical geometry; standard 48px width. -->
+    <path class="track-line"
+      d="M 520 220
+         H 1400
+         A 320 320 0 0 1 1400 860
+         H 520
+         A 320 320 0 0 1 520 220
+         Z"
+      fill="none" stroke="black" stroke-width="48"/>
+
+    {{ start_zone(200, -380) }}
+
+  {% elif track_id == 'infinity' %}
+
+    <!-- Visual figure-eight crossing. Physical sensing/handling unvalidated. -->
+    <path class="track-line"
+      d="M 960 540
+         C 680 820 320 830 320 540
+         C 320 250 680 260 960 540
+         C 1240 820 1600 830 1600 540
+         C 1600 250 1240 260 960 540"
+      fill="none" stroke="black" stroke-width="48"/>
+
+    {{ start_zone(320, -380) }}
+
+  {% elif track_id == 'wide-infinity' %}
+
+    <!-- Exact same Infinity geometry; wide 100px presentation. -->
+    <path class="track-line"
+      d="M 960 540
+         C 680 820 320 830 320 540
+         C 320 250 680 260 960 540
+         C 1240 820 1600 830 1600 540
+         C 1600 250 1240 260 960 540"
+      fill="none" stroke="black" stroke-width="100"/>
+
+    {{ start_zone(320, -380) }}
+
+  {% endif %}
+
+</svg>
+{%- endmacro %}

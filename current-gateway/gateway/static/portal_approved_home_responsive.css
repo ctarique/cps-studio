@@ -1,0 +1,48 @@
+
+body.home-page.scps-doc-ui .home-cps-glow {
+  display: inline-block;
+  background: linear-gradient(105deg,#c8102e 0%,#ff4d6d 18%,#ff9f43 35%,#7b61ff 53%,#2488ff 70%,#25a875 86%,#c8102e 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: none;
+  animation: cps-studio-gradient 18s ease-in-out infinite;
+}
+@keyframes cps-studio-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.home-page.scps-doc-ui .home-cps-glow {
+    animation: none !important;
+    background-position: 50% 50%;
+  }
+}
+body.home-page.scps-doc-ui .home-app-art {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.home-page.scps-doc-ui .home-app-art img {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+body.home-page.scps-doc-ui .home-app-car-sticker {
+  mix-blend-mode: normal;
+}
+body.home-page.scps-doc-ui .home-app-meta {
+  text-transform: none;
+}
+
+/* Let navigation and the next section own the separators.
+   The full-width hero canvas must not add rules behind the artwork. */
+body.home-page.scps-doc-ui .home-editorial-hero,
+body.home-page.scps-doc-ui .home-editorial-hero::before {
+  border-top: 0;
+  border-bottom: 0;
+}

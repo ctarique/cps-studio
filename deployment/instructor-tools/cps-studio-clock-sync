@@ -1,0 +1,204 @@
+#!/usr/bin/env python3
+"""CPS Studio clock synchronization v1.2: Windows -> Raspberry Pi via admin SSH.
+
+Requires a fresh UTC Unix timestamp (milliseconds) transferred via an existing
+SSH administration session. Does not contact time servers or change networking.
+"""
+
+import argparse
+import datetime as dt
+import json
+import os
+import pathlib
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.request
+
+HEALTH_URL = "http://127.0.0.1:8080/api/health"
+DISPLAY_URL = "http://127.0.0.1:8080/api/display/status"
+DEVICES_URL = "http://127.0.0.1:8080/api/display/devices"
+SAFE_STATES = {"IDLE", "STOPPED", "COMPLETE"}
+SAFE_PRESENTATION = {"SETUP_REQUIRED", "RECOVERY"}
+
+AUDIT_DIR = pathlib.Path("/var/log/cps-studio")
+AUDIT_FILE = AUDIT_DIR / "clock-sync.jsonl"
+MIN_DATE = dt.datetime(2024, 1, 1, tzinfo=dt.timezone.utc)
+MAX_DATE = dt.datetime(2100, 1, 1, tzinfo=dt.timezone.utc)
+
+
+def iso_utc(ts):
+    return dt.datetime.fromtimestamp(ts, dt.timezone.utc).isoformat(timespec="milliseconds")
+
+
+def parse_epoch_ms(text):
+    if not isinstance(text, str) or not text.isascii() or not text.isdecimal() or len(text) != 13:
+        raise ValueError("Enter exactly 13 digits: UTC Unix epoch milliseconds from Windows.")
+    ms = int(text)
+    when = dt.datetime.fromtimestamp(ms / 1000, dt.timezone.utc)
+    if not MIN_DATE <= when < MAX_DATE:
+        raise ValueError("Timestamp is outside the supported 2024–2099 range.")
+    return ms
+
+
+def read_json(url):
+    try:
+        with urllib.request.urlopen(url, timeout=3) as response:
+            value = json.load(response)
+    except (OSError, ValueError, urllib.error.URLError) as exc:
+        raise RuntimeError(f"Cannot verify {url.rsplit('/', 1)[-1]}; refusing clock change: {exc}") from exc
+    if not isinstance(value, dict):
+        raise RuntimeError("Unexpected Gateway status response; refusing clock change.")
+    return value
+
+
+def one_safe_gateway_state():
+    """Verify Gateway lock and evidence availability only."""
+    health = read_json(HEALTH_URL)
+
+    if health.get("locked") is not True:
+        raise RuntimeError("Gateway is not locked; refusing clock change.")
+
+    if health.get("evidence_available") is not True:
+        raise RuntimeError("Gateway evidence unavailable; refusing clock change.")
+
+    return {
+        "locked": True,
+        "stage": health.get("stage"),
+        "recent_run_id": health.get("run_id"),
+    }
+
+
+def get_safe_gateway_state():
+    first = one_safe_gateway_state()
+    time.sleep(1.1)
+    second = one_safe_gateway_state()
+
+    if first["stage"] != second["stage"]:
+        raise RuntimeError("Gateway stage changed between checks.")
+
+    return second
+
+
+def append_audit(record):
+    AUDIT_DIR.mkdir(mode=0o750, parents=True, exist_ok=True)
+    os.chmod(AUDIT_DIR, 0o750)
+    old_umask = os.umask(0o027)
+    try:
+        fd = os.open(AUDIT_FILE, os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o640)
+        try:
+            os.write(fd, (json.dumps(record, sort_keys=True) + "\n").encode("utf-8"))
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+    finally:
+        os.umask(old_umask)
+
+
+def check():
+    print("CPS Studio — Clock Sync Preflight")
+    print("Pi UTC:       ", iso_utc(time.time()))
+    try:
+        state = get_safe_gateway_state()
+    except RuntimeError as exc:
+        print("BLOCKED:      ", exc)
+        return 1
+
+    print("Gateway:      ", state["stage"], "(locked)")
+    print("Evidence:      available")
+    print("Recent run ID:", state["recent_run_id"], "(historical)")
+    print("Device reports: not required")
+    print("NOTE: Confirm no active experiments or evidence captures.")
+    print("Time source:  Windows laboratory workstation")
+    print("Ready for admin-initiated sync; no clock change performed.")
+    return 0
+
+
+def sync():
+    if os.geteuid() != 0:
+        print("ERROR: clock synchronization requires sudo/root.", file=sys.stderr)
+        return 1
+    try:
+        state = get_safe_gateway_state()
+    except RuntimeError as exc:
+        print("BLOCKED:", exc, file=sys.stderr)
+        return 1
+    print("CPS Studio — Admin Clock Synchronization")
+    print("Gateway state:", state["stage"], "(locked; evidence available)")
+    print("Pi current UTC:", iso_utc(time.time()))
+    print("IMPORTANT: Confirm Windows time is correct and no experiment or capture is active.")
+    print("Clock changes can affect log ordering, TLS, sessions, and evidence timestamps.")
+    if input("Type YES to proceed (before capturing Windows time): ").strip() != "YES":
+        print("Cancelled. No change performed.")
+        return 1
+    print("\nNow, in Windows PowerShell run:")
+    print('  [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds() | Set-Clipboard')
+    print("Paste the 13-digit value below immediately after copying it.")
+    try:
+        ms = parse_epoch_ms(input("Windows UTC epoch milliseconds: ").strip())
+    except (EOFError, ValueError) as exc:
+        print("ERROR:", exc, file=sys.stderr)
+        return 1
+    try:
+        state = get_safe_gateway_state()  # Fail closed again immediately before setting time.
+    except RuntimeError as exc:
+        print("BLOCKED:", exc, file=sys.stderr)
+        return 1
+    source_ts = ms / 1000.0
+    before_ts = time.time()
+    source_utc = iso_utc(source_ts)
+    before_utc = iso_utc(before_ts)
+    old_delta = round(source_ts - before_ts, 3)
+    stamp = f"@{ms // 1000}.{ms % 1000:03d}"
+    run = subprocess.run(["/usr/bin/date", "-u", "-s", stamp], capture_output=True, text=True)
+    after_ts = time.time()
+    record = {
+        "event": "manual_clock_sync",
+        "operator": os.environ.get("SUDO_USER") or "root",
+        "reference": "operator-transferred Windows workstation UTC epoch milliseconds",
+        "source_utc": source_utc,
+        "pi_before_utc": before_utc,
+        "pi_after_utc": iso_utc(after_ts),
+        "prior_offset_seconds_approximate": old_delta,
+        "gateway_stage": state.get("stage"),
+        "gateway_locked": state["locked"],
+        "gateway_latest_recorded_run_id": state["recent_run_id"],
+        "device_reports_checked": False,
+        "maintenance_confirmation": "operator entered YES",
+        "result": "success" if run.returncode == 0 else "failure",
+        "precision_note": "Manual Windows time transfer. Gateway lock and evidence availability verified. Device and capture states not automatically checked. Operator confirmed maintenance. Not NTP synchronized.",
+    }
+    try:
+        append_audit(record)
+    except OSError as exc:
+        print("WARNING: clock attempt was performed but audit logging failed:", exc, file=sys.stderr)
+        return 2
+    if run.returncode != 0:
+        print("ERROR: date update failed:", run.stderr.strip(), file=sys.stderr)
+        return 1
+    print("\nClock update applied.")
+    print("Windows supplied UTC: ", source_utc)
+    print("Pi before UTC:        ", before_utc)
+    print("Pi after UTC:         ", record["pi_after_utc"])
+    print("Previous difference:  ", old_delta, "seconds (approximate)")
+    print("Audit record:         ", AUDIT_FILE)
+    print("NOTE: This is a manual time transfer, not verified NTP synchronization.")
+    return 0
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--check", action="store_true", help="read-only Gateway preflight")
+    group.add_argument("--sync", action="store_true", help="interactive admin synchronization")
+    args = parser.parse_args()
+    return check() if args.check else sync()
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        print("\nCancelled.", file=sys.stderr)
+        sys.exit(130)

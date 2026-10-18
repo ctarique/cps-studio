@@ -1,0 +1,8 @@
+{
+  "mode": "simulator_http",
+  "device_host": "127.0.0.1",
+  "device_port": 8090,
+  "config_label": "LAB-CONFIG-001",
+  "max_runs": 500,
+  "max_events": 20000
+}

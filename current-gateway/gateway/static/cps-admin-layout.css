@@ -1,0 +1,114 @@
+/* CPS Studio 1.1 RC3: Admin layout only. Preserve existing page width. */
+.system-presentation-control[data-cps-admin-layout="rc3"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .8fr);
+  grid-template-areas:
+    "heading heading"
+    "status preview"
+    "controls preview"
+    "feedback feedback";
+  align-items: start;
+  gap: 12px 18px;
+}
+.system-presentation-control[data-cps-admin-layout="rc3"] > .system-subheading {
+  grid-area: heading;
+  margin: 0 0 2px;
+}
+.system-presentation-control[data-cps-admin-layout="rc3"] > .admin-display-summary {
+  grid-area: status;
+  min-width: 0;
+  margin: 0;
+}
+.system-presentation-control[data-cps-admin-layout="rc3"] > .admin-display-state-controls {
+  grid-area: controls;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: .4rem;
+  min-width: 0;
+}
+.system-presentation-control[data-cps-admin-layout="rc3"] > #admin-display-result {
+  grid-area: feedback;
+  margin: 0;
+}
+.system-presentation-control[data-cps-admin-layout="rc3"] .admin-display-state-controls > button {
+  min-height: 36px;
+  padding: 8px 10px;
+  font-size: .77rem;
+  border-radius: 8px;
+}
+.cps-admin-preview-wrap {
+  grid-area: preview;
+  min-width: 0;
+}
+.cps-admin-preview-wrap .admin-display-preview {
+  width: 100%;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+.cps-admin-preview-open {
+  display: inline-block;
+  margin-top: 9px;
+  font-size: .8rem;
+  font-weight: 600;
+  color: #a30d28;
+  text-underline-offset: 3px;
+}
+.cps-admin-track-picker {
+  flex: 1 0 100%;
+  min-width: 0;
+  border: 1px solid #dedee2;
+  background: #f7f7f8;
+  border-radius: 9px;
+}
+.cps-admin-track-picker > summary {
+  cursor: pointer;
+  padding: 10px 12px;
+  font-weight: 650;
+  font-size: .82rem;
+  color: #242428;
+}
+.cps-admin-track-picker > summary:focus-visible,
+.cps-admin-preview-open:focus-visible {
+  outline: 2px solid #c8102e;
+  outline-offset: 3px;
+}
+.cps-admin-track-picker[open] > summary {
+  border-bottom: 1px solid #dedee2;
+}
+.cps-admin-track-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px;
+}
+.cps-admin-track-list button[data-display-state] {
+  min-height: 32px;
+  padding: 6px 9px;
+  font-size: .75rem;
+  border-radius: 7px;
+}
+/* Seasonal panel: its own compact section; no descriptive paragraphs. */
+.cps-season-panel {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border: 1px solid #dedee2;
+  border-radius: 12px;
+  background: #fff;
+}
+.cps-season-panel .card-kicker { margin: 0 0 4px; }
+.cps-season-panel h2 { margin: 0 0 12px; }
+.cps-season-panel .cps-season-toolbar {
+  align-items: center;
+  gap: 10px;
+}
+.cps-season-panel #cps-season-status:empty { display: none; }
+@media (max-width: 700px) {
+  .system-presentation-control[data-cps-admin-layout="rc3"] {
+    grid-template-columns: minmax(0,1fr);
+    grid-template-areas:
+      "heading" "status" "controls" "preview" "feedback";
+  }
+  .cps-admin-preview-wrap { margin-top: 6px; }
+}

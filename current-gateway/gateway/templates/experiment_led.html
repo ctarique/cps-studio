@@ -1,0 +1,294 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+
+  <title>CPS Studio · LED Flasher</title>
+
+  <link rel="stylesheet" href="/static/style.css?v=1.0.9-RC">
+
+  
+  
+  
+  <link rel="stylesheet" href="/static/scps_docstyle.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/experiment_device_icons.css?v=1.0.9-RC">
+<script defer src="/static/display_common.js?v=track06-elliptical-20261008-1"></script>
+<script defer src="/static/led_control.js"></script>
+<script defer src="/static/custom_program.js"></script>
+</head>
+
+
+<body data-role="workstation" class="scps-doc-ui">
+
+<main>
+
+  {% include '_nav.html' %}
+
+
+
+
+  <header class="hero compact-hero experiment-activity-hero experiment-device-hero">
+    <div class="experiment-device-hero-copy">
+
+
+    <h1>LED Flasher</h1>
+
+</div>
+
+
+  </header>
+
+
+
+
+
+  <section class="experiment-activity-section">
+
+    <p class="card-kicker">
+      GUIDED CONTROL
+    </p>
+
+    <h2>Control the LED</h2>
+
+    <p>
+      Use the predefined controls to turn the ESP32-CAM LED on or off.
+    </p>
+
+    <div class="guided-led-console">
+
+<div class="buttons guided-led-actions">
+
+        <button id="led-on"
+                type="button"
+                disabled>
+          ON
+        </button>
+
+        <button id="led-off"
+                type="button"
+                class="danger">
+          OFF
+        </button>
+
+      </div>
+
+      <p id="device-status"
+         class="hint guided-led-message"
+         role="status"></p>
+
+    </div>
+
+    <pre id="result"
+         class="experiment-result"
+         role="status"
+         aria-live="polite"
+         hidden></pre>
+
+  </section>
+
+<section class="experiment-activity-section">
+
+    <p class="card-kicker">
+      CUSTOM PROGRAM
+    </p>
+
+    <h2>Create Your Own LED Program</h2>
+
+    <p>
+      Create a small program that controls the sequence and timing of the LED.
+    </p>
+
+
+    <div class="program-reference-grid">
+
+      <div class="supported-operations">
+
+      <h3>Supported Operations</h3>
+
+      <dl class="operation-list">
+
+        <div>
+          <dt><code>led(1)</code></dt>
+          <dd>Turn the LED on</dd>
+        </div>
+
+        <div>
+          <dt><code>led(0)</code></dt>
+          <dd>Turn the LED off</dd>
+        </div>
+
+        <div>
+          <dt><code>wait_ms(N)</code></dt>
+          <dd>Wait between 10 and 1000 milliseconds</dd>
+        </div>
+
+        <div>
+          <dt><code>status()</code></dt>
+          <dd>Request device status</dd>
+        </div>
+
+      </dl>
+
+    </div>
+
+
+    <div class="program-limits">
+
+      <h3>Program Limits</h3>
+
+      <ul class="plain-list">
+        <li>Maximum 32 operations</li>
+        <li>Maximum 5 seconds of total wait time</li>
+        <li>
+          Programs using the LED must end with
+          <code>led(0)</code>
+        </li>
+      </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="custom-template-picker">
+      <label for="custom-template">
+        Start from a Template
+      </label>
+
+      <div class="custom-template-controls">
+        <select id="custom-template">
+          <option value="single-pulse">Single Pulse</option>
+          <option value="triple-blink">Triple Blink</option>
+          <option value="heartbeat">Heartbeat</option>
+          <option value="slow-beacon">Slow Beacon</option>
+          <option value="accelerating">Accelerating Blink</option>
+          <option value="two-short-one-long">Two Short + One Long</option>
+        </select>
+
+        <button id="custom-template-load"
+                type="button">
+          Load Template
+        </button>
+      </div>
+
+      <p class="hint">
+        Templates only populate the editor. Review or modify the program,
+        then select <strong>Check</strong> before it can run.
+      </p>
+    </div>
+
+
+    <div class="custom-editor-shell">
+
+      <div class="custom-editor-heading">
+
+        <label for="custom-source">
+          Custom Program
+        </label>
+
+        <span class="custom-editor-language">
+          Bounded C/C++
+        </span>
+
+      </div>
+
+      <textarea id="custom-source"
+              rows="11"
+              spellcheck="false"
+              maxlength="2048">void experiment() {
+  led(1);
+  wait_ms(500);
+  led(0);
+  wait_ms(500);
+  led(1);
+  wait_ms(500);
+  led(0);
+  status();
+}</textarea>
+
+    </div>
+
+
+    <div class="buttons custom-program-actions">
+
+      <button id="custom-submit"
+              type="button">
+        Check
+      </button>
+
+      <button id="custom-run"
+              type="button"
+              disabled>
+        Run
+      </button>
+
+
+    </div>
+
+
+    
+
+
+  </section>
+
+
+  <!--
+       Retained for JavaScript compatibility.
+       These elements are not part of the visible student interface.
+  -->
+
+    <section class="validation-result-panel"
+             aria-labelledby="validation-result-heading">
+
+      <p id="validation-result-heading"
+         class="card-kicker">
+        Gateway Response
+      </p>
+
+      <p id="custom-status"
+         class="validation-result-status"
+         role="status"></p>
+
+      <pre id="custom-result"
+           class="experiment-result validation-result-detail"
+           role="status"
+           aria-live="polite">No custom program submitted yet.</pre>
+
+    </section>
+
+  <div hidden>
+
+
+    <button id="custom-check"
+            type="button"
+            disabled>
+      Check Device Report
+    </button>
+
+    <p id="health"
+       role="status">
+      Checking experiment availability…
+    </p>
+
+    <button id="custom-refresh"
+            type="button">
+      Refresh Attempts
+    </button>
+
+    <div id="custom-runs"
+         class="runs-list"></div>
+
+  </div>
+
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+/*
+ * CPS Studio Home Sticker Gallery
+ *
+ * Final override layer for the illustrated hardware panorama.
+ * Loaded after the existing Home and motion styles.
+ */
+
+
+/* =========================================================
+   OUTER SHOWCASE
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-gallery {
+  position: relative;
+
+  width: 100vw;
+  max-width: none;
+
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  padding:
+    20px
+    clamp(14px, 2.2vw, 32px);
+
+  overflow: hidden;
+
+  border: 0;
+  border-top:
+    1px solid var(--scps-silver);
+  border-bottom:
+    1px solid var(--scps-silver);
+
+  border-radius: 0;
+
+  background:
+    #f7f8f9;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   HORIZONTAL PANORAMA
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.home-photo-grid {
+  display: flex;
+
+  width: 100%;
+
+  gap: 12px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: auto;
+
+  scrollbar-width: none;
+
+  cursor: grab;
+
+  touch-action: pan-x pan-y;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+body.home-page.scps-doc-ui
+.home-photo-grid::-webkit-scrollbar {
+  display: none;
+}
+
+
+body.home-page.scps-doc-ui
+.home-photo-grid.is-dragging {
+  cursor: grabbing;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   INDIVIDUAL ILLUSTRATIONS
+   ========================================================= */
+
+body.home-page.scps-doc-ui
+.panorama-photo {
+  position: relative;
+
+  flex:
+    0 0
+    calc((100% - 24px) / 3);
+
+  min-width: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  aspect-ratio: 3 / 2;
+
+  border:
+    1px solid
+    var(--scps-silver);
+
+  border-radius: 5px;
+
+  background:
+    #ffffff;
+}
+
+
+body.home-page.scps-doc-ui
+.panorama-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  background:
+    #ffffff;
+
+  transform: scale(1);
+
+  filter: none;
+
+  transition:
+    transform
+    .42s
+    cubic-bezier(.22,1,.36,1);
+}
+
+
+body.home-page.scps-doc-ui
+.panorama-photo:hover img {
+  transform:
+    scale(1.008);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+  body.home-page.scps-doc-ui
+  .panorama-photo {
+    flex-basis:
+      calc((100% - 12px) / 2);
+  }
+
+}
+
+
+@media (max-width: 620px) {
+
+  body.home-page.scps-doc-ui
+  .home-gallery {
+    padding:
+      12px;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .home-photo-grid {
+    gap:
+      10px;
+  }
+
+
+  body.home-page.scps-doc-ui
+  .panorama-photo {
+    flex-basis:
+      86%;
+
+    border-radius:
+      4px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.home-page.scps-doc-ui
+  .panorama-photo img {
+    transition:
+      none !important;
+  }
+
+}

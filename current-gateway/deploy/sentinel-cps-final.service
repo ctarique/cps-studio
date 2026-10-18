@@ -1,0 +1,33 @@
+[Unit]
+Description=Sentinel-CPS final Gateway
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=sentinel-final
+Group=sentinel-final
+WorkingDirectory=/opt/sentinel-cps-final/current
+EnvironmentFile=/etc/sentinel-cps-final/gateway.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/sentinel-cps-final/current/.venv/bin/python -m gateway.serve
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/sentinel-cps-final
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_UNIX AF_NETLINK
+CapabilityBoundingSet=
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

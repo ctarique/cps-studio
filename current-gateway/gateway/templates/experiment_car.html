@@ -1,0 +1,498 @@
+{% from '_tracks.html' import track_svg %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CPS Studio · Autonomous Car</title>
+  <link rel="stylesheet" href="/static/style.css?v=1.0.9-RC">
+  <link rel="stylesheet" href="/static/scps_docstyle.css?v=1.0.9-RC">
+  <link rel="stylesheet" href="/static/experiment_car_docstyle.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/experiment_device_icons.css?v=1.0.9-RC">
+  
+  
+<script defer src="/static/display_common.js?v=track12-20261013-1"></script>
+<script defer src="/static/car.js?v=track12-20261013-1"></script>
+</head>
+
+<body data-role="workstation" class="scps-doc-ui">
+<main>
+
+  {% include '_nav.html' %}
+
+
+
+  <header class="hero compact-hero experiment-activity-hero experiment-device-hero">
+    <div class="experiment-device-hero-copy">
+
+
+    <h1>Autonomous Car</h1>
+    <p class="hint">Autonomous track following has not been physically validated.</p>
+
+
+
+  
+    </div>
+
+
+  </header>
+
+
+  <!--
+    The display context is still prepared automatically by car.js.
+    This control remains in the DOM for compatibility with the existing
+    workflow but is intentionally not presented as a user-facing step.
+  -->
+  <button id="car-prepare"
+          type="button"
+          hidden
+          disabled>
+    Ready
+  </button>
+
+
+  <section class="car-device-section">
+
+    <p class="card-kicker">VEHICLE</p>
+
+    <h2>Vehicle Status</h2>
+
+    <p>
+      View live CPS Device state in Digital Twin.
+    </p>
+
+    <div class="car-twin-panel">
+<a class="button-link secondary car-twin-link"
+         href="/display?view=twin"
+         target="_blank"
+         rel="noopener noreferrer">
+        Open Digital Twin
+      </a>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <p class="card-kicker">ONBOARD CAMERA</p>
+    <h2>Camera Captures</h2>
+
+    <p>
+      Take a picture or capture a three-frame sequence.
+    </p>
+
+    <div class="car-control-grid">
+
+      <button id="car-snapshot"
+              type="button"
+              disabled>
+        Take Picture
+      </button>
+
+      <button id="car-series"
+              type="button"
+              class="secondary-button"
+              disabled>
+        Capture 3-Frame Sequence
+      </button>
+
+    </div>
+
+    <div class="car-gallery-action">
+      <a class="button-link secondary car-gallery-link"
+         href="/experiments/autonomous-car/gallery">
+        Gallery
+      </a>
+    </div>
+
+    <div id="car-captures"
+         class="car-capture-grid"
+         aria-live="polite"></div>
+
+  </section>
+
+
+  <section>
+
+    <p class="card-kicker">MOTOR CONTROL</p>
+    <h2>Try the Drive Motors</h2>
+
+    <p>
+      Try bounded motor controls.
+    </p>
+
+    <div class="car-control-grid">
+
+      <button id="car-motor-a-cw-test"
+              type="button"
+              class="secondary-button"
+              disabled>
+        MTR A | CW
+      </button>
+
+      <button id="car-motor-a-ccw-test"
+              type="button"
+              class="secondary-button"
+              disabled>
+        MTR A | CCW
+      </button>
+
+      <button id="car-motor-b-cw-test"
+              type="button"
+              class="secondary-button"
+              disabled>
+        MTR B | CW
+      </button>
+
+      <button id="car-motor-b-ccw-test"
+              type="button"
+              class="secondary-button"
+              disabled>
+        MTR B | CCW
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="experiment-activity-section car-overview">
+
+    <div class="section-heading">
+      <div>
+        <p class="card-kicker">TV-AS-A-TRACK</p>
+        <h2>Track Display</h2>
+      </div>
+
+
+    </div>
+
+    <div class="prose experiment-how">
+
+      <p>
+        View the designed tracks.
+      </p>
+
+    </div>
+
+    <div class="section-heading">
+
+      <div>
+        <h3>Select a Track</h3>
+      </div>
+
+
+
+    </div>
+
+    <div id="car-tracks"
+         class="card-grid track-catalog"
+         aria-label="Approved track catalog">
+
+      <article class="mini-card">
+
+        {{ track_svg('straight') }}
+
+        <h3 id="car-track-straight-label">
+          Track 01 — Straight
+        </h3>
+
+        <p>
+          A simple straight-line course for basic tracking.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="straight"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('wide-straight') }}
+
+        <h3 id="car-track-wide-straight-label">
+          Track 02 — Straight Wide
+        </h3>
+
+        <p>
+          A wider straight-line course for larger vehicles.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="wide-straight"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('curve') }}
+
+        <h3 id="car-track-curve-label">
+          Track 03 — Curve
+        </h3>
+
+        <p>
+          A curved course requiring continuous steering adjustment.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="curve"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('wide-curve') }}
+
+        <h3 id="car-track-wide-curve-label">
+          Track 04 — Curve Wide
+        </h3>
+
+        <p>
+          A wider version of the curved course.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="wide-curve"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('challenge') }}
+
+        <h3 id="car-track-challenge-label">
+          Track 05 — Challenge
+        </h3>
+
+        <p>
+          A complex course combining multiple changes in direction.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="challenge"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('wide-challenge') }}
+
+        <h3 id="car-track-wide-challenge-label">
+          Track 06 — Challenge Wide
+        </h3>
+
+        <p>
+          A wider version of the Challenge course.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="wide-challenge"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('circle') }}
+
+        <h3 id="car-track-circle-label">
+          Track 07 — Circle
+        </h3>
+
+        <p>
+          A circular loop for continuous turns.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="circle"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('wide-circle') }}
+
+        <h3 id="car-track-wide-circle-label">
+          Track 08 — Circle Wide
+        </h3>
+
+        <p>
+          A wider circular loop for larger vehicles.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="wide-circle"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('oval') }}
+
+        <h3 id="car-track-oval-label">
+          Track 09 — Oval
+        </h3>
+
+        <p>
+          An elongated racetrack-style oval with straight sections and rounded ends.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="oval"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('elliptical') }}
+
+        <h3 id="car-track-elliptical-label">
+          Track 10 — Oval Wide
+        </h3>
+
+        <p>
+          A wider racetrack-style oval.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="elliptical"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('infinity') }}
+
+        <h3 id="car-track-infinity-label">
+          Track 11 — Infinity
+        </h3>
+
+        <p>
+          A figure-eight course with a crossover.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="infinity"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+      <article class="mini-card">
+
+        {{ track_svg('wide-infinity') }}
+
+        <h3 id="car-track-wide-infinity-label">
+          Track 12 — Infinity Wide
+        </h3>
+
+        <p>
+          A wider figure-eight course.
+        </p>
+
+        <button type="button"
+                class="secondary-button"
+                data-track-id="wide-infinity"
+                disabled>
+          Select
+        </button>
+
+      </article>
+
+    </div>
+
+    <p id="car-selected"
+       class="hint">
+      Selected: none
+    </p>
+
+    <p id="car-display-status"
+       role="status"
+       aria-live="polite">
+      Checking Lab Display…
+    </p>
+
+  </section>
+
+
+  <!--
+    Reserved by the existing JavaScript for future autonomous vehicle
+    execution. Keeping the nodes prevents changing the established
+    client-side contract while removing unfinished controls from the UI.
+  -->
+  <button id="car-run"
+          type="button"
+          hidden
+          disabled
+          aria-disabled="true">
+    Run
+  </button>
+
+  <button id="car-stop"
+          type="button"
+          hidden
+          disabled
+          aria-disabled="true">
+    Stop
+  </button>
+
+
+    <section>
+
+    <p class="card-kicker">ACTIVITY</p>
+    <h2>Gateway Response</h2>
+
+    <pre id="car-result"
+         role="status"
+         aria-live="polite">Authenticated device actions and display updates will appear here.</pre>
+
+  </section>
+
+
+</main>
+</body>
+</html>

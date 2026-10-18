@@ -1,0 +1,81 @@
+/* CPS Studio 1.1 RC4 — Admin structure and consistent controls only. */
+/* Keep the existing administration page maximum width unchanged. */
+.admin-lab-display-group {
+  margin-top: 28px;
+  border-top: 1px solid rgba(127, 127, 127, .22);
+  padding-top: 26px;
+}
+.admin-lab-display-group > .admin-console-heading { margin: 0 0 12px; }
+.admin-lab-display-group > .admin-console-heading .card-kicker { margin: 0; }
+.admin-lab-display-group > .system-presentation-control {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.admin-lab-display-group > .cps-season-panel {
+  margin-top: 22px;
+}
+/* Match the existing Setup / Ready control treatment for current values. */
+.admin-lab-display-group #admin-display-mode,
+.admin-lab-display-group #cps-season-current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 36px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  border: 1px solid #d2d2d7 !important;
+  border-left: 4px solid #c8102e !important;
+  border-radius: 8px;
+  background: #f5f5f7 !important;
+  color: #1d1d1f !important;
+  font-size: .77rem;
+  font-weight: 650;
+  line-height: 1.2;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 3px 8px rgba(0,0,0,.035) !important;
+}
+/* Copy the same button language from the Lab Display state controls. */
+.admin-lab-display-group .cps-season-panel button[data-cps-season] {
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 1px solid #d2d2d7 !important;
+  border-left: 4px solid #c8102e !important;
+  border-radius: 8px;
+  background: #f5f5f7 !important;
+  color: #1d1d1f !important;
+  font-size: .77rem;
+  font-weight: 650;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 3px 8px rgba(0,0,0,.035) !important;
+  transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.admin-lab-display-group .cps-season-panel button[data-cps-season]:hover:not(:disabled) {
+  background: #fff !important;
+  border-color: #c7c7cc !important;
+  border-left-color: #c8102e !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,.05), 0 6px 14px rgba(0,0,0,.06) !important;
+}
+.admin-lab-display-group .cps-season-panel button[data-cps-season]:active:not(:disabled) {
+  background: #ececef !important;
+  transform: scale(.985);
+}
+.admin-lab-display-group .cps-season-panel button[data-cps-season]:focus-visible {
+  outline: 3px solid rgba(200,16,46,.25);
+  outline-offset: 3px;
+}
+.admin-lab-display-group .cps-season-panel button[data-cps-season][aria-pressed="true"] {
+  background: #fff0f2 !important;
+  border-left-color: #a50f28 !important;
+}
+.admin-lab-display-group .cps-season-panel button[data-cps-season]:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+.admin-lab-display-group .cps-season-panel .cps-season-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}

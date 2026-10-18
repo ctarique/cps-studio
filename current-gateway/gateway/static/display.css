@@ -1,0 +1,8712 @@
+/* =========================================================
+   CPS Studio Lab Display
+   Read-only physical laboratory presentation
+   ========================================================= */
+
+html.lab-display-root,
+.lab-display-body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #09090b;
+}
+
+
+.lab-display-body {
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  color: #f5f5f7;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* ---------------------------------------------------------
+   Primary screen
+   --------------------------------------------------------- */
+
+.lab-display {
+  position: relative;
+
+  width: 100vw;
+  min-height: 100vh;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(200,16,46,.105),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 78% 72%,
+      rgba(186,135,90,.07),
+      transparent 26%
+    ),
+    linear-gradient(
+      145deg,
+      #08080a 0%,
+      #111114 52%,
+      #09090b 100%
+    );
+}
+
+
+.display-shell {
+  position: relative;
+  z-index: 1;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100vw;
+  min-height: 100vh;
+
+  padding:
+    clamp(34px, 4vw, 72px)
+    clamp(42px, 5.3vw, 102px)
+    clamp(30px, 3.5vw, 62px);
+}
+
+
+/* ---------------------------------------------------------
+   Header
+   --------------------------------------------------------- */
+
+.display-topline {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 28px;
+}
+
+
+.display-brand,
+.display-location {
+  font-size:
+    clamp(.72rem, 1vw, 1rem);
+
+  font-weight: 700;
+
+  letter-spacing: .16em;
+
+  text-transform: uppercase;
+}
+
+
+.display-brand {
+  color: #f5f5f7;
+}
+
+
+.display-location {
+  color: rgba(245,245,247,.53);
+}
+
+
+/* ---------------------------------------------------------
+   Main presentation
+   --------------------------------------------------------- */
+
+.display-primary {
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  justify-content: center;
+
+  max-width: 1120px;
+
+  padding:
+    clamp(44px, 7vh, 100px)
+    0
+    clamp(36px, 5vh, 72px);
+}
+
+
+.display-kicker {
+  margin: 0 0 20px;
+
+  color: #ba875a;
+
+  font-size:
+    clamp(.78rem, 1vw, 1rem);
+
+  font-weight: 750;
+
+  letter-spacing: .16em;
+
+  text-transform: uppercase;
+}
+
+
+#display-title {
+  margin: 0;
+
+  color: #fff;
+
+  font-size:
+    clamp(4.5rem, 9vw, 10rem);
+
+  font-weight: 720;
+
+  line-height: .92;
+
+  letter-spacing: -.065em;
+}
+
+
+.display-tagline {
+  max-width: 840px;
+
+  margin:
+    clamp(24px, 3vh, 42px)
+    0
+    0;
+
+  color: rgba(245,245,247,.82);
+
+  font-size:
+    clamp(1.4rem, 2.2vw, 2.35rem);
+
+  font-weight: 520;
+
+  line-height: 1.24;
+
+  letter-spacing: -.025em;
+}
+
+
+.lab-display-state {
+  max-width: 1000px;
+
+  margin:
+    clamp(26px, 4vh, 52px)
+    0
+    0;
+
+  color: #f5f5f7;
+
+  font-size:
+    clamp(2rem, 4vw, 4.6rem);
+
+  font-weight: 620;
+
+  line-height: 1.05;
+
+  letter-spacing: -.045em;
+}
+
+
+.display-note {
+  max-width: 820px;
+
+  margin:
+    clamp(18px, 2.5vh, 30px)
+    0
+    0;
+
+  white-space: pre-line;
+
+  color: rgba(245,245,247,.58);
+
+  font-size:
+    clamp(1rem, 1.45vw, 1.45rem);
+
+  line-height: 1.55;
+}
+
+
+/* ---------------------------------------------------------
+   Lab ready indicator
+   --------------------------------------------------------- */
+
+.display-ready {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  margin-top:
+    clamp(28px, 4vh, 50px);
+
+  padding: 10px 16px;
+
+  gap: 10px;
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  color: rgba(255,255,255,.87);
+
+  font-size:
+    clamp(.75rem, 1vw, .95rem);
+
+  font-weight: 760;
+
+  letter-spacing: .13em;
+}
+
+
+.display-ready-dot {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: #ba875a;
+
+  box-shadow:
+    0 0 0 5px rgba(186,135,90,.08),
+    0 0 20px rgba(186,135,90,.36);
+
+  animation:
+    sentinel-ready-pulse 3.8s ease-in-out infinite;
+}
+
+
+@keyframes sentinel-ready-pulse {
+
+  0%,
+  100% {
+    opacity: .72;
+    transform: scale(.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Experiment selection presentation
+   --------------------------------------------------------- */
+
+.display-experiment-choice {
+  position: relative;
+  z-index: 4;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap:
+    clamp(20px, 2.5vw, 40px);
+
+  margin-top: auto;
+  margin-bottom:
+    clamp(34px, 5vh, 70px);
+}
+
+
+.display-experiment-card {
+  display: grid;
+
+  grid-template-columns: auto 1fr;
+
+  align-items: center;
+
+  gap:
+    clamp(20px, 2vw, 34px);
+
+  min-height:
+    clamp(135px, 16vh, 210px);
+
+  padding:
+    clamp(26px, 3vw, 46px);
+
+  border:
+    1px solid rgba(255,255,255,.10);
+
+  background:
+    rgba(255,255,255,.035);
+}
+
+
+.display-experiment-number {
+  color: rgba(247,36,77,.75);
+
+  font-size:
+    clamp(3rem, 5.5vw, 6rem);
+
+  font-weight: 300;
+
+  line-height: 1;
+
+  letter-spacing: -.06em;
+}
+
+
+.display-experiment-card p {
+  margin: 0 0 8px;
+
+  color: #ba875a;
+
+  font-size: .8rem;
+
+  font-weight: 760;
+
+  letter-spacing: .13em;
+}
+
+
+.display-experiment-card strong {
+  display: block;
+
+  color: white;
+
+  font-size:
+    clamp(1.55rem, 2.6vw, 3rem);
+
+  line-height: 1.1;
+
+  letter-spacing: -.035em;
+}
+
+
+.display-experiment-card div > span {
+  display: block;
+
+  margin-top: 8px;
+
+  color: rgba(245,245,247,.52);
+
+  font-size:
+    clamp(.9rem, 1.2vw, 1.15rem);
+}
+
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+
+.display-footer {
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: rgba(245,245,247,.36);
+
+  font-size:
+    clamp(.72rem, .95vw, .9rem);
+
+  font-weight: 600;
+
+  letter-spacing: .045em;
+}
+
+
+/* ---------------------------------------------------------
+   Ambient gateway motif
+   Purely decorative.
+   --------------------------------------------------------- */
+
+.ambient-field {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  opacity: .68;
+}
+
+
+.ambient-orbit {
+  position: absolute;
+
+  border:
+    1px solid rgba(255,255,255,.035);
+
+  border-radius: 50%;
+}
+
+
+.ambient-orbit-a {
+  width: 52vw;
+  height: 52vw;
+
+  right: -15vw;
+  top: -12vw;
+}
+
+
+.ambient-orbit-b {
+  width: 34vw;
+  height: 34vw;
+
+  right: 7vw;
+  bottom: -17vw;
+}
+
+
+.gateway-map {
+  position: absolute;
+
+  right: clamp(70px, 9vw, 180px);
+  top: 50%;
+
+  width:
+    clamp(260px, 31vw, 590px);
+
+  aspect-ratio: 1;
+
+  transform:
+    translateY(-48%);
+}
+
+
+.gateway-core,
+.gateway-node {
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+
+.gateway-core {
+  left: 50%;
+  top: 50%;
+
+  width:
+    clamp(20px, 2.3vw, 42px);
+
+  height:
+    clamp(20px, 2.3vw, 42px);
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      #f7244d,
+      #c8102e 55%,
+      #670818 100%
+    );
+
+  box-shadow:
+    0 0 0 16px rgba(200,16,46,.045),
+    0 0 64px rgba(247,36,77,.20);
+
+  animation:
+    sentinel-core 5.5s ease-in-out infinite;
+}
+
+
+.gateway-node {
+  width: 10px;
+  height: 10px;
+
+  background:
+    rgba(186,135,90,.78);
+
+  box-shadow:
+    0 0 18px rgba(186,135,90,.24);
+}
+
+
+.gateway-node-left {
+  left: 4%;
+  top: 50%;
+}
+
+
+.gateway-node-right {
+  right: 4%;
+  top: 50%;
+}
+
+
+.gateway-node-top {
+  top: 5%;
+  left: 50%;
+}
+
+
+.gateway-line {
+  position: absolute;
+
+  display: block;
+
+  overflow: hidden;
+
+  background:
+    rgba(255,255,255,.07);
+}
+
+
+.gateway-line::after {
+  position: absolute;
+
+  display: block;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(247,36,77,.78),
+      rgba(186,135,90,.65),
+      transparent
+    );
+
+  animation:
+    sentinel-signal 6s linear infinite;
+}
+
+
+.gateway-line-left,
+.gateway-line-right {
+  top: calc(50% + 4px);
+
+  width: 42%;
+  height: 1px;
+}
+
+
+.gateway-line-left {
+  left: 7%;
+}
+
+
+.gateway-line-right {
+  right: 7%;
+}
+
+
+.gateway-line-left::after,
+.gateway-line-right::after {
+  top: 0;
+
+  width: 32%;
+  height: 1px;
+
+  transform: translateX(-160%);
+}
+
+
+.gateway-line-top {
+  top: 8%;
+  left: calc(50% + 4px);
+
+  width: 1px;
+  height: 41%;
+}
+
+
+.gateway-line-top::after {
+  left: 0;
+
+  width: 1px;
+  height: 34%;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(247,36,77,.78),
+      rgba(186,135,90,.65),
+      transparent
+    );
+
+  animation:
+    sentinel-signal-vertical 6.8s linear infinite;
+}
+
+
+@keyframes sentinel-core {
+
+  0%,
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(.96);
+  }
+
+  50% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.07);
+  }
+
+}
+
+
+@keyframes sentinel-signal {
+
+  from {
+    transform: translateX(-160%);
+  }
+
+  to {
+    transform: translateX(430%);
+  }
+
+}
+
+
+@keyframes sentinel-signal-vertical {
+
+  from {
+    transform: translateY(-160%);
+  }
+
+  to {
+    transform: translateY(430%);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   LED presentation
+   --------------------------------------------------------- */
+
+body[data-display-mode^="led-"]
+  .gateway-core {
+
+  box-shadow:
+    0 0 0 20px rgba(247,36,77,.055),
+    0 0 100px rgba(247,36,77,.30);
+}
+
+
+body[data-display-mode^="led-"]
+  #display-title {
+
+  font-size:
+    clamp(4rem, 8vw, 9rem);
+}
+
+
+/* ---------------------------------------------------------
+   Locked / recovery
+   --------------------------------------------------------- */
+
+body[data-visible-state="locked"]
+  .ambient-field {
+
+  opacity: .24;
+}
+
+
+body[data-visible-state="locked"]
+  .display-kicker {
+
+  color: rgba(247,36,77,.75);
+}
+
+
+/* ---------------------------------------------------------
+   Screen transition
+   --------------------------------------------------------- */
+
+.display-state-enter
+  .display-primary {
+
+  animation:
+    sentinel-state-in
+    .6s
+    cubic-bezier(.22,1,.36,1);
+}
+
+
+@keyframes sentinel-state-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Existing progress indicator
+   --------------------------------------------------------- */
+
+.display-progress {
+  width:
+    min(700px, 62vw);
+
+  height: 4px;
+
+  margin-top: 26px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.09);
+}
+
+
+.display-progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #c8102e,
+      #f7244d,
+      #ba875a
+    );
+
+  transition:
+    width .35s ease;
+}
+
+
+/* ---------------------------------------------------------
+   TV-as-a-Track
+   --------------------------------------------------------- */
+
+.track-surface {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 50;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #fff;
+}
+
+
+.display-track {
+  width: 100%;
+  height: 100%;
+}
+
+
+.display-track > svg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   Smaller preview windows / admin iframe
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .display-shell {
+    padding: 28px 34px 26px;
+  }
+
+  #display-title {
+    font-size:
+      clamp(3.2rem, 10vw, 6rem);
+  }
+
+  .gateway-map {
+    right: -80px;
+
+    opacity: .58;
+  }
+
+  .display-experiment-choice {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .display-ready-dot,
+  .gateway-core,
+  .gateway-line::after,
+  .display-state-enter
+    .display-primary {
+
+    animation: none !important;
+  }
+
+}
+
+
+/* =========================================================
+   CPS Studio Lab Display v4
+   Light academic presentation
+   White · Black · CPS Studio Red
+   ========================================================= */
+
+:root {
+  --display-white: #ffffff;
+  --display-black: #1d1d1f;
+  --display-secondary: #6e6e73;
+  --display-tertiary: #86868b;
+  --display-line: #dedee2;
+  --display-soft: #f5f5f7;
+  --display-red: #c8102e;
+  --display-red-bright: #f7244d;
+}
+
+
+/* ---------------------------------------------------------
+   Global presentation
+   --------------------------------------------------------- */
+
+html.lab-display-root,
+.lab-display-body {
+  background: var(--display-white);
+  color: var(--display-black);
+}
+
+
+.lab-display {
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(200,16,46,.045),
+      transparent 29rem
+    ),
+    #ffffff;
+}
+
+
+.display-shell {
+  color: var(--display-black);
+}
+
+
+.display-primary {
+  max-width: 1180px;
+}
+
+
+#display-title {
+  color: var(--display-black);
+
+  font-weight: 700;
+
+  letter-spacing: -.06em;
+
+  text-shadow: none;
+
+  text-wrap: balance;
+}
+
+
+.display-tagline {
+  color: #424245;
+
+  text-wrap: balance;
+}
+
+
+.lab-display-state {
+  color: var(--display-black);
+
+  text-wrap: balance;
+}
+
+
+.display-note {
+  color: var(--display-secondary);
+
+  text-wrap: balance;
+}
+
+
+.display-kicker {
+  color: var(--display-red);
+}
+
+
+.display-location {
+  color: var(--display-secondary);
+}
+
+
+/* ---------------------------------------------------------
+   Ambient Gateway motif
+   Subtle diagram, not dashboard decoration.
+   --------------------------------------------------------- */
+
+.ambient-field {
+  opacity: .55;
+}
+
+
+.ambient-orbit {
+  border-color: rgba(29,29,31,.055);
+}
+
+
+.gateway-map {
+  opacity: .64;
+}
+
+
+.gateway-core {
+  background:
+    radial-gradient(
+      circle,
+      #f7244d,
+      #c8102e 58%,
+      #83091e 100%
+    );
+
+  box-shadow:
+    0 0 0 14px rgba(200,16,46,.035),
+    0 0 42px rgba(200,16,46,.11);
+}
+
+
+.gateway-node {
+  background: rgba(29,29,31,.46);
+
+  box-shadow: none;
+}
+
+
+.gateway-line {
+  background: rgba(29,29,31,.08);
+}
+
+
+.gateway-line::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(200,16,46,.64),
+      rgba(29,29,31,.28),
+      transparent
+    );
+}
+
+
+.gateway-line-top::after {
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(200,16,46,.64),
+      rgba(29,29,31,.28),
+      transparent
+    );
+}
+
+
+/* ---------------------------------------------------------
+   LOCKED
+   --------------------------------------------------------- */
+
+body[data-visible-state="locked"]
+  .lab-display {
+
+  background:
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(200,16,46,.055),
+      transparent 28rem
+    ),
+    #ffffff;
+}
+
+
+body[data-visible-state="locked"]
+  .ambient-field {
+
+  opacity: .32;
+}
+
+
+body[data-visible-state="locked"]
+  #display-title {
+
+  font-size:
+    clamp(4.8rem, 8.5vw, 9.2rem);
+}
+
+
+body[data-visible-state="locked"]
+  .display-tagline {
+
+  color: #424245;
+
+  font-size:
+    clamp(1.35rem, 2vw, 2.1rem);
+}
+
+
+body[data-visible-state="locked"]
+  .lab-display-state {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  margin-top:
+    clamp(28px, 4vh, 46px);
+
+  padding: 10px 17px;
+
+  gap: 9px;
+
+  border:
+    1px solid rgba(200,16,46,.24);
+
+  border-radius: 999px;
+
+  background:
+    rgba(200,16,46,.055);
+
+  color: var(--display-red);
+
+  font-size:
+    clamp(.78rem, 1vw, .98rem);
+
+  font-weight: 760;
+
+  line-height: 1;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+body[data-visible-state="locked"]
+  .lab-display-state::before {
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--display-red);
+
+  content: "";
+}
+
+
+/* ---------------------------------------------------------
+   READY
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .lab-display {
+
+  background:
+    radial-gradient(
+      circle at 78% 22%,
+      rgba(29,29,31,.025),
+      transparent 30rem
+    ),
+    #ffffff;
+}
+
+
+body[data-visible-state="idle"]
+  #display-title {
+
+  font-size:
+    clamp(5rem, 9vw, 9.8rem);
+}
+
+
+body[data-visible-state="idle"]
+  .display-tagline {
+
+  color: #424245;
+
+  font-size:
+    clamp(1.4rem, 2.15vw, 2.3rem);
+}
+
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  margin-top:
+    clamp(28px, 4vh, 46px);
+
+  padding: 10px 17px;
+
+  gap: 9px;
+
+  border:
+    1px solid rgba(29,29,31,.16);
+
+  border-radius: 999px;
+
+  background: #f5f5f7;
+
+  color: var(--display-black);
+
+  font-size:
+    clamp(.78rem, 1vw, .98rem);
+
+  font-weight: 760;
+
+  line-height: 1;
+
+  letter-spacing: .13em;
+
+  text-transform: uppercase;
+}
+
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--display-black);
+
+  content: "";
+}
+
+
+/* ---------------------------------------------------------
+   SELECT EXPERIMENT
+   --------------------------------------------------------- */
+
+body[data-visible-state="select-experiment"]
+  .lab-display {
+
+  background: #ffffff;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .ambient-field {
+
+  opacity: .20;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-primary {
+
+  flex: 0 0 auto;
+
+  max-width: none;
+
+  padding-top:
+    clamp(68px, 11vh, 140px);
+
+  padding-bottom:
+    clamp(24px, 4vh, 46px);
+}
+
+
+body[data-visible-state="select-experiment"]
+  #display-title {
+
+  font-size:
+    clamp(4rem, 7vw, 7.8rem);
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-choice {
+
+  width: 100%;
+
+  margin-top:
+    clamp(28px, 4vh, 52px);
+
+  margin-bottom:
+    clamp(28px, 4vh, 54px);
+}
+
+
+.display-experiment-card {
+  position: relative;
+
+  overflow: hidden;
+
+  border:
+    1px solid var(--display-line);
+
+  border-radius:
+    clamp(22px, 2vw, 30px);
+
+  background:
+    rgba(255,255,255,.94);
+
+  box-shadow:
+    0 14px 40px rgba(0,0,0,.055),
+    inset 0 1px 0 #ffffff;
+}
+
+
+.display-experiment-card::before {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--display-red),
+      var(--display-red-bright)
+    );
+
+  content: "";
+}
+
+
+.display-experiment-number {
+  color: var(--display-red);
+
+  font-weight: 300;
+}
+
+
+.display-experiment-card p {
+  color: var(--display-secondary);
+}
+
+
+.display-experiment-card strong {
+  color: var(--display-black);
+
+  font-weight: 650;
+}
+
+
+.display-experiment-card div > span {
+  color: var(--display-secondary);
+}
+
+
+/* ---------------------------------------------------------
+   EXPERIMENT PRESENTATIONS
+   --------------------------------------------------------- */
+
+body[data-visible-state="led-experiment"]
+  .lab-display,
+body[data-visible-state="autonomous-car"]
+  .lab-display {
+
+  background:
+    radial-gradient(
+      circle at 79% 24%,
+      rgba(200,16,46,.04),
+      transparent 29rem
+    ),
+    #ffffff;
+}
+
+
+body[data-visible-state="led-experiment"]
+  .display-location,
+body[data-visible-state="autonomous-car"]
+  .display-location {
+
+  color: var(--display-secondary);
+}
+
+
+body[data-visible-state="led-experiment"]
+  .display-kicker,
+body[data-visible-state="autonomous-car"]
+  .display-kicker {
+
+  color: var(--display-red);
+}
+
+
+body[data-visible-state="led-experiment"]
+  #display-title,
+body[data-visible-state="autonomous-car"]
+  #display-title {
+
+  font-size:
+    clamp(4.6rem, 7.8vw, 8.7rem);
+}
+
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state,
+body[data-visible-state="autonomous-car"]
+  .lab-display-state {
+
+  width: fit-content;
+
+  max-width: 900px;
+
+  margin-top:
+    clamp(28px, 4vh, 44px);
+
+  padding:
+    15px 20px;
+
+  border:
+    1px solid rgba(29,29,31,.12);
+
+  border-left:
+    4px solid var(--display-red);
+
+  border-radius: 14px;
+
+  background:
+    var(--display-soft);
+
+  color:
+    var(--display-black);
+
+  font-size:
+    clamp(1.2rem, 1.8vw, 1.85rem);
+
+  font-weight: 570;
+
+  letter-spacing: -.025em;
+}
+
+
+body[data-visible-state="led-experiment"]
+  .display-note,
+body[data-visible-state="autonomous-car"]
+  .display-note {
+
+  max-width: 800px;
+
+  color: var(--display-secondary);
+}
+
+
+/* ---------------------------------------------------------
+   TRACK PREPARATION
+   --------------------------------------------------------- */
+
+body[data-visible-state^="track-"]
+  .lab-display {
+
+  background: #ffffff;
+}
+
+
+body[data-visible-state^="track-"]
+  .ambient-field {
+
+  opacity: .17;
+}
+
+
+body[data-visible-state^="track-"]
+  .display-kicker {
+
+  color: var(--display-red);
+}
+
+
+body[data-visible-state^="track-"]
+  #display-title {
+
+  color: var(--display-black);
+
+  font-size:
+    clamp(4.6rem, 8vw, 9rem);
+}
+
+
+body[data-visible-state^="track-"]
+  .lab-display-state {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  margin-top:
+    clamp(28px, 4vh, 44px);
+
+  padding: 10px 16px;
+
+  gap: 9px;
+
+  border:
+    1px solid rgba(29,29,31,.14);
+
+  border-radius: 999px;
+
+  background: var(--display-soft);
+
+  color: var(--display-black);
+
+  font-size:
+    clamp(.8rem, 1vw, .98rem);
+
+  font-weight: 750;
+
+  letter-spacing: .11em;
+
+  text-transform: uppercase;
+}
+
+
+body[data-visible-state^="track-"]
+  .lab-display-state::before {
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--display-red);
+
+  content: "";
+
+  animation:
+    sentinel-light-track-pulse
+    1.5s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes sentinel-light-track-pulse {
+
+  0%,
+  100% {
+    opacity: .3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   GATEWAY UNAVAILABLE
+   --------------------------------------------------------- */
+
+body[data-display-mode="gateway-unavailable"]
+  .lab-display {
+
+  background:
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(200,16,46,.065),
+      transparent 28rem
+    ),
+    #ffffff;
+}
+
+
+body[data-display-mode="gateway-unavailable"]
+  .ambient-field {
+
+  opacity: .18;
+}
+
+
+body[data-display-mode="gateway-unavailable"]
+  #display-title {
+
+  color: var(--display-black);
+
+  font-size:
+    clamp(4.5rem, 7.8vw, 8.5rem);
+}
+
+
+body[data-display-mode="gateway-unavailable"]
+  .lab-display-state {
+
+  margin-top:
+    clamp(30px, 4vh, 46px);
+
+  color: var(--display-red);
+
+  font-size:
+    clamp(2rem, 3.6vw, 3.9rem);
+
+  font-weight: 650;
+
+  letter-spacing: -.045em;
+}
+
+
+body[data-display-mode="gateway-unavailable"]
+  .lab-display-state::before {
+
+  display: inline-grid;
+
+  place-items: center;
+
+  width:
+    clamp(30px, 2.8vw, 42px);
+
+  height:
+    clamp(30px, 2.8vw, 42px);
+
+  margin-right: 14px;
+
+  border:
+    1px solid rgba(200,16,46,.24);
+
+  border-radius: 50%;
+
+  background:
+    rgba(200,16,46,.055);
+
+  color:
+    var(--display-red);
+
+  content: "!";
+
+  font-size: .65em;
+
+  font-weight: 800;
+
+  vertical-align: .13em;
+}
+
+
+body[data-display-mode="gateway-unavailable"]
+  .display-note {
+
+  color: var(--display-secondary);
+}
+
+
+/* ---------------------------------------------------------
+   Progress
+   --------------------------------------------------------- */
+
+.display-progress {
+  background: rgba(29,29,31,.09);
+}
+
+
+.display-progress-fill {
+  background:
+    linear-gradient(
+      90deg,
+      #1d1d1f,
+      #c8102e
+    );
+}
+
+
+/* ---------------------------------------------------------
+   State transitions
+   --------------------------------------------------------- */
+
+.display-state-enter
+  .display-primary {
+
+  animation:
+    sentinel-light-state-in
+    .46s
+    cubic-bezier(.22,1,.36,1);
+}
+
+
+.display-state-enter
+  .display-experiment-choice {
+
+  animation:
+    sentinel-light-state-in
+    .54s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes sentinel-light-state-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Admin preview / smaller viewport
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  body[data-visible-state="select-experiment"]
+    .display-primary {
+
+    padding-top: 40px;
+  }
+
+
+  .display-experiment-card {
+    border-radius: 20px;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state^="track-"]
+    .lab-display-state::before,
+
+  .display-state-enter
+    .display-primary,
+
+  .display-state-enter
+    .display-experiment-choice {
+
+    animation: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab Display
+   Clean presentation background
+   ========================================================= */
+
+/*
+ * Remove the decorative Gateway/orbit motif from all
+ * Lab Display presentation states.
+ */
+.lab-display .ambient-field {
+  display: none !important;
+}
+
+
+/*
+ * All non-track presentation states use a clean white
+ * background. State meaning is communicated through
+ * typography and deliberate CPS Studio Red accents instead.
+ */
+.lab-display {
+  background: #ffffff !important;
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab Display
+   Ready showcase
+   ========================================================= */
+
+.ready-gallery {
+  display: none;
+}
+
+
+/* Ready becomes a two-column welcome presentation. */
+body[data-visible-state="idle"] .display-shell {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, .82fr)
+    minmax(0, 1.18fr);
+
+  grid-template-rows:
+    auto
+    minmax(0, 1fr);
+
+  column-gap:
+    clamp(48px, 5vw, 100px);
+
+  align-items: center;
+}
+
+
+/* Header spans the complete screen. */
+body[data-visible-state="idle"] .display-topline {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+
+/* Ready text area. */
+body[data-visible-state="idle"] .display-primary {
+  grid-column: 1;
+  grid-row: 2;
+
+  justify-content: center;
+
+  max-width: none;
+
+  min-width: 0;
+
+  padding:
+    clamp(34px, 5vh, 72px)
+    0;
+}
+
+
+/* CPS Studio remains prominent without overpowering photos. */
+body[data-visible-state="idle"] #display-title {
+  font-size:
+    clamp(4.8rem, 6vw, 7.4rem);
+
+  line-height: .94;
+}
+
+
+/* Tagline. */
+body[data-visible-state="idle"] .display-tagline {
+  max-width: 620px;
+
+  margin-top:
+    clamp(24px, 3vh, 38px);
+
+  font-size:
+    clamp(1.35rem, 1.75vw, 2rem);
+
+  line-height: 1.3;
+}
+
+
+/* Ready becomes the primary status rather than a pill. */
+body[data-visible-state="idle"] .lab-display-state {
+  display: block;
+
+  width: auto;
+
+  max-width: none;
+
+  margin-top:
+    clamp(42px, 6vh, 72px);
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  color: var(--display-black);
+
+  font-size:
+    clamp(4rem, 5.4vw, 6.5rem);
+
+  font-weight: 700;
+
+  line-height: .96;
+
+  letter-spacing: -.055em;
+}
+
+
+/* Short CPS Studio-red Ready accent. */
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block;
+
+  width: 72px;
+  height: 4px;
+
+  margin: 0 0 28px;
+
+  border-radius: 999px;
+
+  background: var(--display-red);
+
+  content: "";
+}
+
+
+/* Do not show the old Ready badge. */
+body[data-visible-state="idle"]
+  .display-ready {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Ready collage
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .ready-gallery {
+
+  grid-column: 2;
+  grid-row: 2;
+
+  display: block;
+
+  min-width: 0;
+
+  align-self: center;
+
+  opacity: 1;
+
+  transition:
+    opacity .5s ease;
+}
+
+
+.ready-gallery-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.22fr)
+    minmax(0, .78fr);
+
+  grid-template-rows:
+    repeat(2, minmax(0, 1fr));
+
+  gap:
+    clamp(12px, 1.1vw, 20px);
+
+  height:
+    clamp(470px, 62vh, 680px);
+}
+
+
+.ready-gallery-photo {
+  overflow: hidden;
+
+  margin: 0;
+
+  min-width: 0;
+  min-height: 0;
+
+  border:
+    1px solid rgba(29,29,31,.10);
+
+  border-radius:
+    clamp(18px, 1.5vw, 26px);
+
+  background: #f5f5f7;
+
+  box-shadow:
+    0 12px 34px rgba(0,0,0,.07);
+}
+
+
+.ready-gallery-photo-main {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+
+.ready-gallery-photo-top {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+
+.ready-gallery-photo-bottom {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+
+.ready-gallery-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.001);
+}
+
+
+/* Entire collage crossfades as one composition. */
+body[data-visible-state="idle"]
+  .ready-gallery.ready-gallery-changing {
+
+  opacity: .08;
+}
+
+
+/* ---------------------------------------------------------
+   Smaller Admin preview / narrower displays
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+
+  body[data-visible-state="idle"]
+    .display-shell {
+
+    grid-template-columns:
+      minmax(0, .9fr)
+      minmax(0, 1.1fr);
+
+    column-gap: 34px;
+  }
+
+
+  .ready-gallery-grid {
+    height:
+      clamp(350px, 54vh, 510px);
+
+    gap: 10px;
+  }
+
+
+  body[data-visible-state="idle"]
+    #display-title {
+
+    font-size:
+      clamp(3.6rem, 6.2vw, 5.4rem);
+  }
+
+
+  body[data-visible-state="idle"]
+    .lab-display-state {
+
+    font-size:
+      clamp(3.2rem, 5vw, 4.7rem);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="idle"]
+    .ready-gallery {
+
+    transition: none;
+  }
+
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab Display
+   Ready Mode · Photo Screensaver
+   ========================================================= */
+
+
+/* Ready state uses essentially the entire TV for photography. */
+body[data-visible-state="idle"] .display-shell {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 0;
+
+  overflow: hidden;
+}
+
+
+/* The normal top status line is unnecessary in screensaver mode. */
+body[data-visible-state="idle"] .display-topline {
+  display: none;
+}
+
+
+/* ---------------------------------------------------------
+   Full-screen collage
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"] .ready-gallery {
+  position: absolute;
+
+  inset:
+    clamp(12px, 1.25vw, 24px);
+
+  z-index: 1;
+
+  display: block;
+
+  opacity: 1;
+
+  pointer-events: none;
+
+  transition:
+    opacity .5s ease;
+}
+
+
+body[data-visible-state="idle"] .ready-gallery-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.72fr)
+    minmax(0, .88fr);
+
+  grid-template-rows:
+    repeat(2, minmax(0, 1fr));
+
+  width: 100%;
+  height: 100%;
+
+  gap:
+    clamp(8px, .75vw, 14px);
+}
+
+
+body[data-visible-state="idle"] .ready-gallery-photo {
+  overflow: hidden;
+
+  margin: 0;
+
+  min-width: 0;
+  min-height: 0;
+
+  border: 0;
+
+  border-radius:
+    clamp(16px, 1.35vw, 26px);
+
+  background: #e8e8ed;
+
+  box-shadow: none;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-photo-main {
+
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-photo-top {
+
+  grid-column: 2;
+  grid-row: 1;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-photo-bottom {
+
+  grid-column: 2;
+  grid-row: 2;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-photo img {
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* Existing slideshow transition remains subtle. */
+body[data-visible-state="idle"]
+  .ready-gallery.ready-gallery-changing {
+
+  opacity: .18;
+}
+
+
+/* ---------------------------------------------------------
+   Floating CPS Studio Ready panel
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"] .display-primary {
+  position: absolute;
+
+  left:
+    clamp(34px, 3vw, 62px);
+
+  bottom:
+    clamp(34px, 4.5vh, 66px);
+
+  z-index: 5;
+
+  display: block;
+
+  width:
+    min(
+      520px,
+      calc(100% - 68px)
+    );
+
+  max-width: none;
+
+  padding:
+    clamp(24px, 2vw, 34px)
+    clamp(26px, 2.25vw, 38px)
+    clamp(26px, 2.25vw, 36px);
+
+  border:
+    1px solid rgba(255,255,255,.74);
+
+  border-radius:
+    clamp(22px, 1.8vw, 30px);
+
+  background:
+    rgba(255,255,255,.90);
+
+  -webkit-backdrop-filter:
+    blur(22px) saturate(1.12);
+
+  backdrop-filter:
+    blur(22px) saturate(1.12);
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.18);
+
+  color: var(--display-black);
+}
+
+
+/* No technical kicker in Ready screensaver mode. */
+body[data-visible-state="idle"]
+  .display-kicker {
+
+  display: none;
+}
+
+
+/* CPS Studio branding inside the overlay. */
+body[data-visible-state="idle"]
+  #display-title {
+
+  margin: 0;
+
+  font-size:
+    clamp(2rem, 2.5vw, 3.1rem);
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -.045em;
+}
+
+
+/* Project tagline. */
+body[data-visible-state="idle"]
+  .display-tagline {
+
+  max-width: 430px;
+
+  margin:
+    clamp(13px, 1.4vh, 18px)
+    0
+    0;
+
+  color: #424245;
+
+  font-size:
+    clamp(1rem, 1.15vw, 1.3rem);
+
+  font-weight: 500;
+
+  line-height: 1.35;
+
+  letter-spacing: -.012em;
+}
+
+
+/* Ready is the primary status. */
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  display: block;
+
+  width: auto;
+
+  margin:
+    clamp(24px, 2.8vh, 34px)
+    0
+    0;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  color: var(--display-black);
+
+  box-shadow: none;
+
+  font-size:
+    clamp(3.2rem, 4vw, 5rem);
+
+  font-weight: 700;
+
+  line-height: .96;
+
+  letter-spacing: -.055em;
+}
+
+
+/* CPS Studio-red accent above Ready. */
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block;
+
+  width: 62px;
+  height: 4px;
+
+  margin: 0 0 20px;
+
+  border-radius: 999px;
+
+  background: var(--display-red);
+
+  content: "";
+}
+
+
+/* Old LAB READY pill is no longer needed. */
+body[data-visible-state="idle"]
+  .display-ready {
+
+  display: none !important;
+}
+
+
+/* No additional guidance in the screensaver overlay. */
+body[data-visible-state="idle"]
+  .display-note {
+
+  display: none;
+}
+
+
+/* ---------------------------------------------------------
+   Admin iframe / smaller preview
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  body[data-visible-state="idle"]
+    .ready-gallery {
+
+    inset: 8px;
+  }
+
+
+  body[data-visible-state="idle"]
+    .ready-gallery-grid {
+
+    gap: 6px;
+
+    grid-template-columns:
+      minmax(0, 1.55fr)
+      minmax(0, .85fr);
+  }
+
+
+  body[data-visible-state="idle"]
+    .ready-gallery-photo {
+
+    border-radius: 14px;
+  }
+
+
+  body[data-visible-state="idle"]
+    .display-primary {
+
+    left: 22px;
+    bottom: 22px;
+
+    width:
+      min(
+        390px,
+        calc(100% - 44px)
+      );
+
+    padding: 20px 22px 22px;
+
+    border-radius: 20px;
+  }
+
+
+  body[data-visible-state="idle"]
+    #display-title {
+
+    font-size:
+      clamp(1.8rem, 4.5vw, 2.7rem);
+  }
+
+
+  body[data-visible-state="idle"]
+    .display-tagline {
+
+    font-size:
+      clamp(.9rem, 2.1vw, 1.1rem);
+  }
+
+
+  body[data-visible-state="idle"]
+    .lab-display-state {
+
+    margin-top: 20px;
+
+    font-size:
+      clamp(2.5rem, 6vw, 3.8rem);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="idle"]
+    .ready-gallery {
+
+    transition: none;
+  }
+
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab Display
+   READY · Full-Screen Photo Screensaver
+   ========================================================= */
+
+.ready-gallery {
+  display: none;
+}
+
+
+/* ---------------------------------------------------------
+   Ready canvas
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"] .lab-display {
+  background: #000000 !important;
+}
+
+
+body[data-visible-state="idle"] .display-shell {
+  position: relative !important;
+
+  display: block !important;
+
+  width: 100vw !important;
+  min-height: 100vh !important;
+
+  padding: 0 !important;
+
+  overflow: hidden !important;
+}
+
+
+/* Hide normal display header in screensaver mode. */
+body[data-visible-state="idle"]
+  .display-topline {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Full-screen photography
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .ready-gallery {
+
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  z-index: 1;
+
+  display: block !important;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #000000;
+
+  pointer-events: none;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-image {
+
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  opacity: 0;
+
+  transform: scale(1.001);
+
+  transition:
+    opacity 1.2s ease-in-out;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-image.is-active {
+
+  opacity: 1;
+}
+
+
+/*
+ * Very subtle tonal treatment improves consistency between
+ * photos without making the display appear artificially dark.
+ */
+body[data-visible-state="idle"]
+  .ready-gallery::after {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.10) 0%,
+      rgba(0,0,0,.025) 38%,
+      rgba(0,0,0,0) 65%
+    );
+
+  content: "";
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   Floating CPS Studio panel
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  position: absolute !important;
+
+  left:
+    clamp(36px, 3.3vw, 70px);
+
+  bottom:
+    clamp(36px, 5vh, 72px);
+
+  z-index: 10;
+
+  display: block !important;
+
+  width:
+    min(
+      520px,
+      calc(100vw - 72px)
+    );
+
+  max-width: none !important;
+
+  padding:
+    clamp(26px, 2.2vw, 38px)
+    clamp(28px, 2.5vw, 42px)
+    clamp(28px, 2.4vw, 40px) !important;
+
+  border:
+    1px solid rgba(255,255,255,.76);
+
+  border-radius:
+    clamp(22px, 1.8vw, 30px);
+
+  background:
+    rgba(255,255,255,.91);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(1.15);
+
+  backdrop-filter:
+    blur(24px)
+    saturate(1.15);
+
+  box-shadow:
+    0 20px 55px rgba(0,0,0,.24);
+
+  color:
+    var(--display-black);
+}
+
+
+/* No technical kicker in Ready mode. */
+body[data-visible-state="idle"]
+  .display-kicker {
+
+  display: none !important;
+}
+
+
+/* CPS Studio */
+body[data-visible-state="idle"]
+  #display-title {
+
+  margin: 0 !important;
+
+  color:
+    var(--display-black) !important;
+
+  font-size:
+    clamp(2.25rem, 2.7vw, 3.4rem) !important;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -.05em;
+}
+
+
+/* Tagline */
+body[data-visible-state="idle"]
+  .display-tagline {
+
+  display: block;
+
+  max-width: 430px;
+
+  margin:
+    clamp(14px, 1.6vh, 20px)
+    0
+    0 !important;
+
+  color: #424245 !important;
+
+  font-size:
+    clamp(1rem, 1.15vw, 1.3rem) !important;
+
+  font-weight: 500;
+
+  line-height: 1.35;
+
+  letter-spacing: -.015em;
+}
+
+
+/* Ready */
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  display: block !important;
+
+  width: auto !important;
+
+  max-width: none !important;
+
+  margin:
+    clamp(27px, 3vh, 38px)
+    0
+    0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  color:
+    var(--display-black) !important;
+
+  font-size:
+    clamp(3.4rem, 4.1vw, 5.2rem) !important;
+
+  font-weight: 700;
+
+  line-height: .95;
+
+  letter-spacing: -.06em;
+}
+
+
+/* CPS Studio red accent */
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block !important;
+
+  width: 64px !important;
+  height: 4px !important;
+
+  margin:
+    0
+    0
+    clamp(18px, 2vh, 24px) !important;
+
+  border-radius: 999px !important;
+
+  background:
+    var(--display-red) !important;
+
+  content: "" !important;
+}
+
+
+/* Remove obsolete Ready badge. */
+body[data-visible-state="idle"]
+  .display-ready {
+
+  display: none !important;
+}
+
+
+/* Ready screensaver does not need secondary instructions. */
+body[data-visible-state="idle"]
+  .display-note,
+
+body[data-visible-state="idle"]
+  #display-progress {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Admin preview
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  body[data-visible-state="idle"]
+    .display-primary {
+
+    left: 22px;
+    bottom: 22px;
+
+    width:
+      min(
+        390px,
+        calc(100vw - 44px)
+      );
+
+    padding:
+      20px
+      22px
+      23px !important;
+
+    border-radius: 20px;
+  }
+
+
+  body[data-visible-state="idle"]
+    #display-title {
+
+    font-size:
+      clamp(
+        1.8rem,
+        4.5vw,
+        2.7rem
+      ) !important;
+  }
+
+
+  body[data-visible-state="idle"]
+    .display-tagline {
+
+    font-size:
+      clamp(
+        .9rem,
+        2vw,
+        1.1rem
+      ) !important;
+  }
+
+
+  body[data-visible-state="idle"]
+    .lab-display-state {
+
+    margin-top:
+      20px !important;
+
+    font-size:
+      clamp(
+        2.6rem,
+        6vw,
+        3.8rem
+      ) !important;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="idle"]
+    .ready-gallery-image {
+
+    transition: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   Ready · Green operational indicator
+   ========================================================= */
+
+/* Move the CPS Studio-red accent above READY onto the tagline. */
+body[data-visible-state="idle"]
+  .display-tagline::after {
+
+  display: block;
+
+  width: 64px;
+  height: 4px;
+
+  margin-top:
+    clamp(28px, 3vh, 36px);
+
+  border-radius: 999px;
+
+  background:
+    var(--display-red);
+
+  content: "";
+}
+
+
+/* READY + green status indicator */
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  display: inline-flex !important;
+
+  align-items: center;
+
+  width: fit-content !important;
+
+  gap:
+    clamp(14px, 1.2vw, 20px);
+
+  margin-top:
+    clamp(26px, 3vh, 36px) !important;
+}
+
+
+/* Replace the old red-line pseudo-element with the green dot. */
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block !important;
+
+  width:
+    clamp(15px, 1.25vw, 20px) !important;
+
+  height:
+    clamp(15px, 1.25vw, 20px) !important;
+
+  flex: 0 0 auto;
+
+  margin: 0 !important;
+
+  border-radius: 50% !important;
+
+  background: #34c759 !important;
+
+  box-shadow:
+    0 0 0 6px rgba(52, 199, 89, .12) !important;
+
+  content: "" !important;
+}
+
+
+
+/* =========================================================
+   READY · Computer Science identity
+   ========================================================= */
+
+/* Hidden everywhere except the Ready screensaver. */
+.display-ready-logo {
+  display: none;
+}
+
+
+body[data-visible-state="idle"]
+  .display-ready-logo {
+
+  display: block;
+
+  width:
+    clamp(92px, 7.5vw, 130px);
+
+  height: auto;
+
+  margin:
+    0
+    auto
+    clamp(22px, 2.4vh, 30px);
+
+  border-radius:
+    clamp(14px, 1.2vw, 20px);
+
+  box-shadow:
+    0 5px 16px rgba(0,0,0,.10);
+}
+
+
+/* Center the Ready identity area. */
+body[data-visible-state="idle"]
+  .display-primary {
+
+  text-align: center;
+}
+
+
+body[data-visible-state="idle"]
+  .display-tagline {
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* Center the CPS Studio-red accent. */
+body[data-visible-state="idle"]
+  .display-tagline::after {
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* Center the green indicator + READY row. */
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+
+/* =========================================================
+   READY · Green indicator only
+   ========================================================= */
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  font-size: 0 !important;
+  gap: 0 !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  width:
+    clamp(16px, 1.3vw, 21px) !important;
+
+  height:
+    clamp(16px, 1.3vw, 21px) !important;
+
+  margin: 0 !important;
+
+  border-radius: 50% !important;
+
+  background: #34c759 !important;
+
+  box-shadow:
+    0 0 0 6px rgba(52, 199, 89, .13) !important;
+}
+
+
+
+/* READY · Remove red accent line */
+body[data-visible-state="idle"]
+  .display-tagline::after {
+
+  display: none !important;
+  content: none !important;
+}
+
+
+
+/* =========================================================
+   LOCKED · Red indicator only
+   ========================================================= */
+
+body[data-visible-state="locked"]
+  .lab-display-state {
+
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content !important;
+
+  font-size: 0 !important;
+  gap: 0 !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+body[data-visible-state="locked"]
+  .lab-display-state::before {
+
+  display: block !important;
+
+  width:
+    clamp(16px, 1.3vw, 21px) !important;
+
+  height:
+    clamp(16px, 1.3vw, 21px) !important;
+
+  margin: 0 !important;
+
+  border-radius: 50% !important;
+
+  background: #ff3b30 !important;
+
+  box-shadow:
+    0 0 0 6px rgba(255, 59, 48, .13) !important;
+
+  content: "" !important;
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab View
+   IDLE / READY — full television canvas
+   ========================================================= */
+
+
+/*
+ * IDLE is a television presentation, not a dashboard/card.
+ * Scale from the viewport itself so 1080p and 4K displays
+ * preserve approximately the same visual proportions.
+ */
+
+body[data-visible-state="idle"] .display-shell {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+
+  padding:
+    4.5vh
+    5.5vw
+    5vh;
+
+  box-sizing: border-box;
+}
+
+
+/* Header remains anchored to the top of the TV. */
+
+body[data-visible-state="idle"] .display-topline {
+  flex: 0 0 auto;
+
+  width: 100%;
+}
+
+
+/* Remove the old two-column/showcase composition. */
+
+body[data-visible-state="idle"] .display-primary {
+  display: flex;
+
+  flex: 1 1 auto;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: none;
+
+  min-width: 0;
+
+  padding: 0;
+}
+
+
+/*
+ * The photo gallery was part of the old Ready showcase.
+ * IDLE now uses the entire TV as one clean presentation.
+ */
+
+body[data-visible-state="idle"] .ready-gallery {
+  display: none !important;
+}
+
+
+/* Logo from the old showcase is not needed in TV-ready mode. */
+
+body[data-visible-state="idle"] .display-ready-logo {
+  display: none !important;
+}
+
+
+/* Main title — proportional to the 16:9 canvas. */
+
+body[data-visible-state="idle"] #display-title {
+  max-width: none;
+
+  margin: 0;
+
+  font-size:
+    min(8.8vw, 15vh);
+
+  line-height: .90;
+
+  letter-spacing: -.06em;
+}
+
+
+/* Supporting line. */
+
+body[data-visible-state="idle"] .display-tagline {
+  max-width: 66vw;
+
+  margin-top: 3.2vh;
+
+  font-size:
+    min(2.05vw, 3.5vh);
+
+  line-height: 1.3;
+}
+
+
+/* Primary Ready state. */
+
+body[data-visible-state="idle"] .lab-display-state {
+  width: auto;
+  max-width: 82vw;
+
+  margin-top: 7vh;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
+  box-shadow: none;
+
+  font-size:
+    min(5.4vw, 9.2vh);
+
+  font-weight: 700;
+
+  line-height: .94;
+
+  letter-spacing: -.055em;
+}
+
+
+/* CPS Studio red visual separator. */
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block;
+
+  width: 4.2vw;
+  min-width: 64px;
+
+  height: .38vh;
+  min-height: 4px;
+
+  margin:
+    0
+    0
+    3vh;
+
+  border-radius: 999px;
+
+  background:
+    var(--display-red);
+
+  content: "";
+}
+
+
+/* Small supporting guidance remains readable on a TV. */
+
+body[data-visible-state="idle"] .display-note {
+  max-width: 62vw;
+
+  margin-top: 3.2vh;
+
+  font-size:
+    min(1.3vw, 2.25vh);
+
+  line-height: 1.45;
+}
+
+
+/* The old compact Ready badge is not part of this state. */
+
+body[data-visible-state="idle"] .display-ready {
+  display: none !important;
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab Display
+   Subtle motion system
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Animated CPS identity
+
+   The underlying title remains the real text:
+   CPS Studio
+
+   This pseudo-element overlays only the final "CPS".
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"] #display-title,
+body[data-visible-state="locked"] #display-title {
+  position: relative;
+  display: block;
+  width: fit-content;
+}
+
+
+body[data-visible-state="idle"] #display-title::after,
+body[data-visible-state="locked"] #display-title::after {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  content: "CPS";
+
+  background:
+    linear-gradient(
+      105deg,
+      #c8102e 0%,
+      #ff4d6d 18%,
+      #ff9f43 35%,
+      #7b61ff 53%,
+      #2488ff 70%,
+      #25a875 86%,
+      #c8102e 100%
+    );
+
+  background-size: 300% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    cps-studio-gradient
+    9s
+    ease-in-out
+    infinite;
+
+  pointer-events: none;
+}
+
+
+@keyframes cps-studio-gradient {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   SETUP REQUIRED
+   Materialize / fade-blur reveal
+   --------------------------------------------------------- */
+
+body[data-visible-state="locked"]
+  .display-tagline {
+
+  opacity: 0;
+
+  filter:
+    blur(12px);
+
+  transform:
+    translateY(16px)
+    scale(.985);
+
+  animation:
+    sentinel-setup-materialize
+    1.8s
+    cubic-bezier(.22,1,.36,1)
+    .35s
+    forwards;
+}
+
+
+@keyframes sentinel-setup-materialize {
+
+  0% {
+    opacity: 0;
+
+    filter:
+      blur(12px);
+
+    transform:
+      translateY(16px)
+      scale(.985);
+  }
+
+  55% {
+    opacity: .82;
+
+    filter:
+      blur(3px);
+  }
+
+  100% {
+    opacity: 1;
+
+    filter:
+      blur(0);
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   SETUP REQUIRED
+   Slow status-LED breathing effect
+   --------------------------------------------------------- */
+
+body[data-visible-state="locked"]
+  .lab-display-state::before {
+
+  animation:
+    sentinel-status-led
+    2.8s
+    ease-in-out
+    infinite;
+
+  transform-origin: center;
+}
+
+
+@keyframes sentinel-status-led {
+
+  0%,
+  100% {
+    opacity: .38;
+
+    transform:
+      scale(.88);
+
+    box-shadow:
+      0 0 0 0
+      rgba(200,16,46,0);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1.08);
+
+    box-shadow:
+      0 0 0 7px
+      rgba(200,16,46,.08),
+      0 0 22px
+      rgba(200,16,46,.32);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Accessibility / reduced-motion fallback
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="idle"]
+    #display-title::after,
+
+  body[data-visible-state="locked"]
+    #display-title::after,
+
+  body[data-visible-state="locked"]
+    .display-tagline,
+
+  body[data-visible-state="locked"]
+    .lab-display-state::before {
+
+    animation: none !important;
+
+    opacity: 1;
+
+    filter: none;
+
+    transform: none;
+  }
+
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab Display
+   Passive-state clock + SETUP_REQUIRED refinement
+   ========================================================= */
+
+
+/* Clock is hidden during active experiments. */
+
+.display-clock {
+  display: none;
+}
+
+
+/*
+ * Show time/date only while the laboratory is waiting:
+ *
+ * locked = instructor setup required
+ * idle   = gateway ready / unlocked
+ */
+
+body[data-visible-state="locked"]
+  .display-clock,
+
+body[data-visible-state="idle"]
+  .display-clock {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: .45vh;
+
+  margin-left: auto;
+
+  text-align: right;
+}
+
+
+.display-date {
+  color:
+    var(--display-secondary);
+
+  font-size:
+    min(1.05vw, 1.85vh);
+
+  font-weight: 560;
+
+  line-height: 1.1;
+
+  letter-spacing: -.015em;
+}
+
+
+.display-time {
+  color:
+    var(--display-black);
+
+  font-size:
+    min(2vw, 3.45vh);
+
+  font-weight: 720;
+
+  line-height: 1;
+
+  letter-spacing: -.045em;
+}
+
+
+/* ---------------------------------------------------------
+   SETUP_REQUIRED — use the TV as the canvas
+   --------------------------------------------------------- */
+
+body[data-visible-state="locked"]
+  .display-shell {
+
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  padding:
+    4.5vh
+    5.5vw
+    5vh;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background:
+    transparent !important;
+
+  box-shadow:
+    none !important;
+}
+
+
+/*
+ * Center the setup presentation across the available
+ * television canvas rather than inside a narrow content box.
+ */
+
+body[data-visible-state="locked"]
+  .display-primary {
+
+  display: flex;
+
+  flex: 1 1 auto;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  max-width: none;
+
+  padding: 0;
+
+  text-align: center;
+}
+
+
+/* CPS Studio remains the main identity. */
+
+body[data-visible-state="locked"]
+  #display-title {
+
+  max-width: none;
+
+  margin: 0;
+
+  font-size:
+    min(8.2vw, 14vh);
+
+  line-height: .90;
+}
+
+
+/*
+ * Make Instructor Setup Required command much more
+ * visual width without giving it a tall block shape.
+ */
+
+body[data-visible-state="locked"]
+  .display-tagline {
+
+  width: 100%;
+
+  max-width: 92vw;
+
+  margin-top:
+    4.6vh;
+
+  color:
+    #424245;
+
+  font-size:
+    min(3.35vw, 5.7vh);
+
+  font-weight: 620;
+
+  line-height: 1;
+
+  letter-spacing:
+    -.04em;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   Clean standalone red status LED
+   --------------------------------------------------------- */
+
+body[data-visible-state="locked"]
+  .lab-display-state {
+
+  display: block;
+
+  width: auto;
+
+  margin-top:
+    5.2vh;
+
+  padding: 0;
+
+  border: 0 !important;
+
+  border-radius: 0;
+
+  background:
+    transparent !important;
+
+  box-shadow:
+    none !important;
+
+  color:
+    transparent;
+
+  font-size: 0;
+
+  line-height: 0;
+}
+
+
+body[data-visible-state="locked"]
+  .lab-display-state::before {
+
+  display: block;
+
+  width:
+    min(1.25vw, 2.15vh);
+
+  height:
+    min(1.25vw, 2.15vh);
+
+  min-width: 14px;
+  min-height: 14px;
+
+  margin: 0;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--display-red);
+
+  box-shadow:
+    none;
+
+  content: "";
+
+  animation:
+    sentinel-status-led-clean
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes sentinel-status-led-clean {
+
+  0%,
+  100% {
+
+    opacity: .32;
+
+    transform:
+      scale(.82);
+  }
+
+  50% {
+
+    opacity: 1;
+
+    transform:
+      scale(1.05);
+  }
+
+}
+
+
+/* Reduced-motion behavior. */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="locked"]
+    .lab-display-state::before {
+
+    animation: none !important;
+
+    opacity: 1;
+
+    transform: none;
+  }
+
+}
+
+
+
+/* =========================================================
+   CPS Studio Lab View
+   Authoritative physical-TV canvas reset
+   Target: 3840 × 2160 / 16:9
+   ========================================================= */
+
+
+/*
+ * Legacy portal CSS also styles <main>, <section>,
+ * .lab-display, and .display-shell.
+ *
+ * Lab View is a kiosk canvas, not a portal card.
+ */
+
+body[data-view-mode="lab"]
+  #display-presentation {
+
+  position: fixed;
+
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  min-width: 100vw;
+  min-height: 100vh;
+
+  max-width: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 0;
+
+  background: #ffffff;
+
+  box-shadow: none;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+body[data-view-mode="lab"]
+  #display-shell {
+
+  width: 100vw;
+  height: 100vh;
+
+  min-width: 100vw;
+  min-height: 100vh;
+
+  max-width: none;
+
+  margin: 0;
+
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  box-sizing: border-box;
+}
+
+
+/*
+ * display-primary is a <section>, so make sure generic
+ * portal section/card rules cannot turn it into a panel.
+ */
+
+body[data-view-mode="lab"]
+  .display-primary {
+
+  border: 0;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+
+/* No laboratory-location label in passive TV presentation. */
+
+body[data-view-mode="lab"]
+  .display-location {
+
+  display: none !important;
+}
+
+
+/*
+ * Passive-state header contains only date/time.
+ */
+
+body[data-visible-state="locked"]
+  .display-topline,
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  width: 100%;
+
+  justify-content: flex-end;
+}
+
+
+
+/* =========================================================
+   Passive-state clock — upper-left placement
+   ========================================================= */
+
+body[data-visible-state="locked"]
+  .display-topline,
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  justify-content: flex-start;
+}
+
+
+body[data-visible-state="locked"]
+  .display-clock,
+
+body[data-visible-state="idle"]
+  .display-clock {
+
+  margin-left: 0;
+  margin-right: auto;
+
+  align-items: flex-start;
+
+  text-align: left;
+}
+
+
+body[data-visible-state="locked"]
+  .display-date,
+
+body[data-visible-state="idle"]
+  .display-date {
+
+  text-align: left;
+}
+
+
+body[data-visible-state="locked"]
+  .display-time,
+
+body[data-visible-state="idle"]
+  .display-time {
+
+  text-align: left;
+}
+
+
+
+/* =========================================================
+   READY / IDLE
+   Restore approved full-screen photography presentation
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Full-screen photo canvas
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  #display-presentation {
+
+  background: #000000 !important;
+}
+
+
+body[data-visible-state="idle"]
+  #display-shell {
+
+  position: relative !important;
+
+  display: block !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   Restore full-screen rotating photography
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .ready-gallery {
+
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  z-index: 1;
+
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  overflow: hidden;
+
+  background: #000000;
+
+  pointer-events: none;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-image {
+
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  opacity: 0;
+
+  transform: scale(1.001);
+
+  transition:
+    opacity 1.2s ease-in-out;
+}
+
+
+body[data-visible-state="idle"]
+  .ready-gallery-image.is-active {
+
+  opacity: 1;
+}
+
+
+/* Subtle darkening only for foreground readability. */
+
+body[data-visible-state="idle"]
+  .ready-gallery::after {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.10) 0%,
+      rgba(0,0,0,.025) 38%,
+      rgba(0,0,0,0) 65%
+    );
+
+  content: "";
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   Restore lower-left CPS Studio identity panel
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  position: absolute !important;
+
+  left:
+    clamp(36px, 3.3vw, 70px);
+
+  bottom:
+    clamp(36px, 5vh, 72px);
+
+  z-index: 10;
+
+  display: block !important;
+
+  flex: none !important;
+
+  width:
+    min(
+      520px,
+      calc(100vw - 72px)
+    ) !important;
+
+  max-width: none !important;
+
+  min-width: 0;
+
+  padding:
+    clamp(26px, 2.2vw, 38px)
+    clamp(28px, 2.5vw, 42px)
+    clamp(28px, 2.4vw, 40px) !important;
+
+  border:
+    1px solid rgba(255,255,255,.76) !important;
+
+  border-radius:
+    clamp(22px, 1.8vw, 30px) !important;
+
+  background:
+    rgba(255,255,255,.91) !important;
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(1.15) !important;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(1.15) !important;
+
+  box-shadow:
+    0 20px 55px rgba(0,0,0,.24) !important;
+
+  color:
+    var(--display-black);
+
+  text-align: center !important;
+}
+
+
+/* No technical kicker in Ready mode. */
+
+body[data-visible-state="idle"]
+  .display-kicker {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Restore Computer Science logo
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-ready-logo {
+
+  display: block !important;
+
+  width:
+    clamp(92px, 7.5vw, 130px) !important;
+
+  height: auto;
+
+  margin:
+    0
+    auto
+    clamp(22px, 2.4vh, 30px) !important;
+
+  border-radius:
+    clamp(14px, 1.2vw, 20px);
+
+  box-shadow:
+    0 5px 16px rgba(0,0,0,.10);
+}
+
+
+/* ---------------------------------------------------------
+   CPS Studio identity
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  #display-title {
+
+  display: block;
+
+  width: fit-content;
+
+  margin:
+    0
+    auto !important;
+
+  color:
+    var(--display-black) !important;
+
+  font-size:
+    clamp(2.25rem, 2.7vw, 3.4rem) !important;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -.05em;
+
+  text-align: center;
+}
+
+
+/* ---------------------------------------------------------
+   Tagline
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-tagline {
+
+  display: block !important;
+
+  max-width: 430px !important;
+
+  margin:
+    clamp(14px, 1.6vh, 20px)
+    auto
+    0 !important;
+
+  color:
+    #424245 !important;
+
+  font-size:
+    clamp(1rem, 1.15vw, 1.3rem) !important;
+
+  font-weight: 500;
+
+  line-height: 1.35;
+
+  letter-spacing: -.015em;
+
+  text-align: center;
+}
+
+
+/* No old red accent line in Ready. */
+
+body[data-visible-state="idle"]
+  .display-tagline::after {
+
+  display: none !important;
+
+  content: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Green operational indicator only
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  display: inline-flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content !important;
+
+  margin:
+    clamp(27px, 3vh, 38px)
+    auto
+    0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  font-size: 0 !important;
+
+  gap: 0 !important;
+}
+
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block !important;
+
+  width:
+    clamp(16px, 1.3vw, 21px) !important;
+
+  height:
+    clamp(16px, 1.3vw, 21px) !important;
+
+  margin: 0 !important;
+
+  border: 0 !important;
+
+  border-radius: 50% !important;
+
+  background:
+    #34c759 !important;
+
+  box-shadow:
+    0 0 0 6px
+    rgba(52,199,89,.13) !important;
+
+  content: "" !important;
+}
+
+
+/* Ready does not need secondary guidance/progress. */
+
+body[data-visible-state="idle"]
+  .display-ready,
+
+body[data-visible-state="idle"]
+  .display-note,
+
+body[data-visible-state="idle"]
+  #display-progress {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Date/time overlay
+   Keep it separate from the identity card.
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  position: absolute !important;
+
+  top:
+    clamp(28px, 3.2vh, 52px);
+
+  left:
+    clamp(30px, 3vw, 58px);
+
+  z-index: 20;
+
+  display: flex !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+
+  padding:
+    12px
+    16px;
+
+  justify-content: flex-start !important;
+
+  border:
+    1px solid rgba(255,255,255,.68);
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(255,255,255,.86);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(1.12);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(1.12);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.12);
+}
+
+
+body[data-visible-state="idle"]
+  .display-clock {
+
+  display: flex !important;
+
+  margin: 0;
+
+  align-items: flex-start;
+
+  text-align: left;
+}
+
+
+body[data-visible-state="idle"]
+  .display-date {
+
+  color:
+    #6e6e73;
+
+  font-size:
+    clamp(.78rem, .9vw, 1rem);
+}
+
+
+body[data-visible-state="idle"]
+  .display-time {
+
+  color:
+    #1d1d1f;
+
+  font-size:
+    clamp(1.25rem, 1.55vw, 1.8rem);
+}
+
+
+/* Keep hidden compatibility context invisible. */
+
+body[data-visible-state="idle"]
+  .display-location {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="idle"]
+    .ready-gallery-image {
+
+    transition: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   READY / IDLE
+   Motion + passive date/time presentation
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Ready identity card entrance
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  animation:
+    sentinel-ready-panel-enter
+    1.25s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes sentinel-ready-panel-enter {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(22px)
+      scale(.985);
+
+    filter:
+      blur(8px);
+  }
+
+  55% {
+    opacity: .88;
+
+    filter:
+      blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Green operational indicator
+   Slow breathing animation
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  box-shadow: none !important;
+
+  animation:
+    sentinel-ready-green-breathe
+    3.2s
+    ease-in-out
+    infinite;
+
+  transform-origin: center;
+}
+
+
+@keyframes sentinel-ready-green-breathe {
+
+  0%,
+  100% {
+    opacity: .48;
+
+    transform:
+      scale(.82);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1.12);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Passive clock
+   Upper-left over Ready photography
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  position: absolute !important;
+
+  top:
+    clamp(28px, 3.2vh, 54px);
+
+  left:
+    clamp(30px, 3vw, 60px);
+
+  z-index: 30;
+
+  display: flex !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+
+  padding:
+    clamp(10px, .8vw, 14px)
+    clamp(14px, 1.1vw, 20px);
+
+  justify-content: flex-start !important;
+
+  border:
+    1px solid rgba(255,255,255,.66);
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(255,255,255,.84);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(1.15);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(1.15);
+
+  box-shadow:
+    0 10px 32px
+    rgba(0,0,0,.13);
+}
+
+
+body[data-visible-state="idle"]
+  .display-clock {
+
+  display: flex !important;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap:
+    clamp(3px, .3vh, 6px);
+
+  margin: 0 !important;
+
+  text-align: left;
+}
+
+
+body[data-visible-state="idle"]
+  .display-date {
+
+  color:
+    #6e6e73;
+
+  font-size:
+    clamp(.82rem, .9vw, 1.05rem);
+
+  font-weight: 560;
+
+  line-height: 1.1;
+}
+
+
+body[data-visible-state="idle"]
+  .display-time {
+
+  color:
+    #1d1d1f;
+
+  font-size:
+    clamp(1.35rem, 1.6vw, 1.9rem);
+
+  font-weight: 720;
+
+  line-height: 1;
+
+  letter-spacing: -.04em;
+}
+
+
+/* ---------------------------------------------------------
+   Keep the compatibility context hidden
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-location {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="idle"]
+    .display-primary,
+
+  body[data-visible-state="idle"]
+    .lab-display-state::before {
+
+    animation: none !important;
+
+    opacity: 1;
+
+    filter: none;
+
+    transform: none;
+  }
+
+}
+
+
+
+/* =========================================================
+   READY / IDLE
+   Minimal identity over full-screen photography
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Remove floating white card
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  width: auto !important;
+  max-width: none !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+
+  box-shadow: none !important;
+
+  text-align: center !important;
+}
+
+
+/* ---------------------------------------------------------
+   Keep only CS logo
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-ready-logo {
+
+  display: block !important;
+
+  width:
+    clamp(100px, 7vw, 132px) !important;
+
+  height: auto;
+
+  margin:
+    0
+    auto
+    clamp(20px, 2.2vh, 28px) !important;
+
+  border-radius:
+    clamp(14px, 1.1vw, 19px);
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,.16);
+}
+
+
+/* ---------------------------------------------------------
+   CPS Studio
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  #display-title {
+
+  margin:
+    0
+    auto !important;
+
+  color:
+    #1d1d1f !important;
+
+  font-size:
+    clamp(2.3rem, 2.8vw, 3.5rem) !important;
+
+  line-height: 1;
+
+  text-align: center;
+
+  text-shadow:
+    0 1px 6px rgba(255,255,255,.28);
+}
+
+
+/* ---------------------------------------------------------
+   Remove tagline entirely
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-tagline {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Clean green operational LED
+   Same visual language as locked-state red LED
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  display: flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  width: auto !important;
+
+  margin:
+    clamp(22px, 2.8vh, 34px)
+    auto
+    0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  font-size: 0 !important;
+
+  line-height: 0 !important;
+}
+
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block !important;
+
+  width:
+    clamp(16px, 1.25vw, 21px) !important;
+
+  height:
+    clamp(16px, 1.25vw, 21px) !important;
+
+  min-width: 16px !important;
+  min-height: 16px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  border-radius: 50% !important;
+
+  background:
+    #34c759 !important;
+
+  box-shadow: none !important;
+
+  content: "" !important;
+
+  animation:
+    sentinel-ready-led-clean
+    3.2s
+    ease-in-out
+    infinite !important;
+
+  transform-origin: center;
+}
+
+
+@keyframes sentinel-ready-led-clean {
+
+  0%,
+  100% {
+    opacity: .38;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Keep unused Ready elements hidden
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-ready,
+
+body[data-visible-state="idle"]
+  .display-note,
+
+body[data-visible-state="idle"]
+  #display-progress {
+
+  display: none !important;
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="idle"]
+    .lab-display-state::before {
+
+    animation: none !important;
+
+    opacity: 1;
+  }
+
+}
+
+
+
+/* =========================================================
+   READY / IDLE
+   Top identity row beside date/time
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Clock stays in upper-left
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  position: absolute !important;
+
+  top:
+    clamp(26px, 3vh, 50px);
+
+  left:
+    clamp(28px, 3vw, 58px);
+
+  z-index: 30;
+
+  display: flex !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Move Ready identity beside clock
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  position: absolute !important;
+
+  top:
+    clamp(26px, 3vh, 50px);
+
+  left:
+    clamp(285px, 20vw, 380px);
+
+  bottom: auto !important;
+
+  z-index: 30;
+
+  display: flex !important;
+
+  flex-direction: row !important;
+
+  align-items: center !important;
+
+  justify-content: flex-start !important;
+
+  gap:
+    clamp(16px, 1.4vw, 26px);
+
+  width: auto !important;
+  max-width: none !important;
+
+  min-width: 0;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+
+  box-shadow: none !important;
+
+  animation:
+    sentinel-ready-panel-enter
+    1.25s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+/* ---------------------------------------------------------
+   Department of Computer Science logo
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-ready-logo {
+
+  display: block !important;
+
+  width:
+    clamp(58px, 4.2vw, 76px) !important;
+
+  height: auto !important;
+
+  flex: 0 0 auto;
+
+  margin: 0 !important;
+
+  border-radius:
+    clamp(9px, .7vw, 12px);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.18);
+}
+
+
+/* ---------------------------------------------------------
+   CPS Studio title
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  #display-title {
+
+  display: block !important;
+
+  width: fit-content !important;
+
+  margin: 0 !important;
+
+  color:
+    #ffffff !important;
+
+  font-size:
+    clamp(2rem, 2.3vw, 3rem) !important;
+
+  font-weight: 720;
+
+  line-height: 1;
+
+  letter-spacing: -.05em;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 2px 9px rgba(0,0,0,.58);
+}
+
+
+/* Existing animated CPS gradient remains active. */
+
+
+/* ---------------------------------------------------------
+   Remove tagline completely
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-tagline {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Green Ready LED beside title
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  display: flex !important;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+  justify-content: center;
+
+  width: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  font-size: 0 !important;
+  line-height: 0 !important;
+
+  gap: 0 !important;
+}
+
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block !important;
+
+  width:
+    clamp(14px, 1vw, 19px) !important;
+
+  height:
+    clamp(14px, 1vw, 19px) !important;
+
+  min-width: 14px !important;
+  min-height: 14px !important;
+
+  margin: 0 !important;
+
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  background:
+    #34c759 !important;
+
+  box-shadow: none !important;
+
+  content: "" !important;
+
+  animation:
+    sentinel-ready-led-clean
+    3.2s
+    ease-in-out
+    infinite !important;
+}
+
+
+/* ---------------------------------------------------------
+   Keep all secondary Ready content hidden
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-kicker,
+
+body[data-visible-state="idle"]
+  .display-ready,
+
+body[data-visible-state="idle"]
+  .display-note,
+
+body[data-visible-state="idle"]
+  #display-progress {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   Smaller preview handling
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  body[data-visible-state="idle"]
+    .display-primary {
+
+    left:
+      clamp(245px, 31vw, 300px);
+
+    gap: 12px;
+  }
+
+
+  body[data-visible-state="idle"]
+    .display-ready-logo {
+
+    width: 54px !important;
+  }
+
+
+  body[data-visible-state="idle"]
+    #display-title {
+
+    font-size:
+      clamp(1.55rem, 3.2vw, 2.1rem) !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   READY / IDLE
+   Balanced top presentation
+   Identity left · Clock right
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Identity group — upper-left
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  position: absolute !important;
+
+  top:
+    clamp(28px, 3.2vh, 54px);
+
+  left:
+    clamp(30px, 3vw, 60px);
+
+  bottom: auto !important;
+
+  z-index: 30;
+
+  display: grid !important;
+
+  grid-template-columns:
+    auto auto;
+
+  grid-template-rows:
+    auto auto;
+
+  column-gap:
+    clamp(16px, 1.4vw, 24px);
+
+  row-gap:
+    clamp(8px, .8vh, 12px);
+
+  align-items: center !important;
+
+  width: auto !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+
+  box-shadow: none !important;
+
+  text-align: left !important;
+}
+
+
+/* CS logo spans both rows. */
+
+body[data-visible-state="idle"]
+  .display-ready-logo {
+
+  grid-column: 1;
+  grid-row: 1 / 3;
+
+  align-self: center;
+
+  display: block !important;
+
+  width:
+    clamp(58px, 4.2vw, 76px) !important;
+
+  height: auto !important;
+
+  margin: 0 !important;
+
+  border-radius:
+    clamp(9px, .7vw, 12px);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.18);
+}
+
+
+/* CPS Studio beside the logo. */
+
+body[data-visible-state="idle"]
+  #display-title {
+
+  grid-column: 2;
+  grid-row: 1;
+
+  align-self: end;
+
+  display: block !important;
+
+  width: fit-content !important;
+
+  margin: 0 !important;
+
+  color:
+    #ffffff !important;
+
+  font-size:
+    clamp(2rem, 2.3vw, 3rem) !important;
+
+  font-weight: 720;
+
+  line-height: 1;
+
+  letter-spacing: -.05em;
+
+  white-space: nowrap;
+
+  text-align: left;
+
+  text-shadow:
+    0 2px 9px rgba(0,0,0,.58);
+}
+
+
+/* ---------------------------------------------------------
+   Green LED directly beneath CPS Studio
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  grid-column: 2;
+  grid-row: 2;
+
+  align-self: start;
+  justify-self: start;
+
+  display: flex !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  font-size: 0 !important;
+  line-height: 0 !important;
+
+  gap: 0 !important;
+}
+
+
+body[data-visible-state="idle"]
+  .lab-display-state::before {
+
+  display: block !important;
+
+  width:
+    clamp(14px, 1vw, 19px) !important;
+
+  height:
+    clamp(14px, 1vw, 19px) !important;
+
+  min-width: 14px !important;
+  min-height: 14px !important;
+
+  margin: 0 !important;
+
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  background:
+    #34c759 !important;
+
+  box-shadow: none !important;
+
+  content: "" !important;
+
+  animation:
+    sentinel-ready-led-clean
+    3.2s
+    ease-in-out
+    infinite !important;
+}
+
+
+/* ---------------------------------------------------------
+   Date / time — upper-right
+   Keep below the view switcher in preview.
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  position: absolute !important;
+
+  top:
+    clamp(92px, 9vh, 120px);
+
+  right:
+    clamp(30px, 3vw, 58px);
+
+  left: auto !important;
+
+  z-index: 30;
+
+  display: flex !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+
+  padding:
+    clamp(10px, .8vw, 14px)
+    clamp(14px, 1.1vw, 20px);
+
+  justify-content: flex-end !important;
+
+  border:
+    1px solid rgba(255,255,255,.66);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255,255,255,.84);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(1.15);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(1.15);
+
+  box-shadow:
+    0 10px 32px rgba(0,0,0,.13);
+}
+
+
+body[data-visible-state="idle"]
+  .display-clock {
+
+  display: flex !important;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  margin: 0 !important;
+
+  text-align: right;
+}
+
+
+body[data-visible-state="idle"]
+  .display-date,
+
+body[data-visible-state="idle"]
+  .display-time {
+
+  text-align: right;
+}
+
+
+/* Keep secondary Ready content hidden. */
+
+body[data-visible-state="idle"]
+  .display-tagline,
+
+body[data-visible-state="idle"]
+  .display-kicker,
+
+body[data-visible-state="idle"]
+  .display-ready,
+
+body[data-visible-state="idle"]
+  .display-note,
+
+body[data-visible-state="idle"]
+  #display-progress {
+
+  display: none !important;
+}
+
+
+
+/* =========================================================
+   READY / IDLE
+   Identity upper-left
+   LED centered beneath title
+   Clock beneath identity
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Identity group
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  top:
+    clamp(28px, 3.2vh, 54px) !important;
+
+  left:
+    clamp(30px, 3vw, 60px) !important;
+
+  grid-template-columns:
+    auto auto !important;
+
+  grid-template-rows:
+    auto auto !important;
+
+  column-gap:
+    clamp(16px, 1.4vw, 24px) !important;
+
+  row-gap:
+    clamp(8px, .75vh, 12px) !important;
+}
+
+
+/* Logo remains on the left across both identity rows. */
+
+body[data-visible-state="idle"]
+  .display-ready-logo {
+
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+
+  align-self: center !important;
+}
+
+
+/* CPS Studio remains to the right of the logo. */
+
+body[data-visible-state="idle"]
+  #display-title {
+
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+
+  justify-self: center !important;
+  align-self: end !important;
+
+  margin: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Green LED centered directly beneath CPS Studio
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+
+  justify-self: center !important;
+  align-self: start !important;
+
+  margin: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   Date / time beneath identity group
+   --------------------------------------------------------- */
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  top:
+    clamp(132px, 13vh, 170px) !important;
+
+  left:
+    clamp(30px, 3vw, 60px) !important;
+
+  right: auto !important;
+
+  justify-content: flex-start !important;
+}
+
+
+body[data-visible-state="idle"]
+  .display-clock {
+
+  align-items: flex-start !important;
+
+  text-align: left !important;
+}
+
+
+body[data-visible-state="idle"]
+  .display-date,
+
+body[data-visible-state="idle"]
+  .display-time {
+
+  text-align: left !important;
+}
+
+
+
+/* =========================================================
+   READY / IDLE
+   Clock upper-right
+   Bottom-left intentionally reserved for device health
+   ========================================================= */
+
+body[data-visible-state="idle"]
+  .display-topline {
+
+  top:
+    clamp(28px, 3.2vh, 54px) !important;
+
+  right:
+    clamp(30px, 3vw, 60px) !important;
+
+  left: auto !important;
+
+  width: auto !important;
+
+  justify-content: flex-end !important;
+}
+
+
+body[data-visible-state="idle"]
+  .display-clock {
+
+  align-items: flex-end !important;
+
+  text-align: right !important;
+}
+
+
+body[data-visible-state="idle"]
+  .display-date,
+
+body[data-visible-state="idle"]
+  .display-time {
+
+  text-align: right !important;
+}
+
+
+/*
+ * Bottom-left intentionally remains empty.
+ * Future:
+ *   LED Health
+ *   Autonomous Car Health
+ */
+
+
+
+/* =========================================================
+   READY / IDLE
+   Inline identity: Logo · CPS Studio · Ready LED
+   ========================================================= */
+
+body[data-visible-state="idle"]
+  .display-primary {
+
+  display: grid !important;
+
+  grid-template-columns:
+    auto
+    auto
+    auto !important;
+
+  grid-template-rows:
+    auto !important;
+
+  column-gap:
+    clamp(14px, 1.15vw, 20px) !important;
+
+  align-items: center !important;
+}
+
+
+/* Department of Computer Science logo */
+
+body[data-visible-state="idle"]
+  .display-ready-logo {
+
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+
+  align-self: center !important;
+
+  margin: 0 !important;
+}
+
+
+/* CPS Studio */
+
+body[data-visible-state="idle"]
+  #display-title {
+
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+
+  align-self: center !important;
+  justify-self: start !important;
+
+  margin: 0 !important;
+}
+
+
+/* Green Ready LED immediately after title */
+
+body[data-visible-state="idle"]
+  .lab-display-state {
+
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+
+  align-self: center !important;
+  justify-self: start !important;
+
+  margin: 0 !important;
+}
+
+
+/* Slightly tighten title-to-indicator spacing */
+
+body[data-visible-state="idle"]
+  #display-title + .display-tagline {
+
+  display: none !important;
+}
+
+
+
+/* =========================================================
+   SELECT EXPERIMENT
+   Dynamic presentation sequence
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Main title materializes into place
+   --------------------------------------------------------- */
+
+body[data-visible-state="select-experiment"]
+  #display-title {
+
+  animation:
+    sentinel-select-title-in
+    .9s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes sentinel-select-title-in {
+
+  0% {
+    opacity: 0;
+
+    filter:
+      blur(10px);
+
+    transform:
+      translateY(18px)
+      scale(.985);
+  }
+
+  60% {
+    opacity: .88;
+
+    filter:
+      blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+
+    filter:
+      blur(0);
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Experiment cards
+   --------------------------------------------------------- */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card {
+
+  opacity: 0;
+
+  animation-duration:
+    .95s;
+
+  animation-timing-function:
+    cubic-bezier(.22,1,.36,1);
+
+  animation-fill-mode:
+    forwards;
+}
+
+
+/* Experiment 1 enters from the left */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(1) {
+
+  animation-name:
+    sentinel-select-card-left;
+
+  animation-delay:
+    .18s;
+}
+
+
+/* Experiment 2 enters from the right */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(2) {
+
+  animation-name:
+    sentinel-select-card-right;
+
+  animation-delay:
+    .34s;
+}
+
+
+@keyframes sentinel-select-card-left {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-52px)
+      scale(.975);
+
+    filter:
+      blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      scale(1);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes sentinel-select-card-right {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(52px)
+      scale(.975);
+
+    filter:
+      blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      scale(1);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Draw CPS Studio-red top accent after each card arrives
+   --------------------------------------------------------- */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card::before {
+
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
+  animation:
+    sentinel-select-line-draw
+    .72s
+    cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(1)::before {
+
+  animation-delay:
+    .68s;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(2)::before {
+
+  animation-delay:
+    .84s;
+}
+
+
+@keyframes sentinel-select-line-draw {
+
+  from {
+    transform:
+      scaleX(0);
+  }
+
+  to {
+    transform:
+      scaleX(1);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Experiment numbers receive a short emphasis pulse
+   --------------------------------------------------------- */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-number {
+
+  animation:
+    sentinel-select-number-in
+    .72s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(1)
+  .display-experiment-number {
+
+  animation-delay:
+    .48s;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(2)
+  .display-experiment-number {
+
+  animation-delay:
+    .64s;
+}
+
+
+@keyframes sentinel-select-number-in {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(.72)
+      translateY(6px);
+  }
+
+  72% {
+    opacity: 1;
+
+    transform:
+      scale(1.06)
+      translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="select-experiment"]
+    #display-title,
+
+  body[data-visible-state="select-experiment"]
+    .display-experiment-card,
+
+  body[data-visible-state="select-experiment"]
+    .display-experiment-card::before,
+
+  body[data-visible-state="select-experiment"]
+    .display-experiment-number {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+
+    filter: none !important;
+
+    transform: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   SELECT EXPERIMENT
+   Simplified card content
+   ========================================================= */
+
+
+/* Remove EXPERIMENT 1 / EXPERIMENT 2 labels. */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card p {
+
+  display: none !important;
+}
+
+
+/* Remove ESP32-CAM / ESP32-WROVER descriptors. */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card div > span {
+
+  display: none !important;
+}
+
+
+/* Re-center remaining experiment title vertically. */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card > div {
+
+  display: flex;
+
+  align-items: center;
+
+  min-height: 100%;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card strong {
+
+  margin: 0;
+
+  line-height: 1.05;
+}
+
+
+
+/* =========================================================
+   SELECT EXPERIMENT
+   Continuously animated red accent lines
+   ========================================================= */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card::before {
+
+  transform: scaleX(1) !important;
+
+  transform-origin: left center;
+
+  background:
+    linear-gradient(
+      90deg,
+      #a90d27 0%,
+      #c8102e 22%,
+      #ff4b68 42%,
+      #c8102e 62%,
+      #a90d27 82%,
+      #c8102e 100%
+    ) !important;
+
+  background-size:
+    240% 100% !important;
+
+  animation:
+    sentinel-select-red-flow
+    4.2s
+    ease-in-out
+    infinite !important;
+}
+
+
+/*
+ * Offset Experiment 2 slightly so the two lines
+ * do not move in perfect synchronization.
+ */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(2)::before {
+
+  animation-delay:
+    -2.1s !important;
+}
+
+
+@keyframes sentinel-select-red-flow {
+
+  0% {
+    background-position:
+      0% 50%;
+
+    opacity: .82;
+  }
+
+  50% {
+    background-position:
+      100% 50%;
+
+    opacity: 1;
+  }
+
+  100% {
+    background-position:
+      0% 50%;
+
+    opacity: .82;
+  }
+
+}
+
+
+/* Static fallback when reduced motion is requested. */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="select-experiment"]
+    .display-experiment-card::before {
+
+    animation: none !important;
+
+    background:
+      var(--display-red) !important;
+
+    opacity: 1 !important;
+
+    transform: scaleX(1) !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   SELECT EXPERIMENT
+   Continuously animated 01 / 02
+   ========================================================= */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-number {
+
+  background:
+    linear-gradient(
+      90deg,
+      #a90d27 0%,
+      #c8102e 22%,
+      #ff4b68 42%,
+      #c8102e 62%,
+      #a90d27 82%,
+      #c8102e 100%
+    );
+
+  background-size:
+    240% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    sentinel-select-number-in
+    .72s
+    cubic-bezier(.22,1,.36,1)
+    both,
+
+    sentinel-select-number-flow
+    4.2s
+    ease-in-out
+    infinite;
+}
+
+
+/* 01 entrance + moving highlight offset */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(1)
+  .display-experiment-number {
+
+  animation-delay:
+    .48s,
+    -1.1s;
+}
+
+
+/* 02 entrance + different highlight offset */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(2)
+  .display-experiment-number {
+
+  animation-delay:
+    .64s,
+    -3.2s;
+}
+
+
+@keyframes sentinel-select-number-flow {
+
+  0% {
+    background-position:
+      0% 50%;
+  }
+
+  50% {
+    background-position:
+      100% 50%;
+  }
+
+  100% {
+    background-position:
+      0% 50%;
+  }
+
+}
+
+
+/* Reduced-motion fallback */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="select-experiment"]
+    .display-experiment-number {
+
+    animation: none !important;
+
+    background:
+      var(--display-red) !important;
+
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   SELECT EXPERIMENT
+   Reused Digital Twin visual assets
+   ========================================================= */
+
+
+/* Three-column experiment card:
+   number · title · visual
+ */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card {
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto !important;
+}
+
+
+/* Compact visual stage */
+
+body[data-visible-state="select-experiment"]
+  .select-experiment-visual {
+
+  display: flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  width:
+    clamp(105px, 9vw, 155px);
+
+  height:
+    clamp(105px, 13vh, 160px);
+
+  min-width: 0;
+  min-height: 0 !important;
+
+  margin-left:
+    clamp(12px, 1.4vw, 24px);
+
+  padding: 0;
+
+  overflow: visible;
+
+  background: transparent;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  animation:
+    sentinel-select-asset-in
+    .8s
+    cubic-bezier(.22,1,.36,1)
+    forwards;
+}
+
+
+/* Slight stagger between assets */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(1)
+  .select-experiment-visual {
+
+  animation-delay: .48s;
+}
+
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card:nth-child(2)
+  .select-experiment-visual {
+
+  animation-delay: .64s;
+}
+
+
+@keyframes sentinel-select-asset-in {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(10px)
+      scale(.92);
+
+    filter:
+      blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   CAM bulb
+   --------------------------------------------------------- */
+
+body[data-visible-state="select-experiment"]
+  [data-select-asset="cam"]
+  .twin-smart-bulb-svg {
+
+  display: block;
+
+  width: auto !important;
+  height: 100% !important;
+
+  max-width: 100%;
+
+  overflow: visible;
+}
+
+
+/*
+ * Keep experiment-selection visual descriptive rather
+ * than presenting device status.
+ */
+
+body[data-visible-state="select-experiment"]
+  [data-select-asset="cam"]
+  .smart-bulb-device-label {
+
+  display: none !important;
+}
+
+
+body[data-visible-state="select-experiment"]
+  [data-select-asset="cam"]
+  .smart-bulb-status {
+
+  opacity: .35;
+}
+
+
+/* ---------------------------------------------------------
+   Autonomous Car
+   --------------------------------------------------------- */
+
+body[data-visible-state="select-experiment"]
+  [data-select-asset="car"]
+  .twin-racecar-svg {
+
+  display: block;
+
+  width: auto !important;
+  height: 100% !important;
+
+  max-width: 100%;
+
+  overflow: visible;
+}
+
+
+/* Card already says Autonomous Car; no extra label needed. */
+
+body[data-visible-state="select-experiment"]
+  [data-select-asset="car"]
+  .racecar-device-label,
+
+body[data-visible-state="select-experiment"]
+  [data-select-asset="car"]
+  .racecar-device-label-plate {
+
+  display: none !important;
+}
+
+
+/* Existing hidden descriptors remain hidden. */
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card p,
+
+body[data-visible-state="select-experiment"]
+  .display-experiment-card div > span {
+
+  display: none !important;
+}
+
+
+/* Smaller preview */
+
+@media (max-width: 900px) {
+
+  body[data-visible-state="select-experiment"]
+    .select-experiment-visual {
+
+    width: 92px;
+    height: 112px;
+
+    margin-left: 8px;
+  }
+
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="select-experiment"]
+    .select-experiment-visual {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    filter: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   LED FLASHER
+   Dynamic experiment presentation
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Remove secondary instructional sentence
+   --------------------------------------------------------- */
+
+body[data-visible-state="led-experiment"]
+  .display-note {
+
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   BOUNDED PROGRAM EXECUTION
+   Continuous red gradient identity
+   --------------------------------------------------------- */
+
+body[data-visible-state="led-experiment"]
+  .display-kicker {
+
+  display: inline-block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #a90d27 0%,
+      #c8102e 22%,
+      #ff4b68 42%,
+      #c8102e 62%,
+      #a90d27 82%,
+      #c8102e 100%
+    );
+
+  background-size:
+    240% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    sentinel-led-kicker-enter
+    .7s
+    cubic-bezier(.22,1,.36,1)
+    both,
+
+    sentinel-led-red-flow
+    4.2s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    0s,
+    -.8s;
+}
+
+
+@keyframes sentinel-led-kicker-enter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-8px);
+
+    letter-spacing:
+      .20em;
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes sentinel-led-red-flow {
+
+  0% {
+    background-position:
+      0% 50%;
+  }
+
+  50% {
+    background-position:
+      100% 50%;
+  }
+
+  100% {
+    background-position:
+      0% 50%;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   LED Flasher title
+   --------------------------------------------------------- */
+
+body[data-visible-state="led-experiment"]
+  #display-title {
+
+  animation:
+    sentinel-led-title-in
+    .95s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes sentinel-led-title-in {
+
+  0% {
+    opacity: 0;
+
+    filter:
+      blur(10px);
+
+    transform:
+      translateY(18px)
+      scale(.985);
+  }
+
+  58% {
+    opacity: .9;
+
+    filter:
+      blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+
+    filter:
+      blur(0);
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Guided / Custom Program state bar
+   --------------------------------------------------------- */
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state {
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-left: 0 !important;
+
+  animation:
+    sentinel-led-state-in
+    .85s
+    cubic-bezier(.22,1,.36,1)
+    .24s
+    both;
+}
+
+
+@keyframes sentinel-led-state-in {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-28px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(0);
+  }
+
+}
+
+
+/* Animated red status rail */
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state::before {
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  display: block;
+
+  width:
+    clamp(4px, .32vw, 6px);
+
+  border-radius:
+    999px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #a90d27 0%,
+      #ff4b68 38%,
+      #c8102e 62%,
+      #a90d27 100%
+    );
+
+  background-size:
+    100% 220%;
+
+  content: "";
+
+  animation:
+    sentinel-led-status-flow
+    3.6s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes sentinel-led-status-flow {
+
+  0% {
+    background-position:
+      50% 0%;
+
+    opacity: .78;
+  }
+
+  50% {
+    background-position:
+      50% 100%;
+
+    opacity: 1;
+  }
+
+  100% {
+    background-position:
+      50% 0%;
+
+    opacity: .78;
+  }
+
+}
+
+
+/* Keep text clear of animated status rail */
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state {
+
+  padding-left:
+    clamp(20px, 1.7vw, 30px) !important;
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="led-experiment"]
+    .display-kicker,
+
+  body[data-visible-state="led-experiment"]
+    #display-title,
+
+  body[data-visible-state="led-experiment"]
+    .lab-display-state,
+
+  body[data-visible-state="led-experiment"]
+    .lab-display-state::before {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+
+    filter: none !important;
+
+    transform: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   LED FLASHER
+   Dynamic observation bar
+   ========================================================= */
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state {
+
+  position: relative;
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+
+/* Keep text above moving highlight */
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state {
+
+  color: var(--display-black);
+}
+
+
+/* Moving soft highlight */
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state::after {
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: -45%;
+
+  width: 36%;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200,16,46,.03) 20%,
+      rgba(247,36,77,.12) 50%,
+      rgba(200,16,46,.03) 80%,
+      transparent 100%
+    );
+
+  transform:
+    skewX(-18deg);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  animation:
+    sentinel-led-observation-sweep
+    4.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes sentinel-led-observation-sweep {
+
+  0% {
+    left: -45%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: .9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: .9;
+  }
+
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+
+}
+
+
+/* Subtle text breathing emphasis */
+
+body[data-visible-state="led-experiment"]
+  .lab-display-state {
+
+  animation:
+    sentinel-led-state-in
+    .85s
+    cubic-bezier(.22,1,.36,1)
+    .24s
+    both,
+
+    sentinel-led-observation-breathe
+    4.8s
+    ease-in-out
+    1.1s
+    infinite;
+}
+
+
+@keyframes sentinel-led-observation-breathe {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(200,16,46,0);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 24px rgba(200,16,46,.07);
+  }
+
+}
+
+
+/* Reduced motion fallback */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="led-experiment"]
+    .lab-display-state,
+
+  body[data-visible-state="led-experiment"]
+    .lab-display-state::after {
+
+    animation: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   AUTONOMOUS CAR
+   Dynamic experiment presentation
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   TV-AS-A-TRACK
+   Continuous red gradient identity
+   --------------------------------------------------------- */
+
+body[data-visible-state="autonomous-car"]
+  .display-kicker {
+
+  display: inline-block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #a90d27 0%,
+      #c8102e 22%,
+      #ff4b68 42%,
+      #c8102e 62%,
+      #a90d27 82%,
+      #c8102e 100%
+    );
+
+  background-size:
+    240% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    sentinel-car-kicker-enter
+    .7s
+    cubic-bezier(.22,1,.36,1)
+    both,
+
+    sentinel-car-red-flow
+    4.2s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    0s,
+    -1.5s;
+}
+
+
+@keyframes sentinel-car-kicker-enter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-8px);
+
+    letter-spacing:
+      .20em;
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes sentinel-car-red-flow {
+
+  0% {
+    background-position:
+      0% 50%;
+  }
+
+  50% {
+    background-position:
+      100% 50%;
+  }
+
+  100% {
+    background-position:
+      0% 50%;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Autonomous Car title
+   --------------------------------------------------------- */
+
+body[data-visible-state="autonomous-car"]
+  #display-title {
+
+  animation:
+    sentinel-car-title-in
+    .95s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes sentinel-car-title-in {
+
+  0% {
+    opacity: 0;
+
+    filter:
+      blur(10px);
+
+    transform:
+      translateY(18px)
+      scale(.985);
+  }
+
+  58% {
+    opacity: .9;
+
+    filter:
+      blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+
+    filter:
+      blur(0);
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Select a Track bar
+   --------------------------------------------------------- */
+
+body[data-visible-state="autonomous-car"]
+  .lab-display-state {
+
+  position: relative;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  border-left: 0 !important;
+
+  padding-left:
+    clamp(20px, 1.7vw, 30px) !important;
+
+  animation:
+    sentinel-car-state-in
+    .85s
+    cubic-bezier(.22,1,.36,1)
+    .24s
+    both,
+
+    sentinel-car-state-breathe
+    4.8s
+    ease-in-out
+    1.1s
+    infinite;
+}
+
+
+@keyframes sentinel-car-state-in {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-28px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(0);
+  }
+
+}
+
+
+/* Continuously animated red status rail */
+
+body[data-visible-state="autonomous-car"]
+  .lab-display-state::before {
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  display: block;
+
+  width:
+    clamp(4px, .32vw, 6px);
+
+  border-radius:
+    999px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #a90d27 0%,
+      #ff4b68 38%,
+      #c8102e 62%,
+      #a90d27 100%
+    );
+
+  background-size:
+    100% 220%;
+
+  content: "";
+
+  animation:
+    sentinel-car-status-flow
+    3.6s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes sentinel-car-status-flow {
+
+  0% {
+    background-position:
+      50% 0%;
+
+    opacity: .78;
+  }
+
+  50% {
+    background-position:
+      50% 100%;
+
+    opacity: 1;
+  }
+
+  100% {
+    background-position:
+      50% 0%;
+
+    opacity: .78;
+  }
+
+}
+
+
+/* Moving red-tinted highlight across Select a Track */
+
+body[data-visible-state="autonomous-car"]
+  .lab-display-state::after {
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: -45%;
+
+  width: 36%;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200,16,46,.03) 20%,
+      rgba(247,36,77,.12) 50%,
+      rgba(200,16,46,.03) 80%,
+      transparent 100%
+    );
+
+  transform:
+    skewX(-18deg);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  animation:
+    sentinel-car-track-sweep
+    4.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes sentinel-car-track-sweep {
+
+  0% {
+    left: -45%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: .9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: .9;
+  }
+
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+
+}
+
+
+@keyframes sentinel-car-state-breathe {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(200,16,46,0);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 24px rgba(200,16,46,.07);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state="autonomous-car"]
+    .display-kicker,
+
+  body[data-visible-state="autonomous-car"]
+    #display-title,
+
+  body[data-visible-state="autonomous-car"]
+    .lab-display-state,
+
+  body[data-visible-state="autonomous-car"]
+    .lab-display-state::before,
+
+  body[data-visible-state="autonomous-car"]
+    .lab-display-state::after {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+
+    filter: none !important;
+
+    transform: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   TV-AS-A-TRACK
+   Dynamic loading + physical track reveal
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   TV-AS-A-TRACK identity
+   --------------------------------------------------------- */
+
+body[data-visible-state^="track-"]
+  .display-kicker {
+
+  display: inline-block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #a90d27 0%,
+      #c8102e 22%,
+      #ff4b68 42%,
+      #c8102e 62%,
+      #a90d27 82%,
+      #c8102e 100%
+    );
+
+  background-size:
+    240% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    sentinel-track-kicker-enter
+    .7s
+    cubic-bezier(.22,1,.36,1)
+    both,
+
+    sentinel-track-red-flow
+    4.2s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    0s,
+    -1.2s;
+}
+
+
+@keyframes sentinel-track-kicker-enter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-8px);
+
+    letter-spacing:
+      .20em;
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes sentinel-track-red-flow {
+
+  0% {
+    background-position:
+      0% 50%;
+  }
+
+  50% {
+    background-position:
+      100% 50%;
+  }
+
+  100% {
+    background-position:
+      0% 50%;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Track title
+   --------------------------------------------------------- */
+
+body[data-visible-state^="track-"]
+  #display-title {
+
+  animation:
+    sentinel-track-title-in
+    .95s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes sentinel-track-title-in {
+
+  0% {
+    opacity: 0;
+
+    filter:
+      blur(10px);
+
+    transform:
+      translateY(18px)
+      scale(.985);
+  }
+
+  58% {
+    opacity: .9;
+
+    filter:
+      blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+
+    filter:
+      blur(0);
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Loading pill
+   --------------------------------------------------------- */
+
+body[data-visible-state^="track-"]
+  .lab-display-state {
+
+  position: relative;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  text-transform: none !important;
+
+  animation:
+    sentinel-track-loading-in
+    .8s
+    cubic-bezier(.22,1,.36,1)
+    .22s
+    both,
+
+    sentinel-track-loading-breathe
+    3.8s
+    ease-in-out
+    1s
+    infinite;
+}
+
+
+@keyframes sentinel-track-loading-in {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(10px)
+      scale(.97);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* Breathing red loading indicator */
+
+body[data-visible-state^="track-"]
+  .lab-display-state::before {
+
+  width:
+    7px;
+
+  height:
+    7px;
+
+  flex: 0 0 auto;
+
+  border-radius:
+    50%;
+
+  background:
+    #c8102e;
+
+  box-shadow:
+    0 0 0 0
+    rgba(200,16,46,.18);
+
+  content: "";
+
+  animation:
+    sentinel-track-loading-dot
+    1.65s
+    ease-in-out
+    infinite !important;
+}
+
+
+@keyframes sentinel-track-loading-dot {
+
+  0%,
+  100% {
+    opacity: .45;
+
+    transform:
+      scale(.82);
+
+    box-shadow:
+      0 0 0 0
+      rgba(200,16,46,0);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1.12);
+
+    box-shadow:
+      0 0 0 6px
+      rgba(200,16,46,.08);
+  }
+
+}
+
+
+/* Moving light across Loading pill */
+
+body[data-visible-state^="track-"]
+  .lab-display-state::after {
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: -50%;
+
+  width: 38%;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200,16,46,.02) 20%,
+      rgba(247,36,77,.12) 50%,
+      rgba(200,16,46,.02) 80%,
+      transparent 100%
+    );
+
+  transform:
+    skewX(-18deg);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  animation:
+    sentinel-track-loading-sweep
+    3.6s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes sentinel-track-loading-sweep {
+
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+
+}
+
+
+@keyframes sentinel-track-loading-breathe {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0
+      rgba(200,16,46,0);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 24px
+      rgba(200,16,46,.07);
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Approved physical track reveal
+   Geometry is not changed.
+   --------------------------------------------------------- */
+
+body.track-reveal
+  .track-surface {
+
+  animation:
+    sentinel-physical-track-reveal
+    .85s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+body.track-reveal
+  .display-track > svg {
+
+  animation:
+    sentinel-physical-track-svg-reveal
+    .95s
+    cubic-bezier(.22,1,.36,1)
+    both;
+}
+
+
+@keyframes sentinel-physical-track-reveal {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes sentinel-physical-track-svg-reveal {
+
+  0% {
+    opacity: 0;
+  }
+
+  35% {
+    opacity: .35;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-visible-state^="track-"]
+    .display-kicker,
+
+  body[data-visible-state^="track-"]
+    #display-title,
+
+  body[data-visible-state^="track-"]
+    .lab-display-state,
+
+  body[data-visible-state^="track-"]
+    .lab-display-state::before,
+
+  body[data-visible-state^="track-"]
+    .lab-display-state::after,
+
+  body.track-reveal
+    .track-surface,
+
+  body.track-reveal
+    .display-track > svg {
+
+    animation: none !important;
+
+    opacity: 1 !important;
+
+    filter: none !important;
+
+    transform: none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   PHYSICAL TV-AS-A-TRACK
+   Dynamic start zone
+   IMPORTANT:
+   The physical .track-line geometry remains completely fixed.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Start bracket
+   --------------------------------------------------------- */
+
+body.track-reveal
+  .display-track:not([hidden])
+  .track-start-bracket {
+
+  fill: none;
+
+  stroke: #c8102e;
+
+  animation:
+    sentinel-track-bracket-enter
+    .7s
+    ease-out
+    both,
+
+    sentinel-track-bracket-live
+    3.2s
+    ease-in-out
+    .8s
+    infinite;
+}
+
+
+@keyframes sentinel-track-bracket-enter {
+
+  from {
+    opacity: 0;
+
+    filter:
+      blur(4px);
+  }
+
+  to {
+    opacity: 1;
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes sentinel-track-bracket-live {
+
+  0%,
+  100% {
+    stroke:
+      #a90d27;
+
+    filter:
+      drop-shadow(
+        0 0 0
+        rgba(200,16,46,0)
+      );
+  }
+
+  50% {
+    stroke:
+      #f7244d;
+
+    filter:
+      drop-shadow(
+        0 0 5px
+        rgba(200,16,46,.22)
+      );
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   PLACE CAR HERE
+   --------------------------------------------------------- */
+
+body.track-reveal
+  .display-track:not([hidden])
+  .track-start-label {
+
+  animation:
+    sentinel-track-label-enter
+    .65s
+    ease-out
+    .16s
+    both,
+
+    sentinel-track-label-live
+    4s
+    ease-in-out
+    1s
+    infinite;
+}
+
+
+@keyframes sentinel-track-label-enter {
+
+  from {
+    opacity: 0;
+
+    filter:
+      blur(4px);
+  }
+
+  to {
+    opacity: 1;
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes sentinel-track-label-live {
+
+  0%,
+  100% {
+    fill:
+      #a90d27;
+  }
+
+  50% {
+    fill:
+      #f7244d;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   START
+   --------------------------------------------------------- */
+
+body.track-reveal
+  .display-track:not([hidden])
+  .track-start-name {
+
+  animation:
+    sentinel-track-start-enter
+    .65s
+    ease-out
+    .28s
+    both,
+
+    sentinel-track-start-live
+    3.4s
+    ease-in-out
+    1.1s
+    infinite;
+}
+
+
+@keyframes sentinel-track-start-enter {
+
+  from {
+    opacity: 0;
+
+    filter:
+      blur(3px);
+  }
+
+  to {
+    opacity: 1;
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes sentinel-track-start-live {
+
+  0%,
+  100% {
+    fill:
+      #1d1d1f;
+
+    opacity:
+      .74;
+  }
+
+  50% {
+    fill:
+      #c8102e;
+
+    opacity:
+      1;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   FRONT ↑
+   --------------------------------------------------------- */
+
+body.track-reveal
+  .display-track:not([hidden])
+  .track-start-direction {
+
+  animation:
+    sentinel-track-direction-enter
+    .65s
+    ease-out
+    .40s
+    both,
+
+    sentinel-track-direction-live
+    3.4s
+    ease-in-out
+    1.25s
+    infinite;
+}
+
+
+@keyframes sentinel-track-direction-enter {
+
+  from {
+    opacity: 0;
+
+    filter:
+      blur(3px);
+  }
+
+  to {
+    opacity: 1;
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes sentinel-track-direction-live {
+
+  0%,
+  100% {
+    fill:
+      #1d1d1f;
+
+    opacity:
+      .68;
+  }
+
+  50% {
+    fill:
+      #c8102e;
+
+    opacity:
+      1;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   Physical course protection
+   Explicitly keep driving path fixed.
+   --------------------------------------------------------- */
+
+body.track-reveal
+  .display-track:not([hidden])
+  .track-line {
+
+  animation:
+    none !important;
+
+  transform:
+    none !important;
+
+  filter:
+    none !important;
+
+  opacity:
+    1 !important;
+
+  stroke:
+    #000000 !important;
+}
+
+
+/* White physical track surface also remains fixed. */
+
+body.track-reveal
+  .approved-track > rect:first-child {
+
+  animation:
+    none !important;
+
+  transform:
+    none !important;
+
+  filter:
+    none !important;
+
+  opacity:
+    1 !important;
+
+  fill:
+    #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body.track-reveal
+    .track-start-bracket,
+
+  body.track-reveal
+    .track-start-label,
+
+  body.track-reveal
+    .track-start-name,
+
+  body.track-reveal
+    .track-start-direction {
+
+    animation:
+      none !important;
+
+    opacity:
+      1 !important;
+
+    filter:
+      none !important;
+  }
+
+}
+
+
+
+/* =========================================================
+   PHYSICAL TRACK
+   Keep course surface completely unobstructed
+   ========================================================= */
+
+body.track-reveal
+  .display-view-switcher {
+
+  display: flex !important;
+}
+
+
+
+/* =========================================================
+   CPS Studio real-text identity fix
+
+   The CPS letters are now real title text rather than a
+   duplicated pseudo-element overlay.
+   ========================================================= */
+
+body[data-visible-state="idle"] #display-title::after,
+body[data-visible-state="locked"] #display-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+body[data-visible-state="idle"] .display-cps-glow,
+body[data-visible-state="locked"] .display-cps-glow {
+  display: inline-block;
+
+  background:
+    linear-gradient(
+      105deg,
+      #c8102e 0%,
+      #ff4d6d 18%,
+      #ff9f43 35%,
+      #7b61ff 53%,
+      #2488ff 70%,
+      #25a875 86%,
+      #c8102e 100%
+    );
+
+  background-size: 300% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    cps-studio-gradient
+    9s
+    ease-in-out
+    infinite;
+}
+
+
+/* =========================================================
+   CPS Studio Select App image assets
+   ========================================================= */
+
+body[data-visible-state="select-experiment"]
+  .select-experiment-image {
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+}
+
+body[data-visible-state="select-experiment"]
+  .select-experiment-image-led {
+
+  transform: scale(.92);
+}
+
+body[data-visible-state="select-experiment"]
+  .select-experiment-image-car {
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   CPS Studio identity — CPS / Studio boundary spacing
+   ========================================================= */
+
+/*
+ * The parent title uses intentionally tight tracking.
+ * Restore a small amount of optical separation between the
+ * colored CPS identity and the following Studio word.
+ */
+body[data-visible-state="idle"]
+  .display-cps-glow,
+body[data-visible-state="locked"]
+  .display-cps-glow {
+
+  margin-right: .075em;
+}
+
+
+/* =========================================================
+   CPS Studio — optical boundary correction
+   ========================================================= */
+
+/*
+ * CPS is a separately painted inline span inside a title
+ * that uses strong negative tracking. Give the final S
+ * enough internal room to render cleanly, then restore a
+ * deliberate optical gap before Studio.
+ */
+body[data-visible-state="idle"]
+  .display-cps-glow,
+body[data-visible-state="locked"]
+  .display-cps-glow {
+
+  padding-right: .025em;
+
+  margin-right: .12em !important;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   CPS Studio — final optical boundary refinement
+   ========================================================= */
+
+body[data-visible-state="idle"]
+  .display-cps-glow,
+body[data-visible-state="locked"]
+  .display-cps-glow {
+
+  padding-right: .045em;
+
+  margin-right: .135em !important;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   SCPS SETUP SCREEN FIX 2026-10-13
+   Keep the CPS identity unobtrusive and fluid (DOM node is retained).
+   ========================================================= */
+body[data-visible-state="idle"] .display-cps-glow,
+body[data-visible-state="locked"] .display-cps-glow {
+  animation-duration: 18s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-visible-state="idle"] .display-cps-glow,
+  body[data-visible-state="locked"] .display-cps-glow {
+    animation: none !important;
+    background-position: 50% 50%;
+  }
+}
+
+
+/* =========================================================
+   SCPS TV READY SAFE AREA 2026-10-13
+   Physical HDMI television only. Ready/idle state only.
+
+   The foam bezel conceals content close to the edges.
+   Keep the left identity and right clock comfortably inside
+   the visible TV area, without changing other display modes.
+
+   To fine-tune later, adjust ONLY the two custom properties:
+     --scps-tv-ready-top  (larger = lower on the screen)
+     --scps-tv-ready-side (larger = further from either edge)
+   ========================================================= */
+body.scps-physical-tv[data-visible-state="idle"] {
+  --scps-tv-ready-top: clamp(88px, 12vh, 180px);
+  --scps-tv-ready-side: clamp(64px, 8vw, 170px);
+}
+
+/* Department identity group — left, below the foam border. */
+body.scps-physical-tv[data-visible-state="idle"] .display-primary {
+  top: var(--scps-tv-ready-top) !important;
+  left: var(--scps-tv-ready-side) !important;
+  right: auto !important;
+  column-gap: clamp(17px, 1.45vw, 28px) !important;
+  grid-template-columns: auto auto auto !important;
+  grid-template-rows: auto !important;
+  align-items: center !important;
+}
+
+body.scps-physical-tv[data-visible-state="idle"] .display-ready-logo {
+  width: clamp(92px, 5.7vw, 122px) !important;
+  height: auto !important;
+}
+
+body.scps-physical-tv[data-visible-state="idle"] #display-title {
+  font-size: clamp(3rem, 3.55vw, 4.5rem) !important;
+  line-height: 1.06 !important;
+  white-space: nowrap;
+}
+
+body.scps-physical-tv[data-visible-state="idle"] .lab-display-state::before {
+  width: clamp(18px, 1.35vw, 26px) !important;
+  height: clamp(18px, 1.35vw, 26px) !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+}
+
+/* Date and clock — right, aligned with the identity group. */
+body.scps-physical-tv[data-visible-state="idle"] .display-topline {
+  top: var(--scps-tv-ready-top) !important;
+  right: var(--scps-tv-ready-side) !important;
+  left: auto !important;
+  width: auto !important;
+  padding: clamp(15px, 1.15vw, 23px) clamp(20px, 1.6vw, 30px) !important;
+  border-radius: 18px !important;
+}
+
+body.scps-physical-tv[data-visible-state="idle"] .display-date {
+  font-size: clamp(1rem, 1.15vw, 1.45rem) !important;
+  line-height: 1.15 !important;
+}
+
+body.scps-physical-tv[data-visible-state="idle"] .display-time {
+  font-size: clamp(2rem, 2.25vw, 2.95rem) !important;
+  line-height: 1.08 !important;
+}
+
+/* On narrow TV modes, place the clock below the brand group,
+   rather than allowing the two enlarged groups to collide. */
+@media (max-width: 1100px) {
+  body.scps-physical-tv[data-visible-state="idle"] .display-topline {
+    top: calc(var(--scps-tv-ready-top) + 150px) !important;
+    left: var(--scps-tv-ready-side) !important;
+    right: auto !important;
+    justify-content: flex-start !important;
+  }
+  body.scps-physical-tv[data-visible-state="idle"] .display-clock {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  body.scps-physical-tv[data-visible-state="idle"] .display-date,
+  body.scps-physical-tv[data-visible-state="idle"] .display-time {
+    text-align: left !important;
+  }
+}
+
+
+/* =========================================================
+   SCPS SETUP CLOCK MATCH READY 2026-10-13
+   SETUP_REQUIRED = locked presentation only.
+   Match the existing Ready clock's appearance and placement.
+   No other visible states or views are changed.
+   ========================================================= */
+body[data-visible-state="locked"] .display-topline {
+  position: absolute !important;
+  top: clamp(28px, 3.2vh, 54px) !important;
+  right: clamp(30px, 3vw, 60px) !important;
+  left: auto !important;
+  z-index: 30;
+  display: flex !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: clamp(10px, .8vw, 14px) clamp(14px, 1.1vw, 20px) !important;
+  justify-content: flex-end !important;
+  border: 1px solid rgba(255,255,255,.66) !important;
+  border-radius: 16px !important;
+  background: rgba(255,255,255,.84) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+  box-shadow: 0 10px 32px rgba(0,0,0,.13) !important;
+}
+body[data-visible-state="locked"] .display-clock {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-end !important;
+  justify-content: center;
+  gap: clamp(3px, .3vh, 6px);
+  margin: 0 !important;
+  text-align: right !important;
+}
+body[data-visible-state="locked"] .display-date {
+  color: #6e6e73 !important;
+  font-size: clamp(.82rem, .9vw, 1.05rem) !important;
+  font-weight: 560;
+  line-height: 1.1;
+  text-align: right !important;
+}
+body[data-visible-state="locked"] .display-time {
+  color: #1d1d1f !important;
+  font-size: clamp(1.35rem, 1.6vw, 1.9rem) !important;
+  font-weight: 720;
+  line-height: 1;
+  letter-spacing: -.04em;
+  text-align: right !important;
+}
+
+/* Match the enlarged, lower Ready clock on the physical TV only.
+   These two values mirror the existing Ready safe-area adjustment. */
+body.scps-physical-tv[data-visible-state="locked"] {
+  --scps-tv-ready-top: clamp(88px, 12vh, 180px);
+  --scps-tv-ready-side: clamp(64px, 8vw, 170px);
+}
+body.scps-physical-tv[data-visible-state="locked"] .display-topline {
+  top: var(--scps-tv-ready-top) !important;
+  right: var(--scps-tv-ready-side) !important;
+  left: auto !important;
+  width: auto !important;
+  padding: clamp(15px, 1.15vw, 23px) clamp(20px, 1.6vw, 30px) !important;
+  border-radius: 18px !important;
+}
+body.scps-physical-tv[data-visible-state="locked"] .display-date {
+  font-size: clamp(1rem, 1.15vw, 1.45rem) !important;
+  line-height: 1.15 !important;
+}
+body.scps-physical-tv[data-visible-state="locked"] .display-time {
+  font-size: clamp(2rem, 2.25vw, 2.95rem) !important;
+  line-height: 1.08 !important;
+}
+
+@media (max-width: 1100px) {
+  body.scps-physical-tv[data-visible-state="locked"] .display-topline {
+    top: calc(var(--scps-tv-ready-top) + 150px) !important;
+    left: var(--scps-tv-ready-side) !important;
+    right: auto !important;
+    justify-content: flex-start !important;
+  }
+  body.scps-physical-tv[data-visible-state="locked"] .display-clock {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  body.scps-physical-tv[data-visible-state="locked"] .display-date,
+  body.scps-physical-tv[data-visible-state="locked"] .display-time {
+    text-align: left !important;
+  }
+}
+
+
+/* =========================================================
+   SCPS TV SELECT EXPERIMENT SCALE 2026-10-13
+   HDMI TV only, Select CPS App state only.
+
+   Increase the actual presentation area on the large TV,
+   using viewport dimensions rather than fixed small caps.
+   7.5vw side insets allow for the TV foam-edge obstruction.
+   All existing card/title animations and track graphics remain.
+   ========================================================= */
+body.scps-physical-tv[data-visible-state="select-experiment"] #display-shell {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  box-sizing: border-box !important;
+  padding: clamp(55px, 8vh, 175px) clamp(66px, 7.5vw, 300px) !important;
+  gap: clamp(32px, 6vh, 130px) !important;
+}
+
+/* No clock or empty header space in experiment selection. */
+body.scps-physical-tv[data-visible-state="select-experiment"] .display-topline {
+  display: none !important;
+}
+
+body.scps-physical-tv[data-visible-state="select-experiment"] .display-primary {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+body.scps-physical-tv[data-visible-state="select-experiment"] #display-title {
+  font-size: clamp(5.25rem, 8.4vw, 11rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -.055em !important;
+  margin: 0 !important;
+}
+
+body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-choice {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(28px, 2.4vw, 92px) !important;
+  width: 100% !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+  align-items: stretch !important;
+}
+
+body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-card {
+  box-sizing: border-box !important;
+  min-height: clamp(325px, 41vh, 880px) !important;
+  height: auto !important;
+  padding: clamp(24px, 1.8vw, 70px) !important;
+  gap: clamp(14px, 1.1vw, 42px) !important;
+  align-items: center !important;
+}
+
+body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-number {
+  font-size: clamp(5.5rem, 6vw, 12rem) !important;
+  line-height: 1 !important;
+}
+
+body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-card strong {
+  font-size: clamp(2.15rem, 2.6vw, 6.4rem) !important;
+  line-height: 1.08 !important;
+}
+
+body.scps-physical-tv[data-visible-state="select-experiment"] .select-experiment-visual {
+  width: clamp(130px, 10vw, 320px) !important;
+  height: clamp(180px, 25vh, 510px) !important;
+  margin-left: clamp(4px, .55vw, 22px) !important;
+}
+
+/* Preserve two side-by-side cards on medium HDMI viewports. */
+@media (max-width: 1500px) {
+  body.scps-physical-tv[data-visible-state="select-experiment"] #display-shell {
+    padding-left: clamp(40px, 6vw, 90px) !important;
+    padding-right: clamp(40px, 6vw, 90px) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-card {
+    padding: clamp(16px, 1.5vw, 28px) !important;
+    gap: clamp(9px, 1vw, 18px) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-number {
+    font-size: clamp(3.75rem, 5vw, 5.5rem) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-card strong {
+    font-size: clamp(1.55rem, 2.5vw, 3rem) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] .select-experiment-visual {
+    width: clamp(100px, 9vw, 145px) !important;
+    height: clamp(140px, 21vh, 260px) !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* Compact TV resolution: stack without clipping the foam-safe region. */
+@media (max-width: 1100px) {
+  body.scps-physical-tv[data-visible-state="select-experiment"] #display-shell {
+    padding: clamp(25px, 4vh, 48px) clamp(28px, 5vw, 55px) !important;
+    gap: clamp(16px, 2.6vh, 32px) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] #display-title {
+    font-size: clamp(3.5rem, 6.5vw, 6rem) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-choice {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: clamp(10px, 1.5vh, 20px) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] .display-experiment-card {
+    min-height: clamp(150px, 23vh, 255px) !important;
+  }
+  body.scps-physical-tv[data-visible-state="select-experiment"] .select-experiment-visual {
+    width: clamp(90px, 12vw, 160px) !important;
+    height: clamp(115px, 19vh, 190px) !important;
+  }
+}
+
+
+/* SCPS TV SELECT HEADING CENTER 2026-10-13
+   Limit alignment to the TV's Select Experiment state; the existing
+   text size, centered composition, cards, and animations stay intact. */
+body.scps-physical-tv[data-visible-state="select-experiment"] #display-title {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  text-align: center !important;
+}
+
+
+/* =========================================================
+   SCPS TV EXPERIMENT AND TRACK LOADING SCALE 2026-10-13
+
+   VISUAL ONLY: LED Flasher, Autonomous Car, and the 2.5-second
+   loading presentation before each of the six track surfaces.
+   Only the Pi-local physical TV is affected. Foam-safe 8vw
+   side clearance, enlarged typography, centered composition.
+
+   Not applied to .track-mode (actual physical track SVG).
+   No device/run/authorization/status logic is changed.
+   ========================================================= */
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) #display-shell {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-width: none !important;
+  padding: clamp(54px, 8vh, 176px) clamp(62px, 8vw, 310px) !important;
+}
+
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) .display-primary {
+  position: relative !important;
+  inset: auto !important;
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) .display-kicker {
+  max-width: 100% !important;
+  margin: 0 0 clamp(24px, 4vh, 88px) !important;
+  font-size: min(2.65vw, 4.25vh) !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+}
+
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) #display-title {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  font-size: min(8.2vw, 14vh) !important;
+  line-height: .98 !important;
+  letter-spacing: -.058em !important;
+  text-align: center !important;
+  text-wrap: balance;
+}
+
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) .lab-display-state:not([hidden]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: clamp(58px, 8vh, 150px) !important;
+  margin: clamp(28px, 5vh, 112px) auto 0 !important;
+  padding: clamp(13px, 1.45vh, 34px) clamp(24px, 2.4vw, 88px) !important;
+  font-size: min(2.95vw, 4.85vh) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -.025em !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+/* The loading status remains a pill with its existing red animation. */
+body.scps-physical-tv[data-visible-state^="track-"]:not(.track-mode)
+  .lab-display-state:not([hidden]) {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+
+/* Medium display modes: maintain foam-safe margins without overflow. */
+@media (max-width: 1200px) {
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) #display-shell {
+    padding: clamp(36px, 6vh, 90px) clamp(38px, 7vw, 100px) !important;
+  }
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) .display-kicker {
+    margin-bottom: clamp(14px, 3vh, 40px) !important;
+  }
+body.scps-physical-tv:is(
+  [data-visible-state="led-experiment"],
+  [data-visible-state="autonomous-car"],
+  [data-visible-state^="track-"]:not(.track-mode)
+) .lab-display-state:not([hidden]) {
+    margin-top: clamp(20px, 4vh, 50px) !important;
+  }
+}

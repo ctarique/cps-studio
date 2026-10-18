@@ -1,0 +1,6 @@
+/* CPS Studio 1.1 Admin-only slideshow selection. */
+.cps-season-panel { margin-top: 1.5rem; }
+.cps-season-panel .cps-season-toolbar { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.cps-season-panel .cps-season-actions { display: flex; flex-wrap: wrap; gap: .45rem; }
+.cps-season-panel button[data-cps-season][aria-pressed="true"] { border-color: currentColor; font-weight: 700; }
+.cps-season-panel #cps-season-status { margin-top: .85rem; }

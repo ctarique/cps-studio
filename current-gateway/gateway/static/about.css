@@ -1,0 +1,92 @@
+/*
+ * CPS Studio About page
+ * Calm narrative / research presentation.
+ */
+
+body.about-page.scps-doc-ui
+.about-hero {
+  padding-bottom: 34px;
+}
+
+
+body.about-page.scps-doc-ui
+.about-hero .lead {
+  max-width: 760px;
+}
+
+
+body.about-page.scps-doc-ui
+.about-section {
+  max-width: 980px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+body.about-page.scps-doc-ui
+.about-section > h2 {
+  max-width: 860px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+body.about-page.scps-doc-ui
+.about-prose {
+  max-width: 860px;
+
+  margin: 0 auto;
+
+  color: var(--scps-ink);
+}
+
+
+body.about-page.scps-doc-ui
+.about-prose p {
+  margin: 20px 0;
+
+  font-size: 1.04rem;
+  line-height: 1.72;
+}
+
+
+body.about-page.scps-doc-ui
+.about-question {
+  margin: 28px 0;
+
+  padding: 22px 24px;
+
+  border-left:
+    3px solid var(--scps-red);
+
+  background:
+    #f7f8f9;
+}
+
+
+body.about-page.scps-doc-ui
+.about-question strong {
+  color: var(--scps-ink);
+}
+
+
+body.about-page.scps-doc-ui
+.about-signature {
+  margin-top: 26px;
+
+  color: var(--scps-slate);
+
+  font-weight: 600;
+}
+
+
+@media (max-width: 560px) {
+
+  body.about-page.scps-doc-ui
+  .about-question {
+    padding: 18px;
+  }
+
+}

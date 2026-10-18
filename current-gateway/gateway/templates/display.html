@@ -1,0 +1,1213 @@
+{% from '_tracks.html' import track_svg %}
+<!doctype html>
+<html lang="en" class="lab-display-root">
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+
+  <title>CPS Studio · Lab Display</title>
+
+  <link rel="stylesheet" href="/static/style.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/display.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/display_twin.css?v=transparent-shell-20261016-v1">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="/static/status_rtt.css?v=1.0.9-RC">
+<script defer src="/static/status_rtt.js?v=1.0.9-RC"></script>
+<script defer
+          src="/static/display_common.js?v=track12-20261013-1"></script>
+<script defer
+          src="/static/display.js?v=workstation-detection-v2"></script>
+<script defer
+          src="/static/display_twin.js?v=runhold2000-20261016"></script>
+<script defer
+          src="/static/display_gallery.js?v=season-sync-1.1-rc1"></script>
+<script defer
+          src="/static/display_clock.js"></script>
+<script defer
+          src="/static/display_select_visuals.js?v=select-visual-v1"></script>
+</head>
+
+
+<body class="lab-display-body" data-view-mode="lab">
+
+<nav class="display-view-switcher"
+     aria-label="Lab Display view">
+  <button id="view-lab"
+          class="display-view-button"
+          type="button"
+          aria-pressed="true">
+    Lab View
+  </button>
+
+  <button id="view-twin"
+          class="display-view-button"
+          type="button"
+          aria-pressed="false"
+          aria-disabled="true"
+          disabled>
+    Digital Twin
+  </button>
+</nav>
+
+
+<main id="display-presentation"
+      class="lab-display"
+      aria-live="polite">
+
+  <div id="display-shell"
+       class="display-shell">
+
+    <!-- Ambient decorative background.
+         Presentation only; not device/network status. -->
+    <div class="ambient-field"
+         aria-hidden="true">
+
+      <div class="ambient-orbit ambient-orbit-a"></div>
+      <div class="ambient-orbit ambient-orbit-b"></div>
+
+      <div class="gateway-map">
+
+        <span class="gateway-line gateway-line-left"></span>
+        <span class="gateway-line gateway-line-right"></span>
+        <span class="gateway-line gateway-line-top"></span>
+
+        <span class="gateway-node gateway-node-left"></span>
+        <span class="gateway-node gateway-node-right"></span>
+        <span class="gateway-node gateway-node-top"></span>
+
+        <span class="gateway-core"></span>
+
+      </div>
+    </div>
+
+
+    <header class="display-topline">
+
+      <span id="display-context"
+            class="display-location"
+            aria-hidden="true"></span>
+
+
+    
+      <div id="display-clock"
+           class="display-clock"
+           aria-label="Current date and time">
+
+        <time id="display-date"
+              class="display-date"></time>
+
+        <time id="display-time"
+              class="display-time"></time>
+
+      </div>
+
+</header>
+
+
+    <section class="display-primary">
+
+      <p id="display-kicker"
+         class="display-kicker">
+        LABORATORY STATUS
+      </p>
+
+      <img id="display-ready-logo"
+           class="display-ready-logo"
+           src="/static/device-icons/public-cps-studio.svg"
+           alt="CPS Studio">
+
+      <h1 id="display-title">
+        CPS Studio
+      </h1>
+
+      <p id="display-tagline"
+         class="display-tagline"
+         hidden>
+        Secure access to real-world CPS experimentation.
+      </p>
+
+      <div id="display-ready"
+           class="display-ready"
+           hidden>
+
+        <span class="display-ready-dot"
+              aria-hidden="true"></span>
+
+        <span>LAB READY</span>
+
+      </div>
+
+      <p id="display-state"
+         class="lab-display-state">
+        Instructor Setup Required
+      </p>
+
+      <div id="display-progress"
+           class="display-progress"
+           hidden
+           aria-hidden="true">
+
+        <div id="display-progress-fill"
+             class="display-progress-fill"></div>
+
+      </div>
+
+      <p id="display-guidance"
+         class="display-note">
+        Instructor setup is required before laboratory access is enabled.
+      </p>
+
+    </section>
+
+    <aside id="ready-gallery"
+           class="ready-gallery"
+           aria-hidden="true">
+
+      <img id="ready-gallery-image-a"
+           class="ready-gallery-image is-active"
+           src="/static/device-icons/public-preview.svg"
+           alt="">
+
+      <img id="ready-gallery-image-b"
+           class="ready-gallery-image"
+           src="/static/device-icons/public-preview.svg"
+           alt="">
+
+    </aside>
+
+
+<section id="display-experiment-choice"
+             class="display-experiment-choice"
+             hidden
+             aria-label="Available experiments">
+
+      <article class="display-experiment-card">
+        <span class="display-experiment-number">
+          01
+        </span>
+
+        <div>
+          <p>EXPERIMENT 1</p>
+          <strong>LED Flasher</strong>
+          <span>ESP32-CAM</span>
+        </div>
+
+        <div class="select-experiment-visual"
+             aria-hidden="true">
+          <img class="select-experiment-image select-experiment-image-led"
+               src="/static/device-icons/digital-twin-led.svg?v=cps-app-icons-1"
+               alt="">
+        </div>
+      </article>
+
+
+      <article class="display-experiment-card">
+        <span class="display-experiment-number">
+          02
+        </span>
+
+        <div>
+          <p>EXPERIMENT 2</p>
+          <strong>Autonomous Car</strong>
+          <span>ESP32-WROVER</span>
+        </div>
+
+        <div class="select-experiment-visual"
+             aria-hidden="true">
+          <img class="select-experiment-image select-experiment-image-car"
+               src="/static/device-icons/public-rover.svg?v=cps-app-icons-1"
+               alt="">
+        </div>
+      </article>
+
+    </section>
+
+
+
+  </div>
+
+</main>
+
+
+<div id="track-surface"
+     class="track-surface"
+     hidden>
+
+  <div id="display-track-straight"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('straight') }}
+
+  </div>
+
+  <div id="display-track-wide-straight"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('wide-straight') }}
+
+  </div>
+
+  <div id="display-track-curve"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('curve') }}
+
+  </div>
+
+  <div id="display-track-wide-curve"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('wide-curve') }}
+
+  </div>
+
+  <div id="display-track-challenge"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('challenge') }}
+
+  </div>
+
+  <div id="display-track-wide-challenge"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('wide-challenge') }}
+
+  </div>
+
+  <div id="display-track-circle"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('circle') }}
+
+  </div>
+
+  <div id="display-track-wide-circle"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('wide-circle') }}
+
+  </div>
+
+  <div id="display-track-oval"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('oval') }}
+
+  </div>
+
+  <div id="display-track-elliptical"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('elliptical') }}
+
+  </div>
+
+  <div id="display-track-infinity"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('infinity') }}
+
+  </div>
+
+  <div id="display-track-wide-infinity"
+       class="display-track"
+       hidden>
+
+    {{ track_svg('wide-infinity') }}
+
+  </div>
+
+</div>
+
+
+<section id="digital-twin-root"
+         class="digital-twin-root"
+         aria-live="polite">
+
+  <div class="digital-twin-shell">
+
+
+    <div class="digital-twin-grid">
+
+      <article id="twin-card-led"
+               class="twin-device-card">
+
+        <div class="twin-visual-title twin-visual-title-led"
+             aria-hidden="true">
+          <span id="twin-connection-led"
+                class="twin-connection-indicator is-unknown"
+                title="Checking status"
+                aria-hidden="true"></span>
+
+          <span class="twin-title-icon twin-title-icon-led"></span>
+          <strong>LED</strong>
+
+          <span id="twin-wifi-led"
+                class="twin-wifi-signal"
+                data-strength="unknown"
+                role="img"
+                aria-label="Wi-Fi RSSI unavailable">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+
+          <span id="twin-wifi-led-value"
+                class="twin-wifi-value">
+            RSSI unavailable
+          </span>
+        </div>
+
+
+        <div class="twin-device-stage twin-cam-stage">
+
+          <div id="twin-cam-led"
+               class="twin-smart-bulb"
+               role="img"
+               aria-label="ESP32-CAM LED state">
+
+            <svg class="twin-smart-bulb-svg"
+                 viewBox="0 0 260 360"
+                 aria-hidden="true">
+
+              <defs>
+
+                <radialGradient id="smart-bulb-glass"
+                                cx="36%"
+                                cy="27%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="42%" stop-color="#f3f4f5"/>
+                  <stop offset="78%" stop-color="#d9dcdf"/>
+                  <stop offset="100%" stop-color="#bcc1c5"/>
+                </radialGradient>
+
+                <linearGradient id="smart-bulb-body"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+                  <stop offset="0%" stop-color="#f8f9fa"/>
+                  <stop offset="55%" stop-color="#dadddf"/>
+                  <stop offset="100%" stop-color="#aeb3b8"/>
+                </linearGradient>
+
+                <linearGradient id="smart-bulb-base"
+                                x1="0"
+                                x2="1">
+                  <stop offset="0%" stop-color="#8d9297"/>
+                  <stop offset="48%" stop-color="#d6d9dc"/>
+                  <stop offset="100%" stop-color="#777c81"/>
+                </linearGradient>
+
+              </defs>
+
+
+              <circle class="smart-bulb-halo"
+                      cx="130"
+                      cy="120"
+                      r="108"/>
+
+
+              <path class="smart-bulb-glass"
+                    d="
+                      M 130 24
+                      C 70 24 40 64 40 112
+                      C 40 151 60 174 82 194
+                      C 94 205 100 220 102 236
+                      L 158 236
+                      C 160 220 166 205 178 194
+                      C 200 174 220 151 220 112
+                      C 220 64 190 24 130 24
+                      Z
+                    "/>
+
+
+              <path class="smart-bulb-highlight"
+                    d="
+                      M 77 64
+                      C 60 84 57 106 61 125
+                    "/>
+
+
+              <path class="smart-bulb-neck"
+                    d="
+                      M 101 230
+                      L 159 230
+                      L 164 267
+                      L 96 267
+                      Z
+                    "/>
+
+
+              <rect class="smart-bulb-base"
+                    x="91"
+                    y="261"
+                    width="78"
+                    height="62"
+                    rx="18"/>
+
+
+              <g class="smart-bulb-base-lines">
+                <path d="M 100 280 L 160 280"/>
+                <path d="M 98 294 L 162 294"/>
+                <path d="M 103 308 L 157 308"/>
+              </g>
+
+
+              <circle class="smart-bulb-status"
+                      cx="130"
+                      cy="340"
+                      r="7"/>
+
+              <text class="smart-bulb-device-label"
+                    x="130"
+                    y="128"
+                    text-anchor="middle">
+                CAM
+              </text>
+
+            </svg>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article id="twin-card-car"
+               class="twin-device-card">
+
+        <div class="twin-visual-title twin-visual-title-car"
+             aria-hidden="true">
+          <span id="twin-connection-car"
+                class="twin-connection-indicator is-unknown"
+                title="Checking status"
+                aria-hidden="true"></span>
+
+          <span class="twin-title-icon twin-title-icon-car"></span>
+          <strong>Autonomous Car</strong>
+
+          <span id="twin-wifi-car"
+                class="twin-wifi-signal"
+                data-strength="unknown"
+                role="img"
+                aria-label="Wi-Fi RSSI unavailable">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+
+          <span id="twin-wifi-car-value"
+                class="twin-wifi-value">
+            RSSI —
+          </span>
+          <span id="twin-car-rtt" class="status-rtt twin-status-rtt">RTT unavailable</span>
+        </div>
+
+        <div class="twin-car-telemetry twin-car-status-grid"
+             aria-label="Autonomous car telemetry">
+
+          <span class="twin-car-sensor twin-car-status-item"
+                title="LDR sensor 1, GPIO32; raw 12-bit ADC count">
+            <svg class="twin-hardware-icon twin-hardware-icon-ldr"
+                 viewBox="0 0 40 40"
+                 aria-hidden="true">
+              <circle class="twin-hardware-ldr-shell"
+                      cx="20" cy="20" r="17"/>
+              <circle class="twin-hardware-ldr-ring"
+                      cx="20" cy="20" r="12"/>
+              <circle class="twin-hardware-ldr-core"
+                      cx="20" cy="20" r="8"/>
+              <text class="twin-hardware-ldr-label"
+                    x="20" y="21">1</text>
+            </svg>
+
+            <span class="twin-car-status-label">LDR 1</span>
+
+            <span id="twin-car-ldr32"
+                  class="twin-car-sensor-value">—</span>
+            <span class="twin-car-adc-unit">ADC</span>
+          </span>
+
+          <span id="twin-car-motor-a"
+                class="twin-car-activity twin-car-status-item"
+                title="MTR A · Motor A state">
+            <svg class="twin-hardware-icon twin-hardware-icon-motor"
+                 viewBox="0 0 40 40"
+                 aria-hidden="true">
+              <circle class="twin-hardware-motor-shell"
+                      cx="20" cy="20" r="17"/>
+              <circle class="twin-hardware-motor-core"
+                      cx="20" cy="20" r="11"/>
+              <text class="twin-hardware-motor-label"
+                    x="20" y="21">A</text>
+            </svg>
+            <span class="twin-car-status-label">MTR A</span>
+            <span class="twin-car-use-state"
+                  aria-live="polite">IDLE</span>
+          </span>
+
+          <span id="twin-car-camera"
+                class="twin-car-camera-status twin-car-status-item"
+                title="CAM 1 · vehicle camera activity">
+            <svg class="twin-hardware-icon twin-hardware-icon-camera"
+                 viewBox="0 0 50 32"
+                 aria-hidden="true">
+              <path class="twin-hardware-camera-housing"
+                    d="
+                      M 3 8
+                      L 31 3
+                      L 28 16
+                      L 12 27
+                      L 4 23
+                      Z
+                    "/>
+              <ellipse class="twin-hardware-camera-ring"
+                       cx="15"
+                       cy="16"
+                       rx="8"
+                       ry="7"/>
+              <ellipse class="twin-hardware-camera-lens"
+                       cx="15"
+                       cy="16"
+                       rx="5"
+                       ry="4"/>
+              <circle class="twin-hardware-camera-highlight"
+                      cx="13"
+                      cy="14"
+                      r="1.5"/>
+            </svg>
+            <span class="twin-car-status-label">CAM 1</span>
+            <span class="twin-car-use-state"
+                  aria-live="polite">IDLE</span>
+          </span>
+
+          <span class="twin-car-sensor twin-car-status-item"
+                title="LDR sensor 2, GPIO33; raw 12-bit ADC count">
+            <svg class="twin-hardware-icon twin-hardware-icon-ldr"
+                 viewBox="0 0 40 40"
+                 aria-hidden="true">
+              <circle class="twin-hardware-ldr-shell"
+                      cx="20" cy="20" r="17"/>
+              <circle class="twin-hardware-ldr-ring"
+                      cx="20" cy="20" r="12"/>
+              <circle class="twin-hardware-ldr-core"
+                      cx="20" cy="20" r="8"/>
+              <text class="twin-hardware-ldr-label"
+                    x="20" y="21">2</text>
+            </svg>
+
+            <span class="twin-car-status-label">LDR 2</span>
+
+            <span id="twin-car-ldr33"
+                  class="twin-car-sensor-value">—</span>
+            <span class="twin-car-adc-unit">ADC</span>
+          </span>
+
+          <span id="twin-car-motor-b"
+                class="twin-car-activity twin-car-status-item"
+                title="MTR B · Motor B state">
+            <svg class="twin-hardware-icon twin-hardware-icon-motor"
+                 viewBox="0 0 40 40"
+                 aria-hidden="true">
+              <circle class="twin-hardware-motor-shell"
+                      cx="20" cy="20" r="17"/>
+              <circle class="twin-hardware-motor-core"
+                      cx="20" cy="20" r="11"/>
+              <text class="twin-hardware-motor-label"
+                    x="20" y="21">B</text>
+            </svg>
+            <span class="twin-car-status-label">MTR B</span>
+            <span class="twin-car-use-state"
+                  aria-live="polite">IDLE</span>
+          </span>
+
+          <span class="twin-car-status-item twin-car-status-empty"
+                aria-hidden="true"></span>
+
+        </div>
+
+
+        <div id="twin-track-stage"
+             class="twin-device-stage twin-track-stage"
+             data-track="none">
+
+          <div id="twin-track-none"
+               class="twin-track-empty"
+               aria-hidden="true">
+          </div>
+
+
+          <div id="twin-track-straight"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('straight') }}
+
+  </div>
+
+  <div id="twin-track-wide-straight"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('wide-straight') }}
+
+  </div>
+
+  <div id="twin-track-curve"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('curve') }}
+
+  </div>
+
+  <div id="twin-track-wide-curve"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('wide-curve') }}
+
+  </div>
+
+  <div id="twin-track-challenge"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('challenge') }}
+
+  </div>
+
+  <div id="twin-track-wide-challenge"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('wide-challenge') }}
+
+  </div>
+
+  <div id="twin-track-circle"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('circle') }}
+
+  </div>
+
+  <div id="twin-track-wide-circle"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('wide-circle') }}
+
+  </div>
+
+  <div id="twin-track-oval"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('oval') }}
+
+  </div>
+
+  <div id="twin-track-elliptical"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('elliptical') }}
+
+  </div>
+
+  <div id="twin-track-infinity"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('infinity') }}
+
+  </div>
+
+  <div id="twin-track-wide-infinity"
+       class="twin-approved-track"
+       hidden>
+
+    {{ track_svg('wide-infinity') }}
+
+  </div>
+
+
+          <div id="twin-car-image"
+               class="twin-car-vehicle"
+               role="img"
+               aria-label="ESP32-WROVER differential-drive vehicle">
+
+            <svg class="twin-car-svg twin-racecar-svg"
+                 viewBox="0 0 300 400"
+                 aria-hidden="true">
+
+              <defs>
+
+                <linearGradient id="racecar-body-gradient"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+
+                  <stop offset="0%" stop-color="#d7dadd"/>
+                  <stop offset="45%" stop-color="#aeb3b8"/>
+                  <stop offset="100%" stop-color="#7c8288"/>
+
+                </linearGradient>
+
+                <linearGradient id="racecar-cabin-gradient"
+                                x1="0"
+                                y1="0"
+                                x2="0"
+                                y2="1">
+
+                  <stop offset="0%" stop-color="#9aa6b0"/>
+                  <stop offset="100%" stop-color="#46515b"/>
+
+                </linearGradient>
+
+                <radialGradient id="racecar-camera-gradient"
+                                cx="35%"
+                                cy="30%">
+
+                  <stop offset="0%" stop-color="#98c7ec"/>
+                  <stop offset="24%" stop-color="#426984"/>
+                  <stop offset="58%" stop-color="#172833"/>
+                  <stop offset="100%" stop-color="#020304"/>
+
+                </radialGradient>
+
+              </defs>
+
+
+              <ellipse class="racecar-shadow"
+                       cx="150"
+                       cy="218"
+                       rx="96"
+                       ry="148"/>
+
+
+              <!-- four wheels -->
+
+              <g class="racecar-wheel racecar-wheel-fl">
+                <rect x="18"
+                      y="84"
+                      width="44"
+                      height="82"
+                      rx="14"/>
+              </g>
+
+              <g class="racecar-wheel racecar-wheel-fr">
+                <rect x="238"
+                      y="84"
+                      width="44"
+                      height="82"
+                      rx="14"/>
+              </g>
+
+              <g class="racecar-wheel racecar-wheel-rl">
+                <rect x="18"
+                      y="240"
+                      width="44"
+                      height="82"
+                      rx="14"/>
+              </g>
+
+              <g class="racecar-wheel racecar-wheel-rr">
+                <rect x="238"
+                      y="240"
+                      width="44"
+                      height="82"
+                      rx="14"/>
+              </g>
+
+
+              <!--
+                Schematic drivetrain axles.
+                Rendered beneath the vehicle chassis.
+              -->
+
+              <g class="racecar-drive-underlay racecar-drive-a">
+                <line class="racecar-axle-line"
+                      x1="42"
+                      y1="125"
+                      x2="258"
+                      y2="125"/>
+              </g>
+
+              <g class="racecar-drive-underlay racecar-drive-b">
+                <line class="racecar-axle-line"
+                      x1="42"
+                      y1="281"
+                      x2="258"
+                      y2="281"/>
+              </g>
+
+
+              <!-- main body -->
+
+              <path class="racecar-body"
+                    d="
+                      M 150 18
+                      L 194 30
+                      L 218 55
+                      L 230 105
+                      L 238 302
+                      L 236 354
+                      L 220 378
+                      L 80 378
+                      L 64 354
+                      L 62 302
+                      L 70 105
+                      L 82 55
+                      L 106 30
+                      Z
+                    "/>
+
+
+              <!--
+                Sporty faceted CPS Studio vehicle concept.
+                Original angular EV / CPS prototype styling.
+              -->
+
+              <path class="racecar-side-facet racecar-side-facet-left"
+                    d="
+                      M 72 116
+                      L 103 146
+                      L 116 281
+                      L 98 350
+                      L 78 365
+                      L 64 301
+                      Z
+                    "/>
+
+              <path class="racecar-side-facet racecar-side-facet-right"
+                    d="
+                      M 228 116
+                      L 197 146
+                      L 184 281
+                      L 202 350
+                      L 222 365
+                      L 236 301
+                      Z
+                    "/>
+
+
+              <!-- front face -->
+
+              <path class="racecar-front-face"
+                    d="
+                      M 104 36
+                      L 150 21
+                      L 196 36
+                      L 216 116
+                      L 150 102
+                      L 84 116
+                      Z
+                    "/>
+
+
+              <!--
+                High-visibility swept front optical fascia.
+
+                CAM1 remains the single physical OV2640 camera
+                system. These paired front housings are a
+                Digital Twin presentation treatment only.
+              -->
+
+              <g class="racecar-camera racecar-camera-left">
+
+                <path class="racecar-camera-housing"
+                      d="
+                        M 76 57
+                        L 139 38
+                        L 132 61
+                        L 94 81
+                        L 77 77
+                        Z
+                      "/>
+
+                <path class="racecar-camera-brow"
+                      d="M 80 56 L 136 41"/>
+
+                <ellipse class="racecar-camera-ring"
+                         cx="98"
+                         cy="63"
+                         rx="11"
+                         ry="10"/>
+
+                <ellipse class="racecar-camera-lens"
+                         cx="98"
+                         cy="63"
+                         rx="7"
+                         ry="6"/>
+
+                <circle class="racecar-camera-highlight"
+                        cx="95"
+                        cy="60"
+                        r="2"/>
+
+              </g>
+
+
+              <g class="racecar-camera racecar-camera-right">
+
+                <path class="racecar-camera-housing"
+                      d="
+                        M 224 57
+                        L 161 38
+                        L 168 61
+                        L 206 81
+                        L 223 77
+                        Z
+                      "/>
+
+                <path class="racecar-camera-brow"
+                      d="M 220 56 L 164 41"/>
+
+                <ellipse class="racecar-camera-ring"
+                         cx="202"
+                         cy="63"
+                         rx="11"
+                         ry="10"/>
+
+                <ellipse class="racecar-camera-lens"
+                         cx="202"
+                         cy="63"
+                         rx="7"
+                         ry="6"/>
+
+                <circle class="racecar-camera-highlight"
+                        cx="199"
+                        cy="60"
+                        r="2"/>
+
+              </g>
+
+
+              <!-- squared rear tail seam -->
+              <path class="racecar-rear-seam"
+                    d="M 82 354 L 218 354"/>
+
+
+              <!-- central cabin / electronics area -->
+
+              <path class="racecar-cabin"
+                    d="
+                      M 105 146
+                      L 195 146
+                      L 184 282
+                      L 116 282
+                      Z
+                    "/>
+
+
+              <rect class="racecar-controller"
+                    x="119"
+                    y="183"
+                    width="62"
+                    height="66"
+                    rx="8"/>
+
+
+              <rect class="racecar-controller-chip"
+                    x="135"
+                    y="199"
+                    width="30"
+                    height="30"
+                    rx="4"/>
+
+
+              <!-- controller identity -->
+
+              <rect class="racecar-device-label-plate"
+                    x="92"
+                    y="300"
+                    width="116"
+                    height="36"
+                    rx="8"/>
+
+              <text class="racecar-device-label"
+                    x="150"
+                    y="323"
+                    text-anchor="middle">
+                WROVER
+              </text>
+
+
+              <!-- subtle front orientation accent -->
+
+              <path class="racecar-front-accent"
+                    d="M 108 45 L 150 27 L 192 45"/>
+
+            
+              <!--
+                High-visibility LDR presentation markers.
+
+                1 = LDR 1 / GPIO32 telemetry
+                2 = LDR 2 / GPIO33 telemetry
+
+                Their left/right placement is a Digital Twin
+                convention and is not physical mapping evidence.
+              -->
+
+              <g class="racecar-ldr-marker racecar-ldr-marker-1">
+
+                <line class="racecar-ldr-arm"
+                      x1="57"
+                      y1="215"
+                      x2="120"
+                      y2="215"/>
+
+                <circle class="racecar-ldr-shell"
+                        cx="82"
+                        cy="215"
+                        r="20"/>
+
+                <circle class="racecar-ldr-ring"
+                        cx="82"
+                        cy="215"
+                        r="15"/>
+
+                <circle class="racecar-ldr-core"
+                        cx="82"
+                        cy="215"
+                        r="11"/>
+
+                <text class="racecar-ldr-label"
+                      x="82"
+                      y="216">
+                  1
+                </text>
+
+              </g>
+
+
+              <g class="racecar-ldr-marker racecar-ldr-marker-2">
+
+                <line class="racecar-ldr-arm"
+                      x1="180"
+                      y1="215"
+                      x2="243"
+                      y2="215"/>
+
+                <circle class="racecar-ldr-shell"
+                        cx="218"
+                        cy="215"
+                        r="20"/>
+
+                <circle class="racecar-ldr-ring"
+                        cx="218"
+                        cy="215"
+                        r="15"/>
+
+                <circle class="racecar-ldr-core"
+                        cx="218"
+                        cy="215"
+                        r="11"/>
+
+                <text class="racecar-ldr-label"
+                      x="218"
+                      y="216">
+                  2
+                </text>
+
+              </g>
+
+
+              <!--
+                Motor identification badges above chassis.
+                A/front and B/rear are presentation positions.
+              -->
+
+              <g class="racecar-drive-badge racecar-drive-badge-a">
+                <circle class="racecar-drive-badge-shell"
+                        cx="150"
+                        cy="125"
+                        r="17"/>
+
+                <circle class="racecar-drive-badge-core"
+                        cx="150"
+                        cy="125"
+                        r="11"/>
+
+                <text class="racecar-drive-badge-label"
+                      x="150"
+                      y="126">
+                  A
+                </text>
+              </g>
+
+              <g class="racecar-drive-badge racecar-drive-badge-b">
+                <circle class="racecar-drive-badge-shell"
+                        cx="150"
+                        cy="281"
+                        r="17"/>
+
+                <circle class="racecar-drive-badge-core"
+                        cx="150"
+                        cy="281"
+                        r="11"/>
+
+                <text class="racecar-drive-badge-label"
+                      x="150"
+                      y="282">
+                  B
+                </text>
+              </g>
+
+
+              <!-- macOS/iOS-style camera-in-use indicator -->
+              <circle class="racecar-camera-use-led"
+                      cx="150"
+                      cy="56"
+                      r="5"/>
+
+</svg>
+
+          </div>
+
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+</body>
+</html>

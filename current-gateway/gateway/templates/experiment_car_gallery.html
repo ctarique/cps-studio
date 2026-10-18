@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+
+  <title>CPS Studio · Autonomous Car Gallery</title>
+
+  <link rel="stylesheet"
+        href="/static/style.css?v=1.0.9-RC">
+
+  <link rel="stylesheet"
+        href="/static/scps_docstyle.css?v=1.0.9-RC">
+
+  <link rel="stylesheet"
+        href="/static/experiment_car_docstyle.css?v=1.0.9-RC">
+</head>
+
+<body data-role="workstation"
+      class="scps-doc-ui">
+
+<main>
+
+  {% include '_nav.html' %}
+
+  <header class="hero compact-hero experiment-activity-hero">
+    <div class="experiment-device-hero-copy">
+      <h1>Gallery</h1>
+    </div>
+  </header>
+
+  <section>
+
+    <div class="car-gallery-header">
+
+      <div>
+        <p class="card-kicker">
+          AUTONOMOUS CAR
+        </p>
+
+        <h2>Recent Captures</h2>
+      </div>
+
+      <a class="button-link secondary car-gallery-back"
+         href="/experiments/autonomous-car">
+        Back to Autonomous Car
+      </a>
+
+    </div>
+
+    {% if captures %}
+
+      <div class="car-gallery-grid">
+
+        {% for capture in captures %}
+
+          <article class="car-gallery-card">
+
+            <a href="{{ capture.url }}"
+               target="_blank"
+               rel="noopener noreferrer">
+
+              <img src="{{ capture.url }}"
+                   alt="Autonomous car camera capture {{ loop.index }}">
+
+              <div class="car-gallery-meta">
+
+                <strong>
+                  Capture {{ loop.index }}
+                </strong>
+
+                <span>
+                  {{ capture.length }} bytes
+                  · SHA-256
+                  {{ capture.sha256[:12] }}…
+                </span>
+
+                <span>
+                  {% if capture.age_seconds < 60 %}
+                    Captured {{ capture.age_seconds }} seconds ago
+                  {% else %}
+                    Captured {{ capture.age_seconds // 60 }} minutes ago
+                  {% endif %}
+                </span>
+
+              </div>
+
+            </a>
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <div class="car-gallery-empty">
+        No recent captures from this workstation session.
+      </div>
+
+    {% endif %}
+
+  </section>
+
+</main>
+
+</body>
+</html>

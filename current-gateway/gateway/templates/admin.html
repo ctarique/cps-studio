@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>CPS Studio · Admin</title>
+
+  <meta name="sentinel-csrf" content="{{ csrf_token }}">
+
+  <link rel="stylesheet" href="/static/style.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/status_rtt.css?v=1.0.9-RC">
+<script defer src="/static/status_rtt.js?v=1.0.9-RC"></script>
+<script defer src="/static/display_common.js?v=track12-20261013-1"></script>
+  <script defer src="/static/workflow.js"></script>
+  <script defer src="/static/admin.js"></script>
+  <script defer src="/static/admin_slideshow.js?v=rc2-20261016"></script>
+  <script defer src="/static/admin_display.js?v=track12-20261013-1"></script>
+  <link rel="stylesheet"
+        href="/static/scps_docstyle.css?v=1.0.9-RC">
+  <link rel="stylesheet" href="/static/admin_slideshow.css?v=rc2-20261016">
+  <link rel="stylesheet" href="/static/cps-admin-layout.css?v=rc3-20261016">
+  <script defer src="/static/cps-admin-layout.js?v=rc4-20261016"></script>
+  <link rel="stylesheet" href="/static/cps-admin-polish.css?v=rc4-20261016">
+  <link rel="stylesheet" href="/static/cps-admin-clean.css?v=rc5-20261016">
+</head>
+
+<body data-role="instructor" class="scps-doc-ui">
+<main>
+  {% include '_nav.html' %}
+
+  <header class="hero compact-hero">
+
+    <h1>Administration</h1>
+  </header>
+
+
+  <section class="admin-session-bar admin-console-session">
+
+    <div class="admin-session-copy">
+      <span class="admin-session-eyebrow">
+        ADMINISTRATOR SESSION
+      </span>
+
+      <p>
+        <strong>Administrator</strong>
+        <span>Session expires after 20 minutes.</span>
+      </p>
+    </div>
+
+    <button id="logout"
+            type="button"
+            class="secondary-button">
+      Sign Out
+    </button>
+
+  </section>
+
+
+  <section class="status admin-console-top">
+
+    <header class="admin-console-heading">
+      <p class="card-kicker">SYSTEM</p>
+      <h2>Overview</h2>
+    </header>
+
+
+    <div class="admin-overview-grid"
+         aria-label="System overview">
+
+      <article class="admin-overview-card">
+
+        <span class="admin-overview-label">
+          Gateway
+        </span>
+
+        <strong id="gateway-service"
+                class="admin-overview-value"
+                role="status">
+          Checking…
+        </strong>
+
+      </article>
+
+
+      <article class="admin-overview-card">
+
+        <span class="admin-overview-label">
+          Experiment Access
+        </span>
+
+        <strong id="health"
+                class="admin-overview-value"
+                role="status">
+          Checking…
+        </strong>
+
+      </article>
+
+
+      <article class="admin-overview-card">
+
+        <span class="admin-overview-label">
+          ESP32-CAM
+        </span>
+
+        <strong id="esp32-cam-health"
+                class="admin-overview-value system-health-unknown"
+                role="status">
+          Checking…
+        </strong>
+
+      </article>
+
+
+      <article class="admin-overview-card">
+
+        <span class="admin-overview-label">
+          ESP32-WROVER
+        </span>
+
+        <strong id="esp32-wrover-health"
+                class="admin-overview-value system-health-unknown"
+                role="status">
+          Checking…
+        </strong>
+
+        <span id="esp32-wrover-rssi"
+              class="admin-overview-rssi"
+              hidden>
+          RSSI —
+        </span>
+        <span id="esp32-wrover-rtt" class="status-rtt admin-overview-rtt" role="status">RTT unavailable</span>
+
+
+
+      </article>
+
+    </div>
+
+
+    <section class="admin-access-panel"
+             aria-labelledby="experiment-access-heading">
+
+      <div class="admin-access-copy">
+
+        <p class="card-kicker">
+          CONTROL
+        </p>
+
+        <h2 id="experiment-access-heading">
+          Experiment Access
+        </h2>
+
+      </div>
+
+
+      <div class="admin-access-actions">
+
+        <div class="buttons gateway-status-controls admin-access-segmented"
+             role="group"
+             aria-label="Experiment access">
+
+          <button id="gateway-lock"
+                  type="button"
+                  data-recovery="LOCK_STOP">
+            Lock
+          </button>
+
+          <button id="gateway-unlock"
+                  type="button"
+                  data-recovery="UNLOCK">
+            Unlock
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <pre id="result"
+           class="experiment-result admin-access-result"
+           role="status"
+           aria-live="polite"
+           hidden></pre>
+
+    </section>
+
+  </section>
+
+
+  <section class="admin-lab-display-group" aria-label="Lab Display">
+    <header class="admin-console-heading">
+      <p class="card-kicker">LAB DISPLAY</p>
+    </header>
+
+  <div class="system-presentation-control">
+
+    <h2 class="system-subheading">Lab Display State</h2>
+
+    <dl class="spec-list admin-display-summary"
+        aria-live="polite">
+
+      <div>
+        <dt>Current Mode</dt>
+        <dd id="admin-display-mode">Checking…</dd>
+      </div>
+
+    </dl>
+
+    <div class="buttons admin-display-state-controls"
+         aria-label="Lab Display presentation states">
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="LOCKED"
+              aria-pressed="false">
+        Setup
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="READY"
+              aria-pressed="false">
+        Ready
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="SELECT_EXPERIMENT"
+              aria-pressed="false">
+        Select CPS Apps
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="LED_FLASHER"
+              aria-pressed="false">
+        LED Flasher
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="AUTONOMOUS_CAR"
+              aria-pressed="false">
+        Autonomous Car
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_STRAIGHT"
+              aria-pressed="false">
+        Track 01 — Straight
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_WIDE_STRAIGHT"
+              aria-pressed="false">
+        Track 02 — Straight Wide
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_CURVE"
+              aria-pressed="false">
+        Track 03 — Curve
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_WIDE_CURVE"
+              aria-pressed="false">
+        Track 04 — Curve Wide
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_CHALLENGE"
+              aria-pressed="false">
+        Track 05 — Challenge
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_WIDE_CHALLENGE"
+              aria-pressed="false">
+        Track 06 — Challenge Wide
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_CIRCLE"
+              aria-pressed="false">
+        Track 07 — Circle
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_WIDE_CIRCLE"
+              aria-pressed="false">
+        Track 08 — Circle Wide
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_OVAL"
+              aria-pressed="false">
+        Track 09 — Oval
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_ELLIPTICAL"
+              aria-pressed="false">
+        Track 10 — Oval Wide
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_INFINITY"
+              aria-pressed="false">
+        Track 11 — Infinity
+      </button>
+
+      <button type="button"
+              class="secondary-button"
+              data-display-state="TRACK_WIDE_INFINITY"
+              aria-pressed="false">
+        Track 12 — Infinity Wide
+      </button>
+
+    </div>
+
+    <p id="admin-display-result"
+       class="hint"
+       role="status"
+       aria-live="polite"
+       hidden></p>
+
+    <div class="admin-display-preview">
+      <iframe
+        src="/display"
+        title="Lab Display preview"
+        tabindex="-1"
+        aria-label="Read-only view of the CPS Studio Lab Display">
+      </iframe>
+    </div>
+
+  </div>
+
+
+  
+
+
+
+
+  
+
+
+  <section class="status cps-season-panel" aria-labelledby="cps-season-title">
+    <h2 id="cps-season-title">Seasonal Slideshow</h2>
+
+    <div class="cps-season-toolbar">
+      <span>Active slideshow: <strong id="cps-season-current">Checking…</strong></span>
+      <div class="buttons cps-season-actions" role="group" aria-label="Select seasonal slideshow">
+        <button type="button" data-cps-season="fall" class="secondary-button" aria-pressed="false">Fall</button>
+        <button type="button" data-cps-season="spring" class="secondary-button" aria-pressed="false">Spring</button>
+        <button type="button" data-cps-season="winter" class="secondary-button" aria-pressed="false">Winter</button>
+      </div>
+    </div>
+    <p id="cps-season-status" class="hint" role="status" aria-live="polite">Loading current season…</p>
+  </section>
+
+  </section><!-- End Lab Display category -->
+
+  <section aria-labelledby="experiments-heading" hidden>
+    <p class="card-kicker">CPS APPS</p>
+
+    <h2 id="experiments-heading">
+      Experiments
+    </h2>
+
+    <div class="card-grid two-up">
+
+      <article class="mini-card">
+        <p class="card-kicker">EXPERIMENT 1</p>
+
+        <h3>ESP32-CAM LED Experiment</h3>
+
+        <p><strong>ESP32-CAM</strong></p>
+
+        <span class="badge ready">Available</span>
+      </article>
+
+
+      <article class="mini-card">
+        <p class="card-kicker">EXPERIMENT 2</p>
+
+        <h3>Autonomous Car</h3>
+
+        <p><strong>ESP32-WROVER</strong></p>
+
+        <span class="badge planned-badge">Disconnected</span>
+      </article>
+
+    </div>
+  </section>
+
+
+  <section aria-labelledby="devices-heading" hidden>
+    <p class="card-kicker">DEVICES</p>
+
+    <h2 id="devices-heading">
+      CPS Devices
+    </h2>
+
+    <div id="devices"
+         class="card-grid two-up"></div>
+  </section>
+
+
+  
+
+
+  <section hidden>
+    <div class="section-heading">
+      <div>
+        <p class="card-kicker">RECENT ACTIVITY</p>
+        <h2>Recent Runs</h2>
+      </div>
+
+      <button id="refresh"
+              type="button"
+              class="secondary-button">
+        Refresh Runs
+      </button>
+    </div>
+
+    <div id="runs"
+         class="runs-list"></div>
+  </section>
+
+
+  
+
+
+
+<section hidden>
+    <p class="card-kicker">RUN REVIEW</p>
+
+    <h2>Runs and Evidence</h2>
+
+    <p>
+      Select an experiment run to inspect its recorded state, submitted program
+      when applicable, device response, and available evidence.
+    </p>
+
+    <label for="run">Run ID</label>
+
+    <input id="run"
+           maxlength="32"
+           spellcheck="false"
+           autocomplete="off">
+
+    <p id="run-state"
+       class="hint"
+       role="status">
+      Select an attempt to continue.
+    </p>
+
+    <div class="buttons">
+      <button type="button"
+              data-act="review"
+              disabled>
+        View Source
+      </button>
+
+      <button type="button"
+              data-act="details"
+              class="secondary-button"
+              disabled>
+        Refresh Details
+      </button>
+
+      <button type="button"
+              data-act="status"
+              class="secondary-button"
+              disabled>
+        Check Device Report
+      </button>
+
+      <button type="button"
+              data-act="evidence"
+              class="secondary-button"
+              disabled>
+        Download Evidence
+      </button>
+    </div>
+
+    <div id="run-review-detail"
+         class="exception-review"
+         hidden>
+
+      <h3>Run Metadata</h3>
+
+      <pre id="review-metadata"></pre>
+
+      <h3>Submitted Program</h3>
+
+      <pre id="review-source"></pre>
+    </div>
+  </section>
+
+
+
+<section aria-labelledby="access-heading" hidden>
+    <p class="card-kicker">ACCESS</p>
+
+    <h2 id="access-heading">
+      Administration Boundaries
+    </h2>
+
+    <dl class="spec-list">
+      <div>
+        <dt>Student Access</dt>
+
+        <dd>
+          Students use supported experiment workflows from the designated
+          CPS Studio teaching lab workstation.
+        </dd>
+      </div>
+
+      <div>
+        <dt>Instructor Access</dt>
+
+        <dd>
+          Experiment supervision, recovery, and evidence access are provided
+          through the authenticated CPS Studio Administration interface.
+        </dd>
+      </div>
+
+      <div>
+        <dt>System Administration</dt>
+
+        <dd>
+          Raspberry Pi operating-system and service administration use
+          separate SSH public-key authentication.
+        </dd>
+      </div>
+
+      <div>
+        <dt>Device Communication</dt>
+
+        <dd>
+          The Raspberry Pi Gateway communicates with ESP32 devices over the
+          private CPS Studio Wi-Fi network using device-specific authentication.
+        </dd>
+      </div>
+    </dl>
+
+    <p class="hint">
+      These responsibilities remain separate so that student experiment access
+      does not grant instructor, Raspberry Pi, or unrestricted device
+      administration.
+    </p>
+  </section>
+
+</main>
+</body>
+</html>

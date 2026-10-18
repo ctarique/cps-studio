@@ -1,0 +1,63 @@
+# Credentials and provisioned configuration
+.local/
+.env
+.env.*
+!.env.example
+*.env
+!*.env.example
+**/config/gateway.json
+**/config/gateway.*.json
+!**/config/gateway.simulator.json
+!**/config/gateway.simulator-http.json
+!**/config/gateway.wifi.example.json
+**/sentinel_config.h
+**/sentinel_car_config.h
+*.local.h
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+# Environments, caches, OS files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+Thumbs.db
+# Runtime and research data
+*.sqlite*
+*.db
+*.db-*
+*.log
+captures/
+capture/
+evidence/
+telemetry/
+datasets/
+models/
+*.joblib
+*.pkl
+*.pickle
+*.pcap
+*.pcapng
+*.jsonl
+# Build and provisioned firmware output
+build/
+dist/
+wheelhouse/
+node_modules/
+*.bin
+*.elf
+*.hex
+*.map
+# Private archives and backups
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.bak
+*.old

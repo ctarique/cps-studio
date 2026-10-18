@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+
+  <title>CPS Studio</title>
+
+  <link rel="stylesheet" href="/static/style.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/home.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/scps_docstyle.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/home_operational.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/home_motion.css?v=1.0.9-RC">
+
+  
+
+  <link rel="stylesheet" href="/static/home_editorial.css?v=1.0.9-RC">
+
+  <link rel="stylesheet" href="/static/home_final.css?v=1.0.9-RC">
+<link rel="stylesheet" href="/static/portal_approved_home.css?v=1.0.9-RC">
+<link rel="stylesheet" href="/static/portal_approved_home_responsive.css?v=1.0.9-RC">
+<link rel="stylesheet" href="/static/portal_production.css?v=1.0.9-RC">
+<script defer
+          src="/static/home_motion.js?v=home-motion-1"></script>
+</head>
+
+<body class="home-page scps-doc-ui">
+<main>
+
+  {% include '_nav.html' %}
+
+
+
+
+  <header class="hero-home home-editorial-shell home-editorial-hero">
+
+    <div class="home-hero-copy">
+
+      <h1>
+        <span class="home-cps-glow">CPS</span> Studio
+      </h1>
+
+      <p class="home-lab-identity">
+        <strong>IoT &amp; Robotics Lab</strong>
+        <span class="home-lab-location">Teaching and Research Lab</span>
+      </p>
+
+      <div class="home-action-row">
+
+        <a class="button-link"
+           href="/experiments">
+          CPS Apps
+        </a>
+
+        <a class="button-link secondary"
+           href="/about">
+          About CPS Studio
+        </a>
+
+      </div>
+
+      
+
+    </div>
+
+
+    <div class="home-hero-art"
+         aria-hidden="true">
+
+      <img class="home-art hero-art-rover"
+           src="/static/device-icons/public-rover.svg"
+           alt="">
+
+      <img class="home-art hero-art-gateway"
+           src="/static/device-icons/public-gateway.svg"
+           alt="">
+
+      <img class="home-art hero-art-tv"
+           src="/static/device-icons/public-display.svg?v=hero-tv-1"
+           alt="">
+
+    </div>
+
+  </header>
+
+
+  <section class="home-content-section"
+           aria-labelledby="use-heading">
+
+    <p class="card-kicker">
+      GET STARTED
+    </p>
+
+    <h2 id="use-heading">
+      How to Use CPS Studio
+    </h2>
+
+
+    <div class="editorial-workflow-grid">
+
+      <article class="editorial-workflow-step">
+
+        <span class="workflow-number">
+          01
+        </span>
+
+        <div class="workflow-art">
+          <img class="home-art"
+               src="/static/device-icons/public-mcu.svg"
+               alt="ESP32 microcontroller development board">
+        </div>
+
+        <h3>
+          Select CPS App
+        </h3>
+
+      </article>
+
+
+      <article class="editorial-workflow-step">
+
+        <span class="workflow-number">
+          02
+        </span>
+
+        <div class="workflow-art">
+          <img class="home-art"
+               src="/static/device-icons/public-sensor.svg"
+               alt="Ultrasonic sensor module">
+        </div>
+
+        <h3>
+          Follow the Instructions
+        </h3>
+
+      </article>
+
+<article class="editorial-workflow-step">
+
+        <span class="workflow-number">
+          03
+        </span>
+
+        <div class="workflow-art">
+          <img class="home-art"
+               src="/static/device-icons/public-display.svg"
+               alt="Laboratory display">
+        </div>
+
+        <h3>
+          Observe Lab Display
+        </h3>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="home-content-section"
+           aria-labelledby="apps-heading">
+
+    <p class="card-kicker">
+      CPS APPS
+    </p>
+
+    <h2 id="apps-heading">
+      Choose a CPS App
+    </h2>
+
+
+    <div class="home-app-editorial">
+
+      <article class="home-app-feature">
+
+        <div class="home-app-art">
+
+          <img class="home-app-device-icon home-app-device-icon-led"
+               src="/static/device-icons/digital-twin-led.svg?v=led-bulb-final-1"
+               alt="LED Flasher light bulb illustration">
+
+        </div>
+
+
+        <div class="home-app-copy">
+
+          <p class="home-app-meta">
+            APP 01 · ESP32-CAM · AVAILABLE
+          </p>
+
+          <h3>
+            LED Flasher
+          </h3>
+
+          <p>
+            Control the onboard LED, and test a bounded program.
+          </p>
+
+          <a class="button-link"
+             href="/experiments/led-flasher">
+            Open LED Flasher
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="home-app-feature reverse">
+
+        <div class="home-app-art">
+
+          <img class="home-app-car-sticker"
+               src="/static/device-icons/public-rover.svg"
+               alt="CPS Studio car illustration">
+
+        </div>
+
+
+        <div class="home-app-copy">
+
+          <p class="home-app-meta">
+            APP 02 · ESP32-WROVER · IN DEVELOPMENT
+          </p>
+
+          <h3>
+            Autonomous Car
+          </h3>
+
+          <p>
+            Explore vehicle status, camera captures, bounded motor control, and preview designed tracks.
+          </p>
+
+          <a class="button-link"
+             href="/experiments/autonomous-car">
+            Open Autonomous Car
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="home-content-section"
+           aria-labelledby="display-heading">
+
+    <p class="card-kicker">
+      LAB DISPLAY
+    </p>
+
+    <h2 id="display-heading">
+      Follow the Experiment
+    </h2>
+
+
+    <div class="home-display-layout">
+
+      <div>
+
+        <p class="home-section-lead">
+          Lab Display presents the laboratory state or track. Access the Digital Twin feature to preview live telemetry.
+        </p>
+
+        <div class="home-action-row">
+
+          <a class="button-link"
+             href="/display"
+             target="_blank"
+             rel="noopener noreferrer">
+            Open Lab Display
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="home-display-art">
+
+        <img class="home-art"
+             src="/static/device-icons/public-display.svg"
+             alt="Laboratory television display">
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="home-content-section"
+           aria-labelledby="gateway-heading">
+
+    <p class="card-kicker">
+      GATEWAY
+    </p>
+
+    <h2 id="gateway-heading">
+      What the Gateway Does
+    </h2>
+
+
+    <div class="home-gateway-layout">
+
+      <div class="gateway-art-composition"
+           aria-hidden="true">
+
+        <img class="home-art gateway-main-art"
+             src="/static/device-icons/public-gateway.svg"
+             alt="">
+
+        <img class="home-art gateway-switch-art"
+             src="/static/device-icons/public-switch.svg"
+             alt="">
+
+      </div>
+
+
+      <div>
+
+        <p class="home-section-lead">
+          The Sentinel Gateway connects CPS Devices to the Lab Workstation. It checks permitted operations, manages device communication, and keeps student access separate from system administration.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="home-hardware-band"
+           aria-labelledby="hardware-heading">
+
+    <div class="home-hardware-inner">
+
+      <div class="home-hardware-copy">
+
+        <p class="card-kicker">
+          PHYSICAL COMPUTING
+        </p>
+
+        <h2 id="hardware-heading">
+          Built Around Real Hardware
+        </h2>
+
+        <p>
+          CPS Studio uses real microcontrollers, sensors, and actuators in the IoT &amp; Robotics Lab. Each CPS App provides a different way to experiment with the hardware.
+        </p>
+
+      </div>
+
+
+      <div class="home-hardware-art"
+           aria-hidden="true">
+
+        <img class="home-art"
+             src="/static/device-icons/public-chassis.svg"
+             alt="">
+
+        <img class="home-art"
+             src="/static/device-icons/public-breadboard.svg"
+             alt="">
+
+        <img class="home-art"
+             src="/static/device-icons/public-printer.svg"
+             alt="">
+
+        <img class="home-art"
+             src="/static/device-icons/public-handheld.svg"
+             alt="">
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="home-content-section"
+           aria-labelledby="instructor-heading">
+
+    <p class="card-kicker">
+      INSTRUCTOR ACCESS
+    </p>
+
+    <h2 id="instructor-heading">
+      Admin
+    </h2>
+
+
+    <div class="home-admin-layout">
+
+      <div>
+
+        <p class="home-section-lead">
+          Instructors can manage supported laboratory operations, monitor system status, and access administrative controls.
+        </p>
+
+        <div class="home-action-row">
+
+          <a class="button-link"
+             href="/admin"
+             data-home-display-reset>
+            Open Admin
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="home-admin-art">
+
+        <img class="home-admin-security-key"
+             src="/static/device-icons/security-key.svg?v=admin-key-1"
+             alt="Hardware security key">
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="home-content-section"
+           aria-labelledby="collaboration-heading">
+
+    <p class="card-kicker">
+      COLLABORATION
+    </p>
+
+    <h2 id="collaboration-heading">
+      Contact
+    </h2>
+
+    <p class="home-section-lead">
+      If you have fun playing with CPS Studio and have new ideas, we would love to collaborate.
+    </p>
+
+    <div class="home-action-row">
+      <a class="button-link secondary"
+         href="/contact">
+        Contact Us
+      </a>
+    </div>
+
+  </section>
+
+
+  <footer class="portal-footer home-footer">
+
+    <p class="home-footer-primary">
+      <strong>CPS Studio</strong>
+    </p>
+
+    <p class="home-footer-institution">
+      Teaching and research source edition
+    </p>
+
+  </footer>
+
+</main>
+</body>
+</html>
