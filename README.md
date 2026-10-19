@@ -2,7 +2,7 @@
 
 CPS Studio is a platform for hands-on experimentation with cyber-physical systems (CPS), developed as part of my M.S. Cybersecurity thesis research at Southeast Missouri State University.
 
-The system uses a Raspberry Pi 4 Gateway to connect users with ESP32-based devices through a web browser. Students can run supported experiments without direct access to the Raspberry Pi, device firmware, or underlying infrastructure.
+The system uses a Raspberry Pi Gateway to connect users with ESP32-based devices through a web browser. Students can run supported experiments without direct access to the Raspberry Pi, device firmware, or underlying infrastructure.
 
 The Gateway manages device communication, checks requests, enforces execution limits, and records experiment activity.
 
@@ -20,11 +20,7 @@ CPS Studio began with a practical question: how can students experiment with phy
 
 A CPS experiment might involve controlling an LED, reading sensor data, operating a small vehicle, or observing how a device responds to software commands. These activities are useful for learning, but unrestricted access to the underlying systems introduces security and operational risks.
 
-CPS Studio addresses this by placing a Raspberry Pi Gateway between users and physical devices.
-
-Students access supported experiments through the Gateway Portal. The Gateway checks requests and communicates with the devices, while system administration, firmware management, and other privileged operations remain separate.
-
-This allows students to work with real hardware through a controlled interface.
+CPS Studio addresses this by placing a Raspberry Pi Gateway between users and physical devices. Students access supported experiments through the Gateway Portal. The Gateway checks requests and communicates with the devices, while system administration, firmware management, and other privileged operations remain separate. This allows students to work with real hardware through a controlled interface.
 
 ---
 
@@ -32,9 +28,7 @@ This allows students to work with real hardware through a controlled interface.
 
 ![CPS Studio Network Architecture](docs/assets/netarch.png)
 
-*Figure 1. CPS Studio laboratory network architecture.*
-
-CPS Studio consists of a laboratory workstation, a Raspberry Pi 4 Gateway, two ESP32-based devices, and a television used as the Lab Display.
+*Figure 1. CPS Studio Network.*
 
 ### How It Works
 
@@ -349,7 +343,6 @@ Local runtime files, generated credentials, and evidence are stored under:
 current-gateway/.local/
 ```
 
-Do not commit this directory to Git.
 
 Stop the Gateway with `Ctrl-C`.
 
