@@ -2,15 +2,15 @@
 
 CPS Studio is a platform for hands-on experimentation with cyber-physical systems (CPS), developed as part of my M.S. Cybersecurity thesis research at Southeast Missouri State University.
 
-The system uses a Raspberry Pi Gateway to connect users with ESP32-based devices through a web browser. Students can run supported experiments without direct access to the Raspberry Pi, device firmware, or underlying infrastructure.
+The system uses a Raspberry Pi Gateway to connect users with CPS Devices through a web browser. They can run preinstalled CPS Apps without direct access to the Raspberry Pi, device firmware,or underlying infrastructure.
 
 The Gateway manages device communication, checks requests, enforces execution limits, and records experiment activity.
 
-The project combines embedded systems, networking, cybersecurity, software development, system monitoring, and machine learning.
+The project combines cybersecurity, embedded systems, networking, software development, system monitoring, and machine learning.
 
 ### [Explore the Interactive Simulator](https://ctarique.github.io/cps-studio/)
 
-The online simulator demonstrates the Gateway Portal, CPS Apps, Lab Display, and Digital Twin without requiring access to the physical laboratory. It uses simulated device responses rather than live hardware.
+The online simulator demonstrates the Gateway Portal, CPS Apps, Lab Display, and Digital Twin without requiring access to the physical laboratory. It uses simulated device responses.
 
 ---
 
@@ -32,11 +32,11 @@ CPS Studio addresses this by placing a Raspberry Pi Gateway between users and ph
 
 ### How It Works
 
-The laboratory workstation and Raspberry Pi are connected through an Ethernet switch.
+The Lab Workstation and Pi are connected through a switch.
 
-Students access the Gateway Portal through a web browser on the workstation. They do not directly administer the Raspberry Pi or communicate with the embedded devices.
+Students access the Gateway Portal through a web browser on the workstation. They do not directly administer the Pi or communicate with the embedded devices.
 
-The Raspberry Pi hosts a separate private Wi-Fi network for communication with the ESP32 devices. The Gateway application handles requests between the browser and the hardware.
+The Pi hosts a separate private Wi-Fi network for communication with the ESP32 devices. The Gateway application handles requests between the browser and the hardware.
 
 A television connected to the Pi through HDMI presents experiment status, device information, and visual content.
 
