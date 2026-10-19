@@ -455,7 +455,7 @@ Their contributions helped shape the research and its implementation.
 M.S. Cybersecurity Candidate  
 Southeast Missouri State University
 
-[GitHub](https://github.com/ctarique) | [LinkedIn](https://www.linkedin.com/in/ctarique/)
+[LinkedIn](https://www.linkedin.com/in/ctarique/)
 
 ---
 
